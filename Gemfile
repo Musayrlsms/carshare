@@ -30,3 +30,7 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+
+# Other Gems
+gem 'devise'

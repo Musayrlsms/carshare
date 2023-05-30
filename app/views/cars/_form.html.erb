@@ -1,0 +1,62 @@
+<%= form_with(model: car) do |form| %>
+  <% if car.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(car.errors.count, "error") %> prohibited this car from being saved:</h2>
+
+      <ul>
+        <% car.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :details, style: "display: block" %>
+    <%= form.text_area :details %>
+  </div>
+
+  <div>
+    <%= form.label :model_id, style: "display: block" %>
+    <%= form.text_field :model_id %>
+  </div>
+
+  <div>
+    <%= form.label :brand_id, style: "display: block" %>
+    <%= form.text_field :brand_id %>
+  </div>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.label :distance, style: "display: block" %>
+    <%= form.number_field :distance %>
+  </div>
+
+  <div>
+    <%= form.label :max_luggage, style: "display: block" %>
+    <%= form.number_field :max_luggage %>
+  </div>
+
+  <div>
+    <%= form.label :seat_count, style: "display: block" %>
+    <%= form.number_field :seat_count %>
+  </div>
+
+  <div>
+    <%= form.label :case_type, style: "display: block" %>
+    <%= form.number_field :case_type %>
+  </div>
+
+  <div>
+    <%= form.label :images, style: "display: block" %>
+    <%= form.file_field :images, multiple: true %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

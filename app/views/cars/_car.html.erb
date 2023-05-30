@@ -1,0 +1,49 @@
+<div id="<%= dom_id car %>">
+  <p>
+    <strong>Details:</strong>
+    <%= car.details %>
+  </p>
+
+  <p>
+    <strong>Model:</strong>
+    <%= car.model_id %>
+  </p>
+
+  <p>
+    <strong>Brand:</strong>
+    <%= car.brand_id %>
+  </p>
+
+  <p>
+    <strong>User:</strong>
+    <%= car.user_id %>
+  </p>
+
+  <p>
+    <strong>Distance:</strong>
+    <%= car.distance %>
+  </p>
+
+  <p>
+    <strong>Max luggage:</strong>
+    <%= car.max_luggage %>
+  </p>
+
+  <p>
+    <strong>Seat count:</strong>
+    <%= car.seat_count %>
+  </p>
+
+  <p>
+    <strong>Case type:</strong>
+    <%= car.case_type %>
+  </p>
+
+  <p>
+    <strong>Images:</strong>
+    <% car.images.each do |image| %>
+      <div><%= link_to image.filename, image %></div>
+    <% end %>
+  </p>
+
+</div>
