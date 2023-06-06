@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Booking - Multipurpose Online Booking Theme</title>
+
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="author" content="Webestica.com">
+	<meta name="description" content="Booking - Multipurpose Online Booking Theme">
+
+	<!-- Dark mode -->
+	<script>
+		const storedTheme = localStorage.getItem('theme')
+ 
+		const getPreferredTheme = () => {
+			if (storedTheme) {
+				return storedTheme
+			}
+			return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+		}
+
+		const setTheme = function (theme) {
+			if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.documentElement.setAttribute('data-bs-theme', 'dark')
+			} else {
+				document.documentElement.setAttribute('data-bs-theme', theme)
+			}
+		}
+
+		setTheme(getPreferredTheme())
+
+		window.addEventListener('DOMContentLoaded', () => {
+		    var el = document.querySelector('.theme-icon-active');
+			if(el != 'undefined' && el != null) {
+				const showActiveTheme = theme => {
+				const activeThemeIcon = document.querySelector('.theme-icon-active use')
+				const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+				const svgOfActiveBtn = btnToActive.querySelector('.mode-switch use').getAttribute('href')
+
+				document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+					element.classList.remove('active')
+				})
+
+				btnToActive.classList.add('active')
+				activeThemeIcon.setAttribute('href', svgOfActiveBtn)
+			}
+
+			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+				if (storedTheme !== 'light' || storedTheme !== 'dark') {
+					setTheme(getPreferredTheme())
+				}
+			})
+
+			showActiveTheme(getPreferredTheme())
+
+			document.querySelectorAll('[data-bs-theme-value]')
+				.forEach(toggle => {
+					toggle.addEventListener('click', () => {
+						const theme = toggle.getAttribute('data-bs-theme-value')
+						localStorage.setItem('theme', theme)
+						setTheme(theme)
+						showActiveTheme(theme)
+					})
+				})
+
+			}
+		})
+		
+	</script>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="assets/images/favicon.ico">
+
+	<!-- Google Font -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap">
+
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" type="text/css" href="assets/vendor/font-awesome/css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
+	<link rel="stylesheet" type="text/css" href="assets/vendor/aos/aos.css">
+	<link rel="stylesheet" type="text/css" href="assets/vendor/flatpickr/css/flatpickr.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/vendor/choices/css/choices.min.css">
+
+	<!-- Theme CSS -->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+
+<body class="dashboard">
+
+<!-- **************** MAIN CONTENT START **************** -->
+<main>
+	
+<!-- =======================
+Content START -->
+<section class="pt-3">
+	<div class="container">
+		<div class="row">
+
+			<!-- Sidebar START -->
+			<div class="col-lg-4 col-xl-3">
+				<!-- Responsive offcanvas body START -->
+				<div class="offcanvas-lg offcanvas-end" tabindex="-1" id="offcanvasSidebar" >
+					<!-- Offcanvas header -->
+					<div class="offcanvas-header justify-content-end pb-2">
+						<button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasSidebar" aria-label="Close"></button>
+					</div>
+
+					<!-- Offcanvas body -->
+					<div class="offcanvas-body p-3 p-lg-0">
+						<div class="card bg-light w-100">
+
+							<!-- Edit profile button -->
+							<div class="position-absolute top-0 end-0 p-3">
+								<a href="/profile/edit" class="text-primary-hover" data-bs-toggle="tooltip" data-bs-title="Edit profile">
+									<i class="bi bi-pencil-square"></i>
+								</a>
+							</div>
+
+							<!-- Card body START -->
+							<div class="card-body p-3">
+								<!-- Avatar and content -->
+								<div class="text-center mb-3">
+									<!-- Avatar -->
+									<div class="avatar avatar-xl mb-2">
+										<img class="avatar-img rounded-circle border border-2 border-white" src="assets/images/avatar/01.jpg" alt="">
+									</div>
+
+
+
+
+									
+
+								
+
+									<h6 class="mb-0">Jacqueline Miller</h6>
+									<a href="account-profile.html#" class="text-reset text-primary-hover small"><%= current_user.email %></a>
+									<hr>
+								</div>
+
+								<!-- Sidebar menu item START -->
+								<ul class="nav nav-pills-primary-soft flex-column">
+									<li class="nav-item">
+										<a class="nav-link active" href="profile/index"><i class="bi bi-person fa-fw me-2"></i>My Profile</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="account-bookings.html"><i class="bi bi-ticket-perforated fa-fw me-2"></i>My Bookings</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="<%= edit_user_registration_path %>"><i class="bi bi-people fa-fw me-2"></i>Update Password</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="account-payment-details.html"><i class="bi bi-wallet fa-fw me-2"></i>Payment Details</a>
+									</li>
+									<li class="nav-item">
+										<%= link_to 'Sign Out', destroy_user_session_path, class:"text-secondary ms-1", data: { turbo_method: :delete } %>
+									</li>
+									
+								</ul>
+								<!-- Sidebar menu item END -->
+							</div>
+							<!-- Card body END -->
+						</div>
+					</div>
+				</div>	
+				<!-- Responsive offcanvas body END -->	
+			</div>
+			<!-- Sidebar END -->
+
+			<!-- Main content START -->
+			<div class="col-lg-8 col-xl-9">
+
+				<!-- Offcanvas menu button -->
+				<div class="d-grid mb-0 d-lg-none w-100">
+					<button class="btn btn-primary mb-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+						<i class="fas fa-sliders-h"></i> Menu
+					</button>
+				</div>
+
+
+					<!-- Personal info START -->
+					<div class="card border">
+						<!-- Card header -->
+						<div class="card-header border-bottom">
+							<h4 class="card-header-title">Personal Information</h4>
+						</div>
+
+						<!-- Card body START -->
+						<div class="card-body">
+							<!-- Form START -->
+								<!-- Profile photo -->
+							<%= form_for(current_user, as: "User", url: registration_path(current_user), html: { method: :put, class: "row g-3"}) do |f| %>
+	
+								<div class="col-12">
+									<label class="form-label">Upload your profile photo<span class="text-danger">*</span></label>
+									<div class="d-flex align-items-center">
+										<label class="position-relative me-4" for="uploadfile-1" title="Replace this pic">
+											<!-- Avatar place holder -->
+
+											<span class="avatar avatar-xl"
+												<% if current_user.avatar.attached? %>
+													<%= image_tag(current_user.avatar, class: "avatar-img rounded-circle border border-white border-3 shadow") %>
+												<% end %>
+											</span>
+										</label>
+										<!-- Upload button -->
+										<%= f.file_field :avatar, class: "form-control" %>
+
+									</div>
+								</div>
+							
+								<!-- Name -->
+								<div class="col-md-6">
+									<label class="form-label">Full Name<span class="text-danger">*</span></label>
+									<input type="text" class="form-control" value="Jacqueline Miller" placeholder="Enter your full name">
+								</div>
+
+								<!-- Email -->
+								<div class="col-md-6">
+									<label class="form-label">Email address<span class="text-danger">*</span></label>
+									<input type="email" class="form-control" value="hello@gmail.com" placeholder="Enter your email id">
+								</div>
+
+								<!-- Mobile -->
+								<div class="col-md-6">
+									<label class="form-label">Mobile number<span class="text-danger">*</span></label>
+									<input type="text" class="form-control" value="222 555 666" placeholder="Enter your mobile number">
+								</div>
+
+								<!-- Nationality -->
+								<div class="col-md-6">
+									<label class="form-label">Nationality<span class="text-danger">*</span></label>
+									<select class="form-select js-choice">
+										<option value="">Select your country</option>
+										<option>USA</option>
+										<option selected>Paris</option>
+										<option>India</option>
+										<option>UK</option>
+									</select>
+								</div>
+
+								<!-- Date of birth -->
+								<div class="col-md-6">
+									<label class="form-label">Date of Birth<span class="text-danger">*</span></label>
+									<input type="text" class="form-control flatpickr" value="29 Aug 1996" placeholder="Enter date of birth" data-date-format="d M Y">
+								</div>
+
+								<!-- Gender -->
+								<div class="col-md-6">
+									<label class="form-label">Select Gender<span class="text-danger">*</span></label>
+									<div class="d-flex gap-4">
+										<div class="form-check radio-bg-light">
+											<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked="">
+											<label class="form-check-label" for="flexRadioDefault1">
+												Male
+											</label>
+										</div>
+										<div class="form-check radio-bg-light">
+											<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+											<label class="form-check-label" for="flexRadioDefault2">
+												Female
+											</label>
+										</div>
+										<div class="form-check radio-bg-light">
+											<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+											<label class="form-check-label" for="flexRadioDefault3">
+												Others
+											</label>
+										</div>
+									</div>
+								</div>
+
+								<!-- Address -->
+								<div class="col-12">
+									<label class="form-label">Address</label>
+									<textarea class="form-control" rows="3" spellcheck="false">2119 N Division Ave, New Hampshire, York, United States</textarea>
+								</div>
+
+								<!-- Button -->
+								<div class="col-12 text-end">
+									<%= f.submit 'Save Changes', class: 'btn btn-primary mb-0' %>
+								</div>
+							<% end %>
+							<!-- Form END -->
+						</div>
+						<!-- Card body END -->
+					</div>
+				
+					<!-- Personal info END -->
+
+					<!-- Update email START -->
+	
+					<!-- Update email END -->
+
+					
+			<!-- Main content END -->
+
+		</div>
+	</div>
+</section>
+<!-- =======================
+Content END -->
+
+</main>
+<!-- **************** MAIN CONTENT END **************** -->
+
+<!-- =======================
+Footer START -->
+<footer class="bg-dark p-3">
+	<div class="container">
+		<div class="row align-items-center">
+
+			<!-- Widget -->
+			<div class="col-md-4">
+				<div class="text-center text-md-start mb-3 mb-md-0">
+					<a href="index.html"> <img class="h-30px" src="assets/images/logo-light.svg" alt="logo"> </a>
+				</div> 
+			</div>
+			
+			<!-- Widget -->
+			<div class="col-md-4">
+				<div class="text-muted text-primary-hover"> Copyrights ©2023 Booking. Build by <a href="https://www.webestica.com/" class="text-muted">Webestica</a>. </div>
+			</div>
+
+			<!-- Widget -->
+			<div class="col-md-4">
+				<ul class="list-inline mb-0 text-center text-md-end">
+					<li class="list-inline-item ms-2"><a href="account-profile.html#"><i class="text-white fab fa-facebook"></i></a></li>
+					<li class="list-inline-item ms-2"><a href="account-profile.html#"><i class="text-white fab fa-instagram"></i></a></li>
+					<li class="list-inline-item ms-2"><a href="account-profile.html#"><i class="text-white fab fa-linkedin-in"></i></a></li>
+					<li class="list-inline-item ms-2"><a href="account-profile.html#"><i class="text-white fab fa-twitter"></i></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</footer>
+<!-- =======================
+Footer END -->
+
+<!-- Back to top -->
+<div class="back-top"></div>
+
+<!-- Bootstrap JS -->
+<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Vendors -->
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/flatpickr/js/flatpickr.min.js"></script>
+<script src="assets/vendor/choices/js/choices.min.js"></script>
+
+<!-- ThemeFunctions -->
+<script src="assets/js/functions.js"></script>
+
+</body>
+</html>

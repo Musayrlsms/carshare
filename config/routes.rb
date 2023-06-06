@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'profile/index'
+  get 'profile/edit'
   resources :rules
   resources :properties
   resources :cars
