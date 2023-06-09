@@ -125,39 +125,31 @@ Content START -->
 								<!-- Avatar and content -->
 								<div class="text-center mb-3">
 									<!-- Avatar -->
+									<% if current_user.present? %>
 									<div class="avatar avatar-xl mb-2">
-										<img class="avatar-img rounded-circle border border-2 border-white" src="assets/images/avatar/01.jpg" alt="">
+										<%= image_tag(current_user.avatar, class: "avatar-img rounded-3") %>
 									</div>
-
-
-
-
 									
-
-								
-
-									<h6 class="mb-0">Jacqueline Miller</h6>
+									<h6 class="mb-0"><%= "#{current_user.name} #{current_user.surname}" %></h6>
 									<a href="account-profile.html#" class="text-reset text-primary-hover small"><%= current_user.email %></a>
 									<hr>
+									<%end%>
 								</div>
 
 								<!-- Sidebar menu item START -->
 								<ul class="nav nav-pills-primary-soft flex-column">
 									<li class="nav-item">
-										<a class="nav-link active" href="profile/index"><i class="bi bi-person fa-fw me-2"></i>My Profile</a>
+										<a class="nav-link active" href="profiles/index"><i class="bi bi-person fa-fw me-2"></i>My Profile</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="account-bookings.html"><i class="bi bi-ticket-perforated fa-fw me-2"></i>My Bookings</a>
 									</li>
-									<li class="nav-item">
-										<a class="nav-link" href="<%= edit_user_registration_path %>"><i class="bi bi-people fa-fw me-2"></i>Update Password</a>
-									</li>
+				
 									<li class="nav-item">
 										<a class="nav-link" href="account-payment-details.html"><i class="bi bi-wallet fa-fw me-2"></i>Payment Details</a>
 									</li>
-									<li class="nav-item">
-										<%= link_to 'Sign Out', destroy_user_session_path, class:"text-secondary ms-1", data: { turbo_method: :delete } %>
-									</li>
+								
+									
 									
 								</ul>
 								<!-- Sidebar menu item END -->
@@ -192,92 +184,112 @@ Content START -->
 						<div class="card-body">
 							<!-- Form START -->
 								<!-- Profile photo -->
-							<%= form_for(current_user, as: "User", url: registration_path(current_user), html: { method: :put, class: "row g-3"}) do |f| %>
-	
-								<div class="col-12">
-									<label class="form-label">Upload your profile photo<span class="text-danger">*</span></label>
-									<div class="d-flex align-items-center">
-										<label class="position-relative me-4" for="uploadfile-1" title="Replace this pic">
-											<!-- Avatar place holder -->
-
-											<span class="avatar avatar-xl"
-												<% if current_user.avatar.attached? %>
-													<%= image_tag(current_user.avatar, class: "avatar-img rounded-circle border border-white border-3 shadow") %>
-												<% end %>
-											</span>
-										</label>
-										<!-- Upload button -->
-										<%= f.file_field :avatar, class: "form-control" %>
-
-									</div>
-								</div>
-							
+								
+								<%= form_for(current_user, url: update_profile_path(), method: :patch,  class: "row g-3") do |f| %>
 								<!-- Name -->
-								<div class="col-md-6">
-									<label class="form-label">Full Name<span class="text-danger">*</span></label>
-									<input type="text" class="form-control" value="Jacqueline Miller" placeholder="Enter your full name">
+								<div class="col-md-12">
+									<label class="form-label">Name<span class="text-danger">*</span></label>
+									<%= f.text_field :name, placeholder:"Enter your name",class: "form-control" %>
 								</div>
 
-								<!-- Email -->
-								<div class="col-md-6">
-									<label class="form-label">Email address<span class="text-danger">*</span></label>
-									<input type="email" class="form-control" value="hello@gmail.com" placeholder="Enter your email id">
+								<div class="col-md-12">
+									<label class="form-label">Surname<span class="text-danger">*</span></label>
+									<%= f.text_field :surname, placeholder:"Enter your surname",class: "form-control" %>
 								</div>
 
 								<!-- Mobile -->
-								<div class="col-md-6">
+								<div class="col-md-12">
 									<label class="form-label">Mobile number<span class="text-danger">*</span></label>
-									<input type="text" class="form-control" value="222 555 666" placeholder="Enter your mobile number">
+									<%= f.text_field :mobile_number, placeholder:"Enter your mobile number",class: "form-control" %>
 								</div>
 
 								<!-- Nationality -->
-								<div class="col-md-6">
-									<label class="form-label">Nationality<span class="text-danger">*</span></label>
-									<select class="form-select js-choice">
-										<option value="">Select your country</option>
-										<option>USA</option>
-										<option selected>Paris</option>
-										<option>India</option>
-										<option>UK</option>
-									</select>
-								</div>
 
 								<!-- Date of birth -->
-								<div class="col-md-6">
+								<div class="col-md-12">
 									<label class="form-label">Date of Birth<span class="text-danger">*</span></label>
-									<input type="text" class="form-control flatpickr" value="29 Aug 1996" placeholder="Enter date of birth" data-date-format="d M Y">
+									<%= f.date_field :date_of_birth, placeholder:"Enter date of birth", class: "form-control" %>
 								</div>
 
-								<!-- Gender -->
-								<div class="col-md-6">
-									<label class="form-label">Select Gender<span class="text-danger">*</span></label>
-									<div class="d-flex gap-4">
-										<div class="form-check radio-bg-light">
-											<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked="">
-											<label class="form-check-label" for="flexRadioDefault1">
-												Male
-											</label>
-										</div>
-										<div class="form-check radio-bg-light">
-											<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-											<label class="form-check-label" for="flexRadioDefault2">
-												Female
-											</label>
-										</div>
-										<div class="form-check radio-bg-light">
-											<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-											<label class="form-check-label" for="flexRadioDefault3">
-												Others
-											</label>
-										</div>
-									</div>
-								</div>
 
 								<!-- Address -->
 								<div class="col-12">
 									<label class="form-label">Address</label>
-									<textarea class="form-control" rows="3" spellcheck="false">2119 N Division Ave, New Hampshire, York, United States</textarea>
+									<%= f.text_field :adress, placeholder:"Enter your adress", class: "form-control"  %>
 								</div>
+
+							<div class="col-12">
+								<label class="form-label">Upload your profile photo<span class="text-danger">*</span></label>
+								<div class="d-flex align-items-center">
+								<label class="position-relative me-4" for="uploadfile-1" title="Replace this pic">
+									<!-- Avatar place holder -->
+								
+									<span class="avatar avatar-xl">
+									<% if current_user.avatar.attached? %>
+										<%= image_tag(current_user.avatar, class: "avatar-img rounded-3") %>
+									<% end %>
+									</span>
+								</label>
+
+								<!-- Upload button -->
+								<label class="btn btn-sm btn-primary-soft mb-0" for="uploadfile-1">Change</label>
+								<%= f.file_field :avatar, class: "form-control d-none", id:"uploadfile-1"  %>
+								</div>
+							</div>
+
+							<div class="col-12">
+								<label class="form-label">Upload your identity card photo<span class="text-danger">*</span></label>
+								<div class="d-flex align-items-center">
+								<label class="position-relative me-4" for="uploadfile-1" title="Replace this pic">
+									<span class="avatar avatar-xl">
+									<% if current_user.identity_card.attached? %>
+										<%= image_tag(current_user.identity_card, class: "avatar-img rounded-3") %>
+									<% end %>
+									</span>
+								</label>
+								<!-- Upload button -->
+								<label class="btn btn-sm btn-primary-soft mb-0" for="uploadfile-1">Change</label>
+								<%= f.file_field :identity_card, class: "form-control d-none", id:"uploadfile-1"  %>
+							
+							</div>
+
+						<div class="col-12">
+							<label class="form-label">Upload your passport photo<span class="text-danger">*</span></label>
+							<div class="d-flex align-items-center">
+							<label class="position-relative me-4" for="uploadfile-1" title="Replace this pic">
+								<span class="avatar avatar-xl">
+								<% if current_user.passport.attached? %>
+									<%= image_tag(current_user.passport, class: "avatar-img rounded-3") %>
+								<% end %>
+								</span>
+							</label>
+							<!-- Upload button -->
+							<label class="btn btn-sm btn-primary-soft mb-0" for="uploadfile-1">Change</label>
+							<%= f.file_field :passport, class: "form-control d-none", id:"uploadfile-1"  %>
+							</div>
+						</div>
+
+						<div class="col-12">
+							<label class="form-label">Upload your driver license photo<span class="text-danger">*</span></label>
+							<div class="d-flex align-items-center">
+							<label class="position-relative me-4" for="uploadfile-1" title="Replace this pic">
+								<span class="avatar avatar-xl">
+								<% if current_user.driver_license.attached? %>
+									<%= image_tag(current_user.driver_license, class: "avatar-img rounded-3") %>
+								<% end %>
+								</span>
+							</label>
+							<!-- Upload button -->
+							<label class="btn btn-sm btn-primary-soft mb-0" for="uploadfile-1">Change</label>
+							<%= f.file_field :driver_license, class: "form-control d-none", id:"uploadfile-1"  %>
+							
+							</div>
+						</div>
+
+							
+						</div>
+
+
 
 								<!-- Button -->
 								<div class="col-12 text-end">
@@ -291,9 +303,61 @@ Content START -->
 				
 					<!-- Personal info END -->
 
-					<!-- Update email START -->
-	
-					<!-- Update email END -->
+					<!-- Update Password START -->
+					
+			
+					<div class="card border">
+						<!-- Card header -->
+						<div class="card-header border-bottom">
+							<h4 class="card-header-title">Update Password</h4>
+							<p class="mb-0">Your current email address is <span class="text-primary"><%= current_user.email %></span></p>
+						</div>
+
+						<!-- Card body START -->
+						<%= form_for(current_user, url: update_profile_password_path(), method: :patch ) do |f| %>
+						<form class="card-body">
+						
+							<!-- Current password -->
+							<div class="mb-3">
+								<label class="form-label">Current password</label>
+								<%= f.password_field :current_password, placeholder:"Enter your current password", class: "form-control"  %>
+							</div>
+						
+							
+							<!-- New password -->
+							<div class="mb-3">
+								<label class="form-label"> Enter new password</label>
+								<div class="input-group">
+								<%= f.password_field :password, placeholder:"Enter your new password", class: "form-control"  %>
+									<span class="input-group-text p-0 bg-transparent">
+										<i class="fakepasswordicon fas fa-eye-slash cursor-pointer p-2"></i>
+									</span>
+									
+								</div>
+							</div>
+							<!-- Confirm -->
+							<div class="mb-3">
+								<label class="form-label">Confirm new password</label>
+								
+								<%= f.password_field :password_confirmation, placeholder:"Confirm new password", class: "form-control" %>
+							</div>
+
+							<div class="text-end">
+								
+								<%= f.submit 'Change Password', class: 'btn btn-primary mb-0' %>
+								
+							</div>
+						</form>
+						<% end %>
+						<!-- Card body END -->
+					</div>
+
+
+
+
+			
+
+					<!-- Update Password END -->
 
 					
 			<!-- Main content END -->

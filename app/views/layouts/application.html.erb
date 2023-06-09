@@ -225,13 +225,9 @@
 							<li class="dropdown-submenu dropend">
 								<a class="dropdown-item dropdown-toggle" href="#">User Profile</a>
 								<ul class="dropdown-menu" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="/profile/index">My Profile</a> </li>
+									<li> <a class="dropdown-item" href="/profiles/index">My Profile</a> </li>
 									<li> <a class="dropdown-item" href="account-bookings.html">My Bookings</a> </li>
-									<li> <a class="dropdown-item" href="account-travelers.html">Travelers</a> </li>
 									<li> <a class="dropdown-item" href="account-payment-details.html">Payment Details</a> </li>
-									<li> <a class="dropdown-item" href="account-wishlist.html">Wishlist</a> </li>
-									<li> <a class="dropdown-item" href="account-settings.html">Settings</a> </li>
-									<li> <a class="dropdown-item" href="account-delete.html">Delete Profile</a> </li>
 								</ul>
 							</li>
 
@@ -248,8 +244,6 @@
 									<li> <a class="dropdown-item" href="agent-settings.html">Settings</a> </li>
 								</ul>
 							</li>
-							
-							<li> <a class="dropdown-item" href="admin-dashboard.html">Master Admin</a> </li>
 						</ul>
 					</li>
 
@@ -306,11 +300,9 @@
 				<!-- Notification dropdown START -->
 				<li class="nav-item dropdown ms-0 ms-md-3">
 					<!-- Notification button -->
-					<a class="nav-notification btn btn-light p-0 mb-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-						<i class="bi bi-bell fa-fw"></i>
-					</a>
+
 					<!-- Notification dote -->
-					<span class="notif-badge animation-blink"></span>
+					
 
 					<!-- Notification dropdown menu START -->
 					<div class="dropdown-menu dropdown-animation dropdown-menu-end dropdown-menu-size-md shadow-lg p-0">
@@ -357,7 +349,11 @@
 				<li class="nav-item ms-3 dropdown">
 					<!-- Avatar -->
 					<a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-						<img class="avatar-img rounded-2" src="/assets/images/avatar/01.jpg" alt="avatar">
+					<% if current_user.present? %>
+						<%= image_tag(current_user.avatar, class: "avatar-img rounded-2") %>
+						<%else%>
+						<%= link_to 'Log in', new_user_session_path, class:"btn btn-sm btn-primary-soft mb-0"%>
+					<% end %>
 					</a>
 
 					<ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
@@ -366,11 +362,17 @@
 							<div class="d-flex align-items-center">
 								<!-- Avatar -->
 								<div class="avatar me-3">
-									<img class="avatar-img rounded-circle shadow" src="/assets/images/avatar/01.jpg" alt="avatar">
+								<% if current_user.present? %>
+									<%= image_tag(current_user.avatar, class: "avatar-img rounded-2") %>
+								<%else%>
+									<img class="avatar-img rounded-2" src="assets/images/avatar/01.jpg" alt="avatar">
+								<% end %>
 								</div>
 								<div>
-									<a class="h6 mt-2 mt-sm-0" href="/profile/index">Lori Ferguson</a>
-									<p class="small m-0">example@gmail.com</p>
+								<% if current_user.present? %>
+									<a class="h6 mt-2 mt-sm-0" href="/profiles/index"><%= "#{current_user.name} #{current_user.surname}" %></a>
+									<p class="small m-0"><%= current_user.email %></p>
+								<% end %>
 								</div>
 							</div>
 						</li>
@@ -381,7 +383,9 @@
 						
 						
 						<li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help Center</a></li>
-						<li><a class="dropdown-item bg-danger-soft-hover" href="#"><i class="bi bi-power fa-fw me-2"></i>Sign Out</a></li>
+						
+						<%= button_to "Sign out", destroy_user_session_path, :method => 'delete', class:"dropdown-item bg-danger-soft-hover", data:{turbo: "false"} %>
+
 						<li> <hr class="dropdown-divider"></li>
 
 						<!-- Dark mode options START -->
