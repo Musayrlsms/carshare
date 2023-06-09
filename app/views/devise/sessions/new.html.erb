@@ -10,9 +10,10 @@
 <div class="col-lg-6 order-1">
   <div class="p-4 p-sm-7">
     <!-- Logo -->
-    <a href="index.html">
+    <%= link_to root_path, class: "nav-link active" do %>
       <img class="h-50px mb-4" src="/assets/images/logo-icon.svg" alt="logo">
-    </a>
+    <% end %>
+
     <!-- Title -->
     <h1 class="mb-2 h3">Welcome back</h1>
     <p class="mb-0">New here? <%= link_to "Create an account", new_registration_path(resource_name) %><br /></p>

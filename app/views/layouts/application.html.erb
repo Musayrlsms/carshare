@@ -225,7 +225,7 @@
 							<li class="dropdown-submenu dropend">
 								<a class="dropdown-item dropdown-toggle" href="#">User Profile</a>
 								<ul class="dropdown-menu" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="/profiles">My Profile</a> </li>
+									<li> <%= link_to "My Profile", profiles_path, class: "dropdown-item" %> </li>
 									<li> <a class="dropdown-item" href="account-bookings.html">My Bookings</a> </li>
 									<li> <a class="dropdown-item" href="account-payment-details.html">Payment Details</a> </li>
 								</ul>
