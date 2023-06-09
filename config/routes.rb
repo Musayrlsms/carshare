@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
-  get 'profiles/index'
   patch '/profiles', to: 'profiles#update', as: 'update_profile'
-  patch '/profiles', to: 'profiles#update_password', as: 'update_profile_password'
 
-
+  resources :profiles
   resources :rules
   resources :properties
   resources :cars

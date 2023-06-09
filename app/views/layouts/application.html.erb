@@ -225,7 +225,7 @@
 							<li class="dropdown-submenu dropend">
 								<a class="dropdown-item dropdown-toggle" href="#">User Profile</a>
 								<ul class="dropdown-menu" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="/profiles/index">My Profile</a> </li>
+									<li> <a class="dropdown-item" href="/profiles">My Profile</a> </li>
 									<li> <a class="dropdown-item" href="account-bookings.html">My Bookings</a> </li>
 									<li> <a class="dropdown-item" href="account-payment-details.html">Payment Details</a> </li>
 								</ul>
@@ -349,10 +349,13 @@
 				<li class="nav-item ms-3 dropdown">
 					<!-- Avatar -->
 					<a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-					<% if current_user.present? %>
+					<% if user_signed_in? && current_user.avatar.present? %>
 						<%= image_tag(current_user.avatar, class: "avatar-img rounded-2") %>
-						<%else%>
+					<% elsif user_signed_in? && !current_user.avatar.attached?%>
+						<img class="avatar-img rounded-2" src="assets/images/avatar/01.jpg" alt="avatar">
+					<%else %>
 						<%= link_to 'Log in', new_user_session_path, class:"btn btn-sm btn-primary-soft mb-0"%>
+
 					<% end %>
 					</a>
 
@@ -362,15 +365,19 @@
 							<div class="d-flex align-items-center">
 								<!-- Avatar -->
 								<div class="avatar me-3">
-								<% if current_user.present? %>
+								<% if user_signed_in? && current_user.avatar.present? %>
 									<%= image_tag(current_user.avatar, class: "avatar-img rounded-2") %>
-								<%else%>
+								<% elsif user_signed_in? && !current_user.avatar.attached?%>
 									<img class="avatar-img rounded-2" src="assets/images/avatar/01.jpg" alt="avatar">
+								<%else %>
+									<%= link_to 'Log in', new_user_session_path, class:"btn btn-sm btn-primary-soft mb-0"%>
+		
 								<% end %>
+
 								</div>
 								<div>
 								<% if current_user.present? %>
-									<a class="h6 mt-2 mt-sm-0" href="/profiles/index"><%= "#{current_user.name} #{current_user.surname}" %></a>
+								<%= link_to "#{current_user.name} #{current_user.surname}", profiles_path, class: 'h6 mt-2 mt-sm-0' %>
 									<p class="small m-0"><%= current_user.email %></p>
 								<% end %>
 								</div>
@@ -384,7 +391,7 @@
 						
 						<li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help Center</a></li>
 						
-						<%= button_to "Sign out", destroy_user_session_path, :method => 'delete', class:"dropdown-item bg-danger-soft-hover", data:{turbo: "false"} %>
+						<li><%= button_to "Sign out", destroy_user_session_path, :method => 'delete', class:"dropdown-item bg-danger-soft-hover", data:{turbo: "false"} %></li>
 
 						<li> <hr class="dropdown-divider"></li>
 
