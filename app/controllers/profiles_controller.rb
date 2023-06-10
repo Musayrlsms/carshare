@@ -1,6 +1,7 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
   def index
+    full_name
   
   end
 
@@ -12,7 +13,6 @@ class ProfilesController < ApplicationController
     end
   end
 
-  
 
   def user_params
     params.require(:user).permit(:name, :surname, :mobile_number, :adress, :date_of_birth, :email, :avatar, :identity_card, :passport, :driver_license, :password, :password_confirmation)

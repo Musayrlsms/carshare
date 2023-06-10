@@ -11,4 +11,8 @@ class ApplicationController < ActionController::Base
               devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name, :surname, :mobile_number, :adress, :date_of_birth, :avatar, :identity_card, :passport, :driver_license, :email, :password, :current_password)}
          end
          
+    def full_name
+     @fullname = "#{current_user.name} #{current_user.surname}"
+    end
+         
 end
