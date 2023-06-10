@@ -9,5 +9,7 @@ class User < ApplicationRecord
   has_one_attached :passport
   has_one_attached :driver_license
 
-
+  def full_name
+    "#{self.name} #{self.surname}"
+   end
 end
