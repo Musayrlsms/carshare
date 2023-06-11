@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  patch '/profiles', to: 'profiles#update', as: 'update_profile'
+
+  resources :profiles
   resources :rules
   resources :properties
   resources :cars
