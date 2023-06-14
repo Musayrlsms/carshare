@@ -202,12 +202,11 @@
 							<li class="dropdown-submenu dropend">
 								<a class="dropdown-item dropdown-toggle" href="#">Help</a>
 								<ul class="dropdown-menu" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="help-center.html">Help Center</a></li>
-									<li> <a class="dropdown-item" href="privacy-policy.html">Privacy Policy</a></li>
+									<li><%= link_to "Help Center", help_center_path, class: "dropdown-item" %></li>
+									<li><%= link_to "Privacy Policy", privacy_policy_path, class: "dropdown-item" %></li>
 								</ul>
 							</li>
-							<li> <a class="dropdown-item" href="pricing.html">Pricing</a></li>
-							<li> <a class="dropdown-item" href="faq.html">FAQs</a></li>
+							<li><%= link_to "FAQs", faqs_path, class: "dropdown-item" %></li>
 						</ul>
 					</li>
 
@@ -245,40 +244,7 @@
 					</li>
 
           <!-- Nav item link-->
-					<li class="nav-item dropdown">
-						<a class="nav-link" href="#" id="advanceMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<i class="fas fa-ellipsis-h"></i>
-						</a>
-						<ul class="dropdown-menu dropdown-menu-end min-w-auto" data-bs-popper="none">
-							<li> 
-								<a class="dropdown-item" href="https://support.webestica.com/" target="_blank">
-									<i class="text-warning fa-fw bi bi-life-preserver me-2"></i>Support
-								</a> 
-							</li>
-							<li> 
-								<a class="dropdown-item" href="docs/index.html" target="_blank">
-									<i class="text-danger fa-fw bi bi-card-text me-2"></i>Documentation
-								</a> 
-							</li>
-							<li> <hr class="dropdown-divider"></li>
-							<li> 
-								<a class="dropdown-item" href="https://booking.webestica.com/rtl/" target="_blank">
-									<i class="text-info fa-fw bi bi-toggle-off me-2"></i>RTL demo
-								</a> 
-							</li>
-							<li> 
-								<a class="dropdown-item" href="https://themes.getbootstrap.com/store/webestica/" target="_blank">
-									<i class="text-success fa-fw bi bi-cloud-download-fill me-2"></i>Buy Booking!
-								</a> 
-							</li>
-							<li> <hr class="dropdown-divider"></li>
-							<li> 
-								<a class="dropdown-item" href="docs/alerts.html" target="_blank">
-									<i class="text-orange fa-fw bi bi-puzzle-fill me-2"></i>Components
-								</a> 
-							</li>
-						</ul>
-					</li>
+					
 				</ul>
 			</div>
 			<!-- Main navbar END -->
@@ -475,10 +441,10 @@ Footer START -->
 					<div class="col-6 col-md-3">
 						<h5 class="text-white mb-2 mb-md-4">Booking</h5>
 						<ul class="nav flex-column text-primary-hover">
-							<li class="nav-item"><a class="nav-link text-muted" href="#"><i class="fa-solid fa-hotel me-2"></i>Sedan</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#"><i class="fa-solid fa-plane me-2"></i>Cuv</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#"><i class="fa-solid fa-globe-americas me-2"></i>Suv</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#"><i class="fa-solid fa-car me-2"></i>Coupe</a></li>
+							<li class="nav-item"><a class="nav-link text-muted" href="#"></i>Sedan</a></li>
+							<li class="nav-item"><a class="nav-link text-muted" href="#"></i>Cuv</a></li>
+							<li class="nav-item"><a class="nav-link text-muted" href="#">Suv</a></li>
+							<li class="nav-item"><a class="nav-link text-muted" href="#">Coupe</a></li>
 						</ul>
 					</div>
 				</div>

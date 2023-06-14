@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'about', to: 'pages#about_us', as: "about_us"
   get 'contact', to: 'pages#contact', as: "contact"
   get 'privacy_policy', to: 'pages#privacy_policy', as: "privacy_policy"
+  get 'help_center', to: 'pages#help_center', as: "help_center"
+  get 'faqs', to: 'pages#faqs', as: "faqs"
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

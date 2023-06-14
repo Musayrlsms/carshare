@@ -10,4 +10,11 @@ class PagesController < ApplicationController
   def privacy_policy
   end
 
+  def help_center
+  end
+  
+  def faqs
+  end
+
+
 end
