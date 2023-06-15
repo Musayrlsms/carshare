@@ -4,6 +4,11 @@ class CarsController < ApplicationController
   # GET /cars or /cars.json
   def index
     @cars = Car.all
+    @brands = Brand.all
+    @models = Model.all
+    @car = Car.new
+
+    
   end
 
   # GET /cars/1 or /cars/1.json
@@ -65,6 +70,6 @@ class CarsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def car_params
-      params.require(:car).permit(:details, :model_id, :brand_id, :user_id, :distance, :max_luggage, :seat_count, :case_type, images: [])
+      params.require(:car).permit(:details, :model_id, :brand_id, :user_id, :distance, :max_luggage, :seat_count, :case_type, :price, :email, :phone_number, :user_name, :user_surname, :address, :state, :city, :model_year, images: [])
     end
 end
