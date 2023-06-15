@@ -6,17 +6,17 @@
 
   <p>
     <strong>Model:</strong>
-    <%= car.model_id %>
+    <%= Model.find(car.model_id).name %>
   </p>
 
   <p>
     <strong>Brand:</strong>
-    <%= car.brand_id %>
+    <%= Brand.find(car.brand_id).name %>
   </p>
 
   <p>
     <strong>User:</strong>
-    <%= car.user_id %>
+    <%= User.find(car.user_id).email %>
   </p>
 
   <p>
