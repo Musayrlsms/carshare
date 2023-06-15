@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_30_044912) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_10_070654) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,6 +36,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_044912) do
     t.index ["user_id"], name: "index_cars_on_user_id"
   end
 
+  create_table "credit_cards", force: :cascade do |t|
+    t.string "stripe_credit_card_id"
+    t.string "last_four_digits"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_credit_cards_on_user_id"
+  end
+
   create_table "models", force: :cascade do |t|
     t.string "name"
     t.bigint "brand_id", null: false
@@ -56,6 +65,25 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_044912) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "stripe_accounts", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "account_type"
+    t.string "dob_month"
+    t.string "dob_day"
+    t.string "dob_year"
+    t.string "phone"
+    t.string "email"
+    t.string "address_line"
+    t.string "postal_code"
+    t.string "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.string "account_id"
+    t.index ["user_id"], name: "index_stripe_accounts_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -73,6 +101,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_044912) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "stripe_customer_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -81,5 +110,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_30_044912) do
   add_foreign_key "cars", "brands"
   add_foreign_key "cars", "models"
   add_foreign_key "cars", "users"
+  add_foreign_key "credit_cards", "users"
   add_foreign_key "models", "brands"
+  add_foreign_key "stripe_accounts", "users"
 end

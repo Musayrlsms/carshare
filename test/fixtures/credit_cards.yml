@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  stripe_credit_card_id: MyString
+  last_four_digits: MyString
+  user: one
+
+two:
+  stripe_credit_card_id: MyString
+  last_four_digits: MyString
+  user: two

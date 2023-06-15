@@ -34,3 +34,5 @@ end
 
 # Other Gems
 gem 'devise'
+gem 'stripe'
+gem 'dotenv-rails'
