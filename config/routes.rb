@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   patch '/profiles', to: 'profiles#update', as: 'update_profile'
-
+  get 'bookings', to: 'profiles#bookings', as: "bookings"
   resources :profiles
   resources :rules
   resources :properties
