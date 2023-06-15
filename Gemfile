@@ -34,4 +34,6 @@ end
 
 # Other Gems
 gem 'devise'
+gem 'rails-i18n'
+gem 'devise-i18n'
 gem 'activestorage'
