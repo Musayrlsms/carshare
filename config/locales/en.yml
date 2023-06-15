@@ -31,3 +31,196 @@
 
 en:
   hello: "Hello world"
+  faq:
+    frequently_asked_questions: 'Frequently Asked Questions'
+    have_questions: 'have questions? We’re here to help you'
+    type: 'Type search words'
+    general: 'GENERAL'
+    what_is_oi_jo: 'What is Oi-jo'
+    what_is_oi_jo_content: 'Oi-jo is Europe first car rental web service enabling car Owners to
+								provide car rental services to Renters who plan to stay in Croatia or,
+								respectively, in the European Union. Users of our services can, with full
+								confidence, rent cars from private car Owners and car dealers. We do
+								this by creating a “trusted marketplace” where car Owners post
+								information about their vehicles FREE OF CHARGE on our Website,
+								while Renters find available cars and book them through our web
+								service, after being subjected to a simple verification process.
+								We specialise in car rental periods between 7 and 365 days, and we
+								charge about 40% less than traditional car rental agencies. For car
+								Owners we offer the possibility to earn money by renting out their cars
+								that they are not using or that are not needed throughout a specific
+								period.'
+    
+    how_it_works: 'How it works'
+    owner: 'Owner'
+    owner_content_1: 'Uploads details and photographs of vehicles available to rent.'
+    owner_content_2: 'Receives and accepts booking requests. Arranges a handover time and location with the Renter.'
+    owner_content_3: 'Completes an Inspection Report and takes photographs of the car to confirm its condition at the start of rental.'
+    owner_content_4: 'Completes the Inspection Report at the moment of vehicle handover
+										and return. (The Inspection Report is a document filled in by the Owner and
+										Renter before and after the rental. It is comprised of a sketch of the
+										entire vehicle where specific signs of damage, if any, are to be
+										marked; furthermore, it contains information on whether the vehicle is
+										clean, on the fuel level, on possible interior damage etc.).'
+    renter: Renter
+    renter_content_1: 'Searches for a suitable car for the desired destination and completes a booking request.'
+    renter_content_2: 'Oi-jo verifies personal data (identity card, passport or driver’s license) and performs credit checks via PayPal (we charge a deposit and freeze a certain amount prior to the rental transaction).'
+    renter_content_3: 'Pays the booking deposit by credit card.'
+    renter_content_4: 'Arranges the vehicle handover time and location with the Owner.'
+    renter_content_5: 'Takes care of the car during the rental period'
+    renter_content_6: 'Returns the car to the Owner at the conclusion of the rental period.'
+
+    question_3: 'Do I have to be a registered user of Oi-jo services to book a vehicle?'
+    question_3_content: 'Yes, users must be registered to book a vehicle, in order to make certain Renter data available to Oi-jo, but also for the security of our clients who are using our service for their private business or, respectively, as a source of supplementary income. All data are kept strictly confidential in the Oi-jo data base.'
+    
+    question_4: 'Do I have to be registered to submit a booking inquiry?'
+    question_4_content: 'No, each visitor of the Oi-jo Website may, at any point of time, send an inquiry regarding our operations by clicking on “CONTACT US” or on the envelope icon on our Website’s home page.'
+    
+    question_5: 'Are there any fees or charges to use the Oi-jo Website?'
+    question_5_content: 'Oi-jo is entirely free of charge for registration, search of vehicles available for rental and for posting vehicle information on our Website.'
+
+    question_6: 'What is included in daily rental fee?'
+    question_6_content_1: 'Unlimited mileage'
+    question_6_content_2: 'Standard insurance'
+    question_6_content_3: 'Tyres, type depending on the season'
+    question_6_content_4: '24/7 car Owner availability in the case of any difficulties'
+    question_6_content_5: 'Driver and passenger insurance'
+    question_6_content_6: 'Delivery of the vehicle to the desired destination'
+
+    question_7: 'What happens if the booking is cancelled?'
+    question_7_content_1: 'Cancellation is free of charge if the booking is cancelled 48 hours prior to the start of rental.'
+    question_7_content_2: 'If the Owner cancels the booking after signature of the Rental Agreement, Oi-jo will assist the Renter in finding the service of another car Owner upon arrival at the destination, as the client is always our priority.'
+    
+    question_8: 'Does Oi-jo provide a Rental Agreement?'
+    question_8_content: 'Yes, Oi-jo will automatically generate a Rental Agreement that is e- mailed to the car Owner’s address. The Agreement needs to be printed out and, at the meeting with the Renter, it would be desirable that both parties read and analyse it. In the case of any lack of clarity, it would be best to get in touch with Oi-jo. Such Agreement is a legally binding agreement between the service provider and the service recipient. It must be signed by the Renter prior to vehicle handover. The vehicle Owner must then e-mail a copy of the Agreement directly to Oi-jo Headquarters (if a subsidiary is registered in a certain country, everything is signed on the spot, at the presence of a Oi-jo representative).'
+    
+    question_9: 'Who will complete the Inspection Report, and when?'
+    question_9_content: 'The vehicle will be inspected both by the Owner and the Renter at the moment of handover. Proper inspection includes checks and taking photographs of vehicle parts as well as identification of any new damage. All deficiencies and scratches found, as well as the odometer reading, are entered into the Vehicle Inspection Report. Both parties have to sign the Inspection Report. The same applies at vehicle drop-off. The Vehicle Inspection Report will be available for download via the Oi-jo Website or will be e-mailed to both parties. The car Owner will photograph and send the signed copies of the Report to Oi-jo headquarters, either per e-mail or by means of a dedicated application, in order to make the data from the Inspection report available to Oi-jo.'
+
+    question_10: 'Are the vehicles covered by insurance?'
+    question_10_content: 'Each vehicle is covered by the BASIC LIABILITY INSURANCE that must be concluded at the vehicle’s technical inspection. The car insurance policy also covers driver and passenger insurance.'
+
+    question_11: 'What happens if the vehicle gets damaged or is involved in a road traffic accident?'
+    question_11_content: 'In the event of minor damage, the Renter must contact the car Owner immediately. In the case of a traffic accident, the Renter must proceed in line with the relevant state laws; for instance, checking whether anyone has suffered injuries, exchange of information with the parties involved and reporting the traffic accident to the police. The car Owner will be informed as well.'
+
+    question_12: 'Who pays for vehicle servicing and registration?'
+    question_12_content: 'Vehicle servicing and registration shall be paid for by the car Owner/car dealer.'
+
+    renters: 'RENTERS'
+
+    question_13: 'How can I join Oi-jo as a Renter?'
+    question_13_content: 'Renters can join for FREE via the Oi-jo Website, by clicking the “LOG IN“ button. Joining by clicking a button is also possible via Facebook, Google+ and Twitter.'
+
+    question_14: 'How will the Renter confirm the booking of the vehicle?'
+    question_14_content: 'Bookings are to be confirmed via the Oi-jo Website. When the booking is completed, a booking confirmation will be e-mailed to the Renter’s address. Likewise, the car Owner will receive a booking notice for a specific period of time.'
+
+    question_15: 'Can a handover location be agreed on at a certain place?'
+    question_15_content: 'Yes, it can! Upon completion of booking, the Renter may get in touch with the Owner and try to arrange a different handover and return location, if it is easier and more practical for both parties. Such service will not be charged extra.'
+
+    question_16: 'Who may drive a rented car?'
+    question_16_content: 'The car may be driven by the persons specified at the moment of booking. Our Website offers the option to include other persons as drivers during the booking procedure. If the Renter has not specified any other person as additional driver of the rental vehicle, he will be deemed to be the only driver.'
+
+    question_17: 'Are the vehicles in good working condition?'
+    question_17_content: 'All vehicles must be roadworthy and registered for the term the rental period. By placing their signature on the Rental Agreement, car Owners guarantee that the vehicle is in good working condition. If it turns out that this is not the case, the Owner shall bear the costs of roadside assistance and vehicle servicing.'
+
+    question_18: 'Are there any mileage charges?'
+    question_18_content: 'NO. The mileage is unlimited'
+    
+    question_19: 'Are there any vehicle usage restrictions?'
+    question_19_content: 'Yes, but they must be pointed out. All vehicle usage restrictions are stated in the Inspection Report, but please check with the car Owner to see if there are any additional restrictions related to the use of the vehicle.'
+
+    question_20: 'State border crossing?'
+    question_20_content: 'For the crossing of state borders within the European Union (hereinafter: EU) no additional documents, apart from the usual ones, are required. Crossing state borders outside the EU is possible only if the car Owner has a valid cross-border green insurance card which must be requested separately and enclosed to the vehicle registration certificate.'
+
+    question_21: 'Will Renters have to clean and refuel the car on return?'
+    question_21_content: 'Yes. The Renter must return the car in a clean condition and with the same fuel level as at the beginning of rental. Otherwise, the Renter’s credit card will be charged with a specific amount covering refuelling and vehicle cleaning.'
+
+    question_22: 'If I encounter any issues during rental, may I call someone for assistance?'
+    question_22_content: 'Yes. The car Owner must be available 24/7, including weekends, during the rental period. A contact number will be stated in the Rental Agreement, a copy of which will be handed over to the Renter along with the car keys. Should the car Owner be unavailable, the roadside assistance shall be called that is available at all hours and whose number is indicated in the copy of the Rental Agreement kept by the Renter.'
+
+    question_23: 'Is an option provided to use roadside assistance services during rental?'
+    question_23_content: 'Yes. The roadside assistance service is available (and free of charge) only if the car Owner has this option registered for car rental in his insurance policy. If this option is not a part of the Owner’s vehicle insurance, any road assistance provider will charge for its services. Each country provides a 24/7 road assistance service accessible via the number stated in your Vehicle Rental Agreement. If the vehicle needs to be repaired due to a technical, mechanical or any other direct failure not attributed to the Renter’s action, the car Owner shall bear all costs of road assistance and towing, as well as the costs of possible fees and spare parts.'
+    
+    question_24: 'How will Oi-jo collect a certain amount from the Renter?'
+    question_24_content: 'For short-term bookings with a duration of 1 month or less, the Renter will be charged with the full rental fee at the moment of booking approval. For bookings with a duration of more than a month, the Renter will be charged with half the amount of the vehicle rental fee in advance. Final payment of the full price (the second half of the rental fee amount) will be charged at the last day of the rental. If Oi-jo has a subsidiary in the respective country, a deposit shall be paid online at the moment of booking, and the full amount upon completion of the rental.'
+        
+    question_25: 'Will the Renter have to pay a deposit when renting a car?'
+    question_25_content: 'Yes, a deposit shall be paid at the moment of booking. If the booking is cancelled 48 hours prior to the rental date, the full deposit amount will be returned.'
+        
+    question_26: 'What if the car has a breakdown? (May happen even with brand-new cars coming right out of the factory).'
+    question_26_content: 'If your car breaks down, first of all, contact the car Owner. If he is unable to help you, you will find a list of roadside assistance providers in your copy of the Rental Agreement. Call one of them and your problems will be resolved in the shortest possible time.'
+
+    owners: 'OWNERS'
+
+    question_27: 'How do I list my vehicle on the Oi-jo Website?'
+    question_27_content: 'Listing your vehicle is easy and only takes 5 minutes. Click Log in at the top of any page and complete the user registration form. If you are a Facebook, Google+ or Twitter user, the log in procedure is even quicker (if you have correct data such as first and last name, date of birth etc.). If you are already registered, just log in with your user name and password and go to My Cars. Click Add Car and complete the card details form. You can always update your contact details, data about your listed vehicle and change the vehicle availability status at any point of time.'
+    
+    question_28: 'Can I list more than one car?'
+    question_28_content: 'Yes, once registered you can list as many cars as you wish. Just log in with your user name and password and go to My Cars in the My Account section.'
+    
+    question_29: 'How do I manage my listings and/or rental bookings?'
+    question_29_content: 'Both Owners and Renter’s can manage car listings or rental bookings from their online account. The Oi-jo service will notify car Owners as well as users of the service about their bookings via My Messages or via e-mail on their profiles.'
+    
+    question_30: 'What happens if the car is returned at a later date than arranged by contract?'
+    question_30_content: 'The Renter must get in touch with the car Owner in order to inform him about the delay in the return of the vehicle. The Owner is entitled to charge the Renter for additional hours if the vehicle is returned after a delay of more than 5 hours (depending on the cause of delay; if the delay is justified, even more; for instance: weather conditions, roadworks etc.) after the agreed return time. If the vehicle is not returned and the Renter cannot be reached by the Owner, the vehicle may be reported to the police as stolen. Please absolutely get in touch with the Renter of your car and do not miss to complete the section with the contact numbers at handover of your car (if possible, contacts of several persons if they are present at vehicle handover - family, friend).'
+    
+    question_31: 'What happens if the Renter doesen’t pay?'
+    question_31_content: 'Oi-jo freezes a certain amount on the Renter’s credit card in order to protect Owners against such unwanted unpaid charges. If the Renter refuses to pay at the conclusion of the rental period, this will have an impact on his/her creditworthiness, and high amounts plus interest will be charged to his/her credit card.'
+    
+    question_32: 'What happens if the car is stolen?'
+    question_32_content: 'If the car is deemed stolen, please contact the Owner and the police immediately. In the event that the vehicle is not returned in the agreed time and the Renter has not got in touch with you for more than 5 hours after the agreed-on time frame, the car should be reported as stolen. All other issues will be resolved by insurance and the police. Moc-Moc will do everything it can to pay a part of the costs to the Owner until the vehicle is found.'
+
+    question_33: 'What will happen if the Renter fails to observe the terms and conditions of the Rental Agreement?'
+    question_33_content: 'If the Renter fails to observe or violates the terms and conditions of booking, please contact the Renter and arrange return of the vehicle. As Owner, you will receive payment from the part of the amount frozen on the Renter’s credit card, so that no damage of any kind will be incurred to you. '
+    
+    question_34: 'What if the rental vehicle is involved in a road traffic accident?'
+    question_34_content: 'If a traffic accident occurs in which the rental vehicle is involved, the Renter will first get in touch with you as the Owner, and then you will instruct the Renter with regard to next steps and contacts (police etc.). Vehicle-related costs will be covered by insurance. If the Renter was under the influence of alcohol or narcotics, he will be obligated to pay for the damage on the car himself (we have already frozen a certain amount for the possible event of damage, therefore the Renter will not be able to avoid payment for damage). In his/her Agreement, the Renter will find all emergency numbers, including your number.'
+  
+    question_35: 'What if the car stops working?'
+    question_35_content: 'If the car stops working for no apparent reason, the Renter will contact either the Owner or the roadside assistance service. After that, the causes of the car’s breakdown will be identified. If the breakdown was caused by any worn part of the car that should have undergone regular servicing, in such case the Owner will have to bear the costs incurred, by subtracting the costs incurred from the vehicle rental income (it is understood that an identical breakdown would happen to Owner at another point of time).'
+
+    page: 'Page'
+    about_us: 'About us'
+    contact_us: 'Contact_us'
+    link: 'Link'
+    sign_in: 'Sign in'
+    sign_up: 'Sign up'
+    account: 'Account'
+    user_profile: 'User Profile'
+    authentication: 'Authentication'
+
+  about:
+    our_story: 'Our Story'
+    paragraph_1: 'Oi-jo provides the first online service dealing with car rental, being the first service in Europe to make it possible for anyone to rent our their vehicle, provided that they comply with the specified conditions. We are enabling you to bypass unnecessary costs of car rental agencies and to use high-quality vehicles of private car Owners and car dealers; such cars are offered at prices adjusted to your individual possibilities.'  
+    paragraph_2: 'Oi-jo is an online car rental service enabling car Owners to rent out their vehicles to Renters all over the world. That’s attractive, isn’it ? Car Owners, on the one hand, can make money by car rental while, on the other hand, we offer Renters a wider range of vehicles along with large savings in comparison to car rental agencies, particularly if long-term rental is involved. We are aware of the fact that trust and security are crucial when we are connecting individuals from all over the world!!! As a Renter, you may view feedback submitted by previous Renters, but also feedback provided by car Owners. Oi-jo offers the widest choice of cars – sports cars, convertibles, 4WD-vehicles and luxury limousines – we will find the car that suits you best! We offer flexible, mid-term and long-term car rentals for periods from 7 days to 12 months. Oi-jo is the latest flexible car rental system in Europe, and we are able to adapt to all methods of business operation pertaining to car rental. Oi-jo also offers a variety of cars for long-term rental. Save up to 40% in comparison to other car rental agencies!!! See for yourselves on our Website!' 
+
+
+  privacy:
+    privacy_policy: 'Privacy Policy'
+
+    background: 'Background'
+    background_content: 'We are committed to protecting the Personal Information we collect and complying with our obligations under the Australian Privacy Principles. This policy provides you with information on how we collect, use, store and disclose Personal Information. Moc-Moc Pty Ltd and our Related Entities (we, our, us) provide a peer to peer online community connecting car owners who wish to rent out their car with drivers looking to rent a vehicle privately. We need to collect and retain Personal Information to enable us to provide our Services. Without this Personal Information, we may not be able to provide our Services, or the Services may be compromised.'
+
+    definitions: 'Definitions' 
+    in_this_policy: 'In this policy:'
+    definitions_content_1: 'Driver means the person or persons seeking to or renting a vehicle.'
+    definitions_content_2: 'Owner means an owner of a vehicle.'
+    definitions_content_3: 'Personal Information has the meaning given under the Privacy Act.'
+    definitions_content_4: 'Privacy Act means the Privacy Act 1988 (Cth).'
+    definitions_content_5: 'Related Entities has the same meaning as under the Corporations Act 2001 (Cth) and includes our franchisees.'
+    definitions_content_6: 'Sensitive Information has the meaning given under the Privacy Act.'
+    definitions_content_7: 'Services means the peer to peer on-line vehicle hiring services and the ancillary services we provide to Owners and Drivers.'
+    definitions_content_8: 'Website means www.Moc-Moc.com.au and other websites and forms of social media where you post comments or we interact with you.'
+    definitions_content_9: 'The meaning of any general language is not restricted by any accompanying example and the words includes, including, such as, for example or similar words are not words of limitation.'
+
+    definitions_2: 'What Personal Information do we collect?'
+    definitions_2_desc: 'The type of Personal Information we collect may differ depending upon the circumstances of our relationship with you and the nature of the Services we provide to you. Depending on the nature of the Services we provide to you, Personal Information we collect may include:'
+    definitions_2_content_1: 'for Owners: name, address, email address, telephone numbers and any other contact details, gender, vehicle details, including type of vehicle, registration number, year of manufacture and mileage and bank account details;'
+    definitions_2_content_2: 'for Drivers, name, email address, telephone numbers, address and any other contact details, gender, debit or credit card information, Sensitive Information, for example, if you advise us of any disability or medical issue, drivers licence information;'
+    definitions_2_content_3: 'if you apply for a job with us, name, email address, telephone numbers, address and any other contact details, qualifications, employment history, information provided in response to an application.'
+
+
+    
+
+
+       
