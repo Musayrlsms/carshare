@@ -459,7 +459,7 @@ Footer START -->
 						<li class="nav-item"><%= link_to "Sign up", new_user_registration_path, class: "nav-link text-muted" %></li>
 						<li class="nav-item"><%= link_to "Sign in", new_user_session_path, class: "nav-link text-muted" %></li>
 						<li class="nav-item"><%= link_to "Privacy Policy", privacy_policy_path, class: "nav-link text-muted" %></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#">Terms</a></li>
+						<li class="nav-item"><%= link_to "Term and Conditions", term_path, class: "nav-link text-muted" %></li>
 							<li class="nav-item"><a class="nav-link text-muted" href="#">Cookie</a></li>
 							<li class="nav-item"><a class="nav-link text-muted" href="#">Support</a></li>
 						</ul>
@@ -535,8 +535,8 @@ Footer START -->
 					<!-- copyright links-->
 					<div class="nav mt-2 mt-lg-0">
 						<ul class="list-inline text-primary-hover mx-auto mb-0">
-							<li class="list-inline-item me-0"><a class="nav-link py-1 text-muted" href="#">Privacy policy</a></li>
-							<li class="list-inline-item me-0"><a class="nav-link py-1 text-muted" href="#">Terms and conditions</a></li>
+							<li class="list-inline-item me-0"><%= link_to "Privacy Policy", privacy_policy_path, class: "nav-link py-1 text-muted" %></li>
+							<li class="list-inline-item me-0"><%= link_to "Term and Conditions", term_path, class: "nav-link py-1 text-muted" %></li>
 							<li class="list-inline-item me-0"><a class="nav-link py-1 text-muted pe-0" href="#">Refund policy</a></li>
 						</ul>
 					</div>
