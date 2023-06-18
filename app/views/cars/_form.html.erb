@@ -167,7 +167,7 @@
                   <label class="form-label">Upload image *</label>
                   <div class="form-group">
 
-                    <%= form.file_field :images, multiple: true, class:"rounded bg-light" %>
+                    <%= form.file_field :images, required: true, multiple: true, class:"rounded bg-light" %>
                   
                   <p class="small mb-0 mt-2"><b>Note:</b> Only JPG, JPEG, and PNG. Our suggested dimensions are 600px * 450px. The larger image will be cropped to 4:3 to fit our thumbnails/previews.</p>
                 </div>
@@ -177,7 +177,9 @@
             <!-- Driver Detail END -->
             <!-- Button -->
             <div class="text-end p-3">
+
               <%= form.submit "Add car", class:"btn btn-primary mb-0"  %>
+
             </div>
           </form>
         </div>
