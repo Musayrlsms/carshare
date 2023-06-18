@@ -1,6 +1,7 @@
 class AdminsController < ApplicationController
   def index
     @cars = Car.all
+    @user = User.all
   end
   
   def permit
@@ -13,4 +14,6 @@ class AdminsController < ApplicationController
       @car.rejected!
       redirect_to admins_path
   end
+
+
 end

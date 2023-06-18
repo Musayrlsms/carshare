@@ -1,8 +1,6 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
   def index
-
-  
   end
 
   def update
@@ -14,6 +12,21 @@ class ProfilesController < ApplicationController
   end
 
   def bookings
+  end
+
+  def document
+    @users = User.all
+  end
+
+  def approved
+    @user = User.find(params[:profile_id])
+    @user.approved!
+    redirect_to document_path
+  end
+  def rejected
+    @user = User.find(params[:profile_id])
+    @user.rejected!
+    redirect_to document_path
   end
 
 

@@ -1,0 +1,31 @@
+<h3>users documents</h3>
+<table border="1" class="table table-striped">
+  <tr>
+    <td>user name</td>
+    <td>Email</td>
+    <td>Onayla</td>
+    <td>İptal Et</td>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %> <%= user.surname %> </td>
+      <td><%= user.email %></td>
+      <td>
+        <% if user.pending? || user.rejected? %>
+          <%= link_to "Onayla", profile_approved_path(user.id), class: "btn btn-primary" %>
+        <% else %>
+          Onaylandı
+        <% end %>
+      </td>
+      <td>
+        <% if user.approved? %>
+          <%= link_to "İptal Et", profile_rejected_path(user.id), class: "btn btn-danger" %>
+        <% else %>
+          İptal edildi.
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+
