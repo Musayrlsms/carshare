@@ -228,7 +228,7 @@
 								<a class="dropdown-item dropdown-toggle" href="#">User Profile</a>
 								<ul class="dropdown-menu" data-bs-popper="none">
 									<li> <%= link_to "My Profile", profiles_path, class: "dropdown-item" %> </li>
-									<li> <a class="dropdown-item" href="account-bookings.html">My Bookings</a> </li>
+									<li> <%= link_to "My Bookings", bookings_path, class: "dropdown-item" %> </li>
 									<li> <a class="dropdown-item" href="account-payment-details.html">Payment Details</a> </li>
 								</ul>
 							</li>
@@ -328,14 +328,13 @@
 				<li class="nav-item ms-3 dropdown">
 					<!-- Avatar -->
 					<a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-					<% if user_signed_in? && current_user.avatar.present? %>
-						<%= image_tag(current_user.avatar, class: "avatar-img rounded-2") %>
-					<% elsif user_signed_in? && !current_user.avatar.attached?%>
-						<img class="avatar-img rounded-2" src="assets/images/avatar/01.jpg" alt="avatar">
-					<%else %>
-						<%= link_to 'Log in', new_user_session_path, class:"btn btn-sm btn-primary-soft mb-0"%>
-
-					<% end %>
+						<% if user_signed_in? && current_user.avatar.present? %>
+							<%= image_tag(current_user.avatar, class: "avatar-img rounded-2") %>
+						<% elsif user_signed_in? && !current_user.avatar.attached?%>
+							<img class="avatar-img rounded-2" src="assets/images/avatar/01.jpg" alt="avatar">
+						<%else %>
+							<%= link_to 'Log in', new_user_session_path, class:"btn btn-sm btn-primary-soft mb-0"%>
+						<% end %>
 					</a>
 
 					<ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
@@ -344,14 +343,13 @@
 							<div class="d-flex align-items-center">
 								<!-- Avatar -->
 								<div class="avatar me-3">
-								<% if user_signed_in? && current_user.avatar.present? %>
-									<%= image_tag(current_user.avatar, class: "avatar-img rounded-2") %>
-								<% elsif user_signed_in? && !current_user.avatar.attached?%>
-									<img class="avatar-img rounded-2" src="assets/images/avatar/01.jpg" alt="avatar">
-								<%else %>
-									<%= link_to 'Log in', new_user_session_path, class:"btn btn-sm btn-primary-soft mb-0"%>
-		
-								<% end %>
+									<% if user_signed_in? && current_user.avatar.present? %>
+										<%= image_tag(current_user.avatar, class: "avatar-img rounded-2") %>
+									<% elsif user_signed_in? && !current_user.avatar.attached?%>
+										<img class="avatar-img rounded-2" src="assets/images/avatar/01.jpg" alt="avatar">
+									<%else %>
+										<%= link_to 'Log in', new_user_session_path, class:"btn btn-sm btn-primary-soft mb-0"%>
+									<% end %>
 
 								</div>
 								<div>
@@ -365,15 +363,15 @@
 
 						<!-- Links -->
 						<li> <hr class="dropdown-divider"></li>
-						
-						
-						
-						<li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help Center</a></li>
-						
-						<li><%= button_to "Sign out", destroy_user_session_path, :method => 'delete', class:"dropdown-item bg-danger-soft-hover", data:{turbo: "false"} %></li>
-
+						<li><%= link_to help_center_path, class: "dropdown-item" do %>
+							<i class="bi bi-info-circle fa-fw me-2"></i>
+							Help Center
+						<% end %></li>
+						<li><%= button_to destroy_user_session_path, method: 'delete', class: "dropdown-item bg-danger-soft-hover", data: { turbo: "false" } do %>
+							<i class="bi bi-power fa-fw me-2"></i>
+							Sign out
+						<% end %></li>
 						<li> <hr class="dropdown-divider"></li>
-
 						<!-- Dark mode options START -->
 						<li>
 							<div class="nav-pills-primary-soft theme-icon-active d-flex justify-content-between align-items-center p-2 pb-0">
