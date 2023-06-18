@@ -1,62 +1,211 @@
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 <%= form_with(model: car) do |form| %>
-  <% if car.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(car.errors.count, "error") %> prohibited this car from being saved:</h2>
+    <% if car.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(car.errors.count, "error") %> prohibited this car from being saved:</h2>
 
-      <ul>
-        <% car.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% car.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <% form.label :user_id, style: "display: block" %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
     </div>
-  <% end %>
+  </section>  
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <form class="vstack gap-4">
 
-  <div>
-    <%= form.label :details, style: "display: block" %>
-    <%= form.text_area :details %>
-  </div>
+            <!-- Owner Detail START -->
+            <div class="card shadow mt-4">
+              <!-- Card header -->
+              <div class="card-header border-bottom">
+                <h5 class="mb-0">Owner Detail</h5>
+              </div>
 
-  <div>
-    <%= form.label :model_id, style: "display: block" %>
-    <%= form.text_field :model_id %>
-  </div>
+              <!-- Card body -->
+              <div class="card-body">
+                <div class="row g-3">
+                  <!-- Owner name -->
+                  <div class="col-12">
+                    <label class="form-label">Owner name</label>
+                    <div class="input-group">
+                    
+                      <%= form.text_field :user_name, class: "form-control",type: "text", placeholder: "First name" %>
+                      <%= form.text_field :user_surname, class: "form-control",type: "text", placeholder: "Last name" %>
+                  
+                    </div>
+                  </div>
 
-  <div>
-    <%= form.label :brand_id, style: "display: block" %>
-    <%= form.text_field :brand_id %>
-  </div>
+                  <!-- Contact number -->
+                  <div class="col-md-6">
+                    <label class="form-label">Contact number</label>
+                    <%= form.text_field :phone_number, class: "form-control",type: "tel", placeholder: "Enter contact name" %>
+                  </div>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
+                  <!-- Email -->
+                  <div class="col-md-6">
+                    <label class="form-label">Email address</label>
+                    <%= form.text_field :email, class: "form-control",type:"email", placeholder: "Enter email address" %>
+                  </div>
 
-  <div>
-    <%= form.label :distance, style: "display: block" %>
-    <%= form.number_field :distance %>
-  </div>
+                  <!-- Address -->
+                  <div class="col-12">
+                    <label class="form-label">Address</label>
+                    <%= form.text_area :address, class: "form-control",placeholder: "Enter address",rows:"2" %>
+                  </div>
 
-  <div>
-    <%= form.label :max_luggage, style: "display: block" %>
-    <%= form.number_field :max_luggage %>
-  </div>
+                  <!-- State -->
+                  <div class="col-md-6">
+                    <label class="form-label">State</label>
+                    <select class="form-select js-choice" data-search-enabled="true">
+                      <option value="">Select state</option>
+                      <option>India</option>
+                      <option>Usa</option>
+                      <option>Japan</option>
+                      <option>United Kingdom</option>
+                    </select>
+                  </div>
 
-  <div>
-    <%= form.label :seat_count, style: "display: block" %>
-    <%= form.number_field :seat_count %>
-  </div>
+                  <!-- City -->
+                  <div class="col-md-6">
+                    <label class="form-label">City</label>
+                    <input class="form-control" type="text" placeholder="Enter city">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Owner Detail END -->
 
-  <div>
-    <%= form.label :case_type, style: "display: block" %>
-    <%= form.number_field :case_type %>
-  </div>
+            <!-- Cab Detail START -->
+            <div class="card shadow mt-4">
+              <!-- Card header -->
+              <div class="card-header border-bottom">
+                <h5 class="mb-0">Cab Detail</h5>
+              </div>
 
-  <div>
-    <%= form.label :images, style: "display: block" %>
-    <%= form.file_field :images, multiple: true %>
-  </div>
+              <!-- Card body -->
+              <div class="card-body">
+                <div class="row g-3">
+               
+                <%= form_for(@car) do |form| %>
+                  <!-- Car name -->
+                  <div class="col-md-6">
+                  
+                    <label class="form-label">Car name</label>
+                    <%= form.select :brand_id, Brand.all.collect { |p| [ p.name, p.id ] }, {}, class: "form-control",type:"text", placeholder:"Enter car name" %>
+                    
+                  </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
+                  <!-- State -->
+                  <div class="col-md-6">
+                    <label class="form-label">Car model</label>
+                    <%= form.select :model_id, ["Model Sec"], {}, class: "form-select" %>
+                  </div>
+                  <% end %>
+
+                  <!-- car type -->
+                  <div class="col-md-6">
+                    <label class="form-label">Car type *</label>
+                    <div class="d-sm-flex">
+                      <!-- Radio -->
+                      <div class="form-check radio-bg-light me-4">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked="">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                          Ac
+                        </label>
+                      </div>
+                      <!-- Radio -->
+                      <div class="form-check radio-bg-light me-4">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                          Non Ac
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Model Year -->
+                  <div class="col-md-6">
+                    <label class="form-label">Model Year</label>
+                    <%= form.text_field :model_year, class: "form-control",type: "text", placeholder: "Enter car model year" %>
+                  </div>
+
+                  <!-- Distance -->
+                  <div class="col-md-6">
+                    <label class="form-label">Distance</label>
+                    <%= form.number_field :distance, class: "form-control",type: "text", placeholder: "Enter distance" %>
+                  </div>
+
+                  <!-- Details -->
+                  <div class="col-md-6">
+                    <label class="form-label">Details</label>
+                    <%= form.number_field :details, class: "form-control",type:"text", placeholder: "Enter details"  %>
+                  </div>
+
+                  <!-- Seat count -->
+                  <div class="col-md-6">
+                    <label class="form-label">Seat count</label>
+                    <%= form.number_field :seat_count, class: "form-control",type: "text", placeholder: "Enter seat count" %>
+                  </div>
+
+                  <!-- Price-->
+                  <div class="col-md-6">
+                    <label class="form-label">Price</label>
+                    <%= form.number_field :price, class: "form-control",type:"text", placeholder: "Enter price"  %>
+                  </div>
+
+                  <!-- Image Gallery -->
+                  <div class="col-12">
+                  <label class="form-label">Upload image *</label>
+                  <div class="form-group">
+
+                    <%= form.file_field :images, required: true, multiple: true, class:"rounded bg-light" %>
+                  
+                  <p class="small mb-0 mt-2"><b>Note:</b> Only JPG, JPEG, and PNG. Our suggested dimensions are 600px * 450px. The larger image will be cropped to 4:3 to fit our thumbnails/previews.</p>
+                </div>
+                </div>
+              </div>
+            </div>
+            <!-- Driver Detail END -->
+            <!-- Button -->
+            <div class="text-end p-3">
+
+              <%= form.submit "Add car", class:"btn btn-primary mb-0"  %>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 <% end %>
+
+
+
+<script>
+
+	$( "#car_brand_id" ).on( "change", function( ) {
+		$.get( "/models.json?brand_id=" + this.value, function( data ) {
+					
+		$("#car_model_id").empty();
+			 var deneme = JSON.stringify(data)
+			 var dene = JSON.parse(deneme)
+			 console.log(deneme)
+			 var selectBox = $("#car_model_id");
+			 
+			$.each(dene, function(index, model) {
+				    
+						selectBox.append('<option value="' + model.id + '">' + model.name + '</option>');
+			});	
+  	});
+  });
+
+</script>

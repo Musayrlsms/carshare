@@ -4,6 +4,7 @@ class BrandsController < ApplicationController
   # GET /brands or /brands.json
   def index
     @brands = Brand.all
+
   end
 
   # GET /brands/1 or /brands/1.json
@@ -65,6 +66,6 @@ class BrandsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def brand_params
-      params.require(:brand).permit(:name, :logo)
+      params.require(:brand).permit(:name)
     end
 end

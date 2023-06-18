@@ -1,0 +1,31 @@
+<h3>Car requests</h3>
+<table border="1" class="table table-striped">
+  <tr>
+    <td>Car Content</td>
+    <td>Email-postası</td>
+    <td>Onayla</td>
+    <td>İptal Et</td>
+  </tr>
+  <% @cars.each do |car| %>
+    <tr>
+      <td><%= car.model.name %> <%= car.brand.name %> <%= car.model_year %></td>
+      <td><%= car.user.email %></td>
+      <td>
+        <% if car.status == "available" || car.status == "rejected"%>
+          <a href="<%= admin_permit_path(car.id) %>" class="btn btn-primary">Onayla</a>
+        <% else %>
+          Onaylandı
+        <% end %>
+      </td>
+      <td>
+        <% if car.status == "approved" %>
+          <a href="<%= admin_nopermit_path(car.id) %>" class="btn btn-danger">İptal Et</a>
+        <% else %>
+          İptal edildi.
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+

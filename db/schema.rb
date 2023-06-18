@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_07_050741) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_16_043517) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +59,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_050741) do
     t.integer "case_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "price", default: 0.0, null: false
+    t.string "email"
+    t.string "phone_number"
+    t.string "user_name"
+    t.string "user_surname"
+    t.string "address"
+    t.string "state"
+    t.string "city"
+    t.integer "model_year"
+    t.integer "status", default: 0, null: false
     t.index ["brand_id"], name: "index_cars_on_brand_id"
     t.index ["model_id"], name: "index_cars_on_model_id"
     t.index ["user_id"], name: "index_cars_on_user_id"
