@@ -25,7 +25,7 @@ Content START -->
 								<!-- Avatar and content -->
 								<div class="text-center mb-3">
 									<!-- Avatar -->
-									<% if current_user.present? %>
+									<% if current_user.avatar.present? %>
 										<div class="avatar avatar-xl mb-2">
 											<%= image_tag(current_user.avatar, class: "avatar-img rounded-3") %>
 										</div>
