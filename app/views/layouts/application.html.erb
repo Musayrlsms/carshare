@@ -391,10 +391,13 @@
 
 								</div>
 								<div>
-								<% if current_user.present? %>
-								<%= link_to current_user.full_name, profiles_path, class: 'h6 mt-2 mt-sm-0' %>
+								<% if current_user && current_user.full_name.present? %>
+									<%= link_to current_user.full_name, profiles_path, class: 'h6 mt-2 mt-sm-0' %>
 									<p class="small m-0"><%= current_user.email %></p>
+								<% else %>
+									<%= link_to "My account", profiles_path, class: 'h6 mt-2 mt-sm-0' %>
 								<% end %>
+								
 								</div>
 							</div>
 						</li>

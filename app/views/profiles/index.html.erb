@@ -26,14 +26,19 @@ Content START -->
 								<div class="text-center mb-3">
 									<!-- Avatar -->
 									<% if current_user.avatar.present? %>
-										<div class="avatar avatar-xl mb-2">
 											<%= image_tag(current_user.avatar, class: "avatar-img rounded-3") %>
-										</div>
-
-										<h6 class="mb-0"><%= current_user.full_name %></h6>
-										<%= link_to current_user.email, "account-profile.html#", class: "text-reset text-primary-hover small" %>
-										<hr>
+									<% else %>		
+									<div class="avatar avatar-lg">
+										<img class="avatar-img rounded-circle" src="assets/images/avatar/01.jpg" alt="avatar">
+									</div>
 									<%end%>
+
+									<% if current_user.name.present? %>
+									<h4><%= current_user.name %></h4>
+									<% else %>
+									<%end%>
+
+
 								</div>
 
 								<!-- Sidebar menu item START -->
@@ -84,7 +89,7 @@ Content START -->
 							<!-- Form START -->
 								<!-- Profile photo -->
 								
-								<%= form_for(current_user, url: update_profile_path(), method: :patch,  class: "row g-3") do |f| %>
+								<%= form_for(current_user, url: profile_path(current_user.id), method: :patch,  class: "row g-3") do |f| %>
 								<!-- Name -->
 								<div class="col-md-12">
 									<label class="form-label">Name<span class="text-danger">*</span></label>
@@ -126,6 +131,8 @@ Content START -->
 										<span class="avatar avatar-xl">
 										<% if current_user.avatar.attached? %>
 											<%= image_tag(current_user.avatar, class: "avatar-img rounded-3") %>
+										<% else%>
+											<img class="avatar-img rounded-2" src="assets/images/avatar/01.jpg" alt="avatar">
 										<% end %>
 										</span>
 									</label>
@@ -139,16 +146,18 @@ Content START -->
 								<div class="col-12">
 									<label class="form-label">Upload your identity card photo<span class="text-danger">*</span></label>
 									<div class="d-flex align-items-center">
-									<label class="position-relative me-4" for="uploadfile-1" title="Replace this pic">
+									<label class="position-relative me-4" for="uploadfile-2" title="Replace this pic">
 										<span class="avatar avatar-xl">
 										<% if current_user.identity_card.attached? %>
 											<%= image_tag(current_user.identity_card, class: "avatar-img rounded-3") %>
+										<% else %>	
+										<img class="avatar-img rounded-2" src="assets/images/avatar/card.png" alt="avatar">
 										<% end %>
 										</span>
 									</label>
 									<!-- Upload button -->
-									<label class="btn btn-sm btn-primary-soft mb-0" for="uploadfile-1">Change</label>
-									<%= f.file_field :identity_card, class: "form-control d-none", id:"uploadfile-1"  %>
+									<label class="btn btn-sm btn-primary-soft mb-0" for="uploadfile-2">Change</label>
+									<%= f.file_field :identity_card, class: "form-control d-none", id:"uploadfile-2"  %>
 								
 								</div>
 						
@@ -156,32 +165,36 @@ Content START -->
 							<div class="col-12">
 								<label class="form-label">Upload your passport photo<span class="text-danger">*</span></label>
 								<div class="d-flex align-items-center">
-								<label class="position-relative me-4" for="uploadfile-1" title="Replace this pic">
+								<label class="position-relative me-4" for="uploadfile-3" title="Replace this pic">
 									<span class="avatar avatar-xl">
 									<% if current_user.passport.attached? %>
 										<%= image_tag(current_user.passport, class: "avatar-img rounded-3") %>
+									<% else %>	
+										<img class="avatar-img rounded-2" src="assets/images/avatar/card.png" alt="avatar">	
 									<% end %>
 									</span>
 								</label>
 								<!-- Upload button -->
-								<label class="btn btn-sm btn-primary-soft mb-0" for="uploadfile-1">Change</label>
-								<%= f.file_field :passport, class: "form-control d-none", id:"uploadfile-1"  %>
+								<label class="btn btn-sm btn-primary-soft mb-0" for="uploadfile-3">Change</label>
+								<%= f.file_field :passport, class: "form-control d-none", id:"uploadfile-3"  %>
 								</div>
 							</div>
 
 							<div class="col-12">
 								<label class="form-label">Upload your driver license photo<span class="text-danger">*</span></label>
 								<div class="d-flex align-items-center">
-								<label class="position-relative me-4" for="uploadfile-1" title="Replace this pic">
+								<label class="position-relative me-4" for="uploadfile-4" title="Replace this pic">
 									<span class="avatar avatar-xl">
 									<% if current_user.driver_license.attached? %>
 										<%= image_tag(current_user.driver_license, class: "avatar-img rounded-3") %>
+									<% else %>	
+										<img class="avatar-img rounded-2" src="assets/images/avatar/card.png" alt="avatar">
 									<% end %>
 									</span>
 								</label>
 								<!-- Upload button -->
-								<label class="btn btn-sm btn-primary-soft mb-0" for="uploadfile-1">Change</label>
-								<%= f.file_field :driver_license, class: "form-control d-none", id:"uploadfile-1"  %>
+								<label class="btn btn-sm btn-primary-soft mb-0" for="uploadfile-4">Change</label>
+								<%= f.file_field :driver_license, class: "form-control d-none", id:"uploadfile-4"  %>
 								
 							</div>
 						</div>
@@ -211,7 +224,7 @@ Content START -->
 						</div>
 
 						<!-- Card body START -->
-						<%= form_for(current_user, url: update_profile_path(), method: :patch ) do |f| %>
+						<%= form_for(current_user, url: profile_path(current_user), method: :patch ) do |f| %>
 							<form class="card-body">
 							
 								<!-- Current password -->

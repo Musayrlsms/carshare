@@ -10,8 +10,6 @@
     <td>Onayla</td>
     <td>İptal Et</td>
     
-
-    
   </tr>
   <% @users.each do |user| %>
     <tr>
@@ -20,25 +18,25 @@
       <% if user.avatar.present? %>
         <td><%= image_tag(user.avatar, class: "avatar avatar-xl") %></td>
       <%else%>
-        <td><img class="avatar-img rounded-2" src="assets/images/avatar/01.jpg" alt="avatar"></td>
+        <td><img class="avatar avatar-xl" src="/assets/images/avatar/01.jpg" alt="avatar"></td>
       <% end %>
 
-      <% if user.avatar.present? %>
+      <% if user.identity_card.present? %>
         <td><%= image_tag(user.identity_card, class: "avatar avatar-xl ") %></td>
-      <%else%>
-        <td><img class="avatar-img rounded-2" src="assets/images/avatar/01.jpg" alt="avatar"></td>
+      <% else %>
+        <td><img class="avatar avatar-xl" src="/assets/images/avatar/01.jpg" alt="avatar"></td>
       <% end %>
 
-      <% if user.avatar.present? %>
+      <% if user.passport.present? %>
         <td><%= image_tag(user.passport, class: "avatar avatar-xl") %></td>
-      <%else%>
-        <td><img class="avatar-img rounded-2" src="assets/images/avatar/01.jpg" alt="avatar"></td>
+      <% else %>
+        <td><img class="avatar avatar-xl" src="/assets/images/avatar/01.jpg" alt="avatar"></td>
       <% end %>
       
-      <% if user.avatar.present? %>
+      <% if user.driver_license.present? %>
         <td><%= image_tag(user.driver_license, class: "avatar avatar-xl") %></td>
-      <%else%>
-        <td><img class="avatar-img rounded-2" src="assets/images/avatar/01.jpg" alt="avatar"></td>
+      <% else %>
+        <td><img class="avatar avatar-xl" src="/assets/images/avatar/01.jpg" alt="avatar"></td>
       <% end %>
 
       <td>
