@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_11_040828) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_15_041125) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -96,6 +96,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_11_040828) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "rents", force: :cascade do |t|
+    t.bigint "car_id", null: false
+    t.bigint "renter_id", null: false
+    t.bigint "owner_id", null: false
+    t.datetime "start_date"
+    t.datetime "finish_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_id"], name: "index_rents_on_car_id"
+    t.index ["owner_id"], name: "index_rents_on_owner_id"
+    t.index ["renter_id"], name: "index_rents_on_renter_id"
+  end
+
   create_table "rules", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -156,5 +169,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_11_040828) do
   add_foreign_key "cars", "users"
   add_foreign_key "credit_cards", "users"
   add_foreign_key "models", "brands"
+  add_foreign_key "rents", "cars"
+  add_foreign_key "rents", "users", column: "owner_id"
+  add_foreign_key "rents", "users", column: "renter_id"
   add_foreign_key "stripe_accounts", "users"
 end
