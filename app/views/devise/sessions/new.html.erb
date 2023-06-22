@@ -1,0 +1,62 @@
+<div class="col-lg-6 d-flex align-items-center order-2 order-lg-1">
+  <div class="p-3 p-lg-5">
+    <img src="/assets/images/element/signin.svg" alt="">
+  </div>
+  <!-- Divider -->
+  <div class="vr opacity-1 d-none d-lg-block"></div>
+</div>
+
+<!-- Information -->
+<div class="col-lg-6 order-1">
+  <div class="p-4 p-sm-7">
+    <!-- Logo -->
+    <%= link_to root_path, class: "nav-link active" do %>
+      <img class="h-50px mb-4" src="/assets/images/logo-icon.svg" alt="logo">
+    <% end %>
+
+    <!-- Title -->
+    <h1 class="mb-2 h3">Welcome back</h1>
+    <p class="mb-0">New here? <%= link_to "Create an account", new_registration_path(resource_name) %><br /></p>
+
+    <!-- Form START -->
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <form class="mt-4 text-start">
+        <!-- Email -->
+        <div class="mb-3">
+          <label class="form-label">Enter email id</label>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        </div>
+        <!-- Password -->
+        <div class="mb-3 position-relative">
+          <label class="form-label">Enter password</label>
+          <%= f.password_field :password, autocomplete: "current-password",class: "form-control fakepassword" %>
+          <span class="position-absolute top-50 end-0 translate-middle-y p-0 mt-3">
+            <i class="fakepasswordicon fas fa-eye-slash cursor-pointer p-2"></i>
+          </span>
+        </div>
+        <!-- Remember me -->
+        <% if devise_mapping.rememberable? %>
+          <div class="mb-3 d-sm-flex justify-content-between">
+            <div>
+              <%= f.check_box :remember_me ,class: "form-check-input", id: "rememberCheck" %>
+              <label class="form-check-label" for="rememberCheck">Remember me?</label>
+            </div>
+            <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+          </div>
+        <% end %>
+      
+
+        <!-- Button -->
+        <div>
+          <%= f.submit "Log in", class: "btn btn-primary w-100 mb-0"%>
+        </div>
+        
+
+
+        <!-- Copyright -->
+        <div class="text-primary-hover mt-3 text-center"> Copyrights ©2023 Ou-jo </div>
+      </form>
+    <% end %>
+    <!-- Form END -->
+  </div>		
+</div>

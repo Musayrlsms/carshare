@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  car: one
+  renter: one
+  owner: one
+  start_date: one
+  car_id: one
+  start_date: 2023-06-15 04:11:25
+  finish_date: 2023-06-15 04:11:25
+
+two:
+  car: two
+  renter: two
+  owner: two
+  start_date: two
+  car_id: two
+  start_date: 2023-06-15 04:11:25
+  finish_date: 2023-06-15 04:11:25

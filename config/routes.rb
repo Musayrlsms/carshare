@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   get '/express-dashboard-link', to: 'sandbox#express_dashboard_link'
   get '/webhook', to: 'sandbox#webhook'
 
-  
+  get 'change_locale/:locale', to: 'application#change_locale', as: :change_locale
+  patch '/profiles', to: 'profiles#update', as: 'update_profile' # TODO: We can delete it. because resources already creating it.
+  get 'bookings', to: 'profiles#bookings', as: "bookings" # TODO: Move to profiles block
+
+  resources :profiles
   resources :rules
   resources :properties
   resources :cars

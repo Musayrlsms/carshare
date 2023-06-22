@@ -5,4 +5,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :stripe_account
+  
+  has_one_attached :avatar
+  has_one_attached :identity_card
+  has_one_attached :passport
+  has_one_attached :driver_license
+
+  def full_name
+    "#{self.name} #{self.surname}"
+   end
 end

@@ -36,3 +36,6 @@ end
 gem 'devise'
 gem 'stripe'
 gem 'dotenv-rails'
+gem 'rails-i18n'
+gem 'devise-i18n'
+gem 'activestorage'
