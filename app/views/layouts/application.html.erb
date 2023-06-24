@@ -177,20 +177,18 @@
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= t(:pages) %></a>
 						<ul class="dropdown-menu" aria-labelledby="pagesMenu">
-
-							<li> <a class="dropdown-item" href="about.html">About</a></li>
-							<li> <a class="dropdown-item" href="contact.html">Contact</a></li>
-							<li> <a class="dropdown-item" href="contact-2.html">Contact 2</a></li>
-							<li> <a class="dropdown-item" href="team.html">Our Team</a></li>
+							<%= link_to "About", about_us_pages_path, class: "dropdown-item" %>
+							<%= link_to "Contact", contact_pages_path, class: "dropdown-item" %>
+							
+							
 
 							<!-- Dropdown submenu -->
 							<li class="dropdown-submenu dropend">
 								<a class="dropdown-item dropdown-toggle" href="#">Authentication</a>
 								<ul class="dropdown-menu" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="sign-in.html">Sign In</a></li>
-									<li> <a class="dropdown-item" href="sign-up.html">Sign Up</a></li>
-									<li> <a class="dropdown-item" href="forgot-password.html">Forgot Password</a></li>
-									<li> <a class="dropdown-item" href="two-factor-auth.html">Two factor authentication</a></li>
+								<li><%= link_to "Sign In", new_user_session_path, class: "dropdown-item" %></li>
+								<li><%= link_to "Sign up", new_user_registration_path, class: "dropdown-item" %></li>
+								<li><%= link_to "Forgot Password", edit_user_password_path, class: "dropdown-item" %></li>
 								</ul>
 							</li>
 
@@ -207,17 +205,11 @@
 							<li class="dropdown-submenu dropend">
 								<a class="dropdown-item dropdown-toggle" href="#">Help</a>
 								<ul class="dropdown-menu" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="help-center.html">Help Center</a></li>
-									<li> <a class="dropdown-item" href="help-detail.html">Help Detail</a></li>
-									<li> <a class="dropdown-item" href="privacy-policy.html">Privacy Policy</a></li>
-									<li> <a class="dropdown-item" href="terms-of-service.html">Terms of Service</a></li>
+									<li><%= link_to "Help Center", help_center_pages_path, class: "dropdown-item" %></li>
+									<li><%= link_to "Privacy Policy", privacy_policy_pages_path, class: "dropdown-item" %></li>
 								</ul>
 							</li>
-
-							<li> <a class="dropdown-item" href="pricing.html">Pricing</a></li>
-							<li> <a class="dropdown-item" href="faq.html">FAQs</a></li>
-							<li> <a class="dropdown-item" href="error.html">Error 404</a></li>
-							<li> <a class="dropdown-item" href="coming-soon.html">Coming Soon</a></li>
+							<li><%= link_to "FAQs", faqs_pages_path, class: "dropdown-item" %></li>
 						</ul>
 					</li>
 
@@ -231,7 +223,7 @@
 								<a class="dropdown-item dropdown-toggle" href="#">User Profile</a>
 								<ul class="dropdown-menu" data-bs-popper="none">
 									<li> <%= link_to "My Profile", profiles_path, class: "dropdown-item" %> </li>
-									<li> <a class="dropdown-item" href="account-bookings.html">My Bookings</a> </li>
+									<li> <%= link_to "My Bookings", bookings_path, class: "dropdown-item" %> </li>
 									<li> <a class="dropdown-item" href="account-payment-details.html">Payment Details</a> </li>
 								</ul>
 							</li>
@@ -260,40 +252,7 @@
 
 
           <!-- Nav item link-->
-					<li class="nav-item dropdown">
-						<a class="nav-link" href="#" id="advanceMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							<i class="fas fa-ellipsis-h"></i>
-						</a>
-						<ul class="dropdown-menu dropdown-menu-end min-w-auto" data-bs-popper="none">
-							<li> 
-								<a class="dropdown-item" href="https://support.webestica.com/" target="_blank">
-									<i class="text-warning fa-fw bi bi-life-preserver me-2"></i>Support
-								</a> 
-							</li>
-							<li> 
-								<a class="dropdown-item" href="docs/index.html" target="_blank">
-									<i class="text-danger fa-fw bi bi-card-text me-2"></i>Documentation
-								</a> 
-							</li>
-							<li> <hr class="dropdown-divider"></li>
-							<li> 
-								<a class="dropdown-item" href="https://booking.webestica.com/rtl/" target="_blank">
-									<i class="text-info fa-fw bi bi-toggle-off me-2"></i>RTL demo
-								</a> 
-							</li>
-							<li> 
-								<a class="dropdown-item" href="https://themes.getbootstrap.com/store/webestica/" target="_blank">
-									<i class="text-success fa-fw bi bi-cloud-download-fill me-2"></i>Buy Booking!
-								</a> 
-							</li>
-							<li> <hr class="dropdown-divider"></li>
-							<li> 
-								<a class="dropdown-item" href="docs/alerts.html" target="_blank">
-									<i class="text-orange fa-fw bi bi-puzzle-fill me-2"></i>Components
-								</a> 
-							</li>
-						</ul>
-					</li>
+					
 				</ul>
 			</div>
 			<!-- Main navbar END -->
@@ -404,15 +363,15 @@
 
 						<!-- Links -->
 						<li> <hr class="dropdown-divider"></li>
-						
-						
-						
-						<li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help Center</a></li>
-						
-						<li><%= button_to "Sign out", destroy_user_session_path, :method => 'delete', class:"dropdown-item bg-danger-soft-hover", data:{turbo: "false"} %></li>
-
+						<li><%= link_to help_center_pages_path, class: "dropdown-item" do %>
+							<i class="bi bi-info-circle fa-fw me-2"></i>
+							Help Center
+						<% end %></li>
+						<li><%= button_to destroy_user_session_path, method: 'delete', class: "dropdown-item bg-danger-soft-hover", data: { turbo: "false" } do %>
+							<i class="bi bi-power fa-fw me-2"></i>
+							Sign out
+						<% end %></li>
 						<li> <hr class="dropdown-divider"></li>
-
 						<!-- Dark mode options START -->
 						<li>
 							<div class="nav-pills-primary-soft theme-icon-active d-flex justify-content-between align-items-center p-2 pb-0">
@@ -483,10 +442,11 @@ Footer START -->
 					<div class="col-6 col-md-3">
 						<h5 class="text-white mb-2 mb-md-4">Page</h5>
 						<ul class="nav flex-column text-primary-hover">
-							<li class="nav-item"><a class="nav-link text-muted" href="#">About us</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#">Contact us</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#">News and Blog</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#">Meet a Team</a></li>
+							<li class="nav-item">
+								<%= link_to "About us", about_us_pages_path, class: "nav-link text-muted" %>
+								<%= link_to "Contact us", contact_pages_path, class: "nav-link text-muted" %>
+								
+							</li>
 						</ul>
 					</div>
 
@@ -494,10 +454,10 @@ Footer START -->
 					<div class="col-6 col-md-3">
 						<h5 class="text-white mb-2 mb-md-4">Link</h5>
 						<ul class="nav flex-column text-primary-hover">
-							<li class="nav-item"><a class="nav-link text-muted" href="#">Sign up</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#">Sign in</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#">Privacy Policy</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#">Terms</a></li>
+						<li class="nav-item"><%= link_to "Sign up", new_user_registration_path, class: "nav-link text-muted" %></li>
+						<li class="nav-item"><%= link_to "Sign in", new_user_session_path, class: "nav-link text-muted" %></li>
+						<li class="nav-item"><%= link_to "Privacy Policy", privacy_policy_pages_path, class: "nav-link text-muted" %></li>
+						<li class="nav-item"><%= link_to "Term and Conditions", term_pages_path, class: "nav-link text-muted" %></li>
 							<li class="nav-item"><a class="nav-link text-muted" href="#">Cookie</a></li>
 							<li class="nav-item"><a class="nav-link text-muted" href="#">Support</a></li>
 						</ul>
@@ -507,11 +467,12 @@ Footer START -->
 					<div class="col-6 col-md-3">
 						<h5 class="text-white mb-2 mb-md-4">Global Site</h5>
 						<ul class="nav flex-column text-primary-hover">
-							<li class="nav-item"><a class="nav-link text-muted" href="#">India</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#">California</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#">Indonesia</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#">Canada</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#">Malaysia</a></li>
+						<li class="nav-item"><%= link_to "Croatian", root_path, class: "nav-link text-muted" %></li>
+						<li class="nav-item"><%= link_to "Germany", root_path, class: "nav-link text-muted" %></li>
+						<li class="nav-item"><%= link_to "France", root_path, class: "nav-link text-muted" %></li>
+						<li class="nav-item"><%= link_to "Italy", root_path, class: "nav-link text-muted" %></li>
+						<li class="nav-item"><%= link_to "Australia", root_path, class: "nav-link text-muted" %></li>
+
 						</ul>
 					</div>
 
@@ -519,10 +480,10 @@ Footer START -->
 					<div class="col-6 col-md-3">
 						<h5 class="text-white mb-2 mb-md-4">Booking</h5>
 						<ul class="nav flex-column text-primary-hover">
-							<li class="nav-item"><a class="nav-link text-muted" href="#"><i class="fa-solid fa-hotel me-2"></i>Hotel</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#"><i class="fa-solid fa-plane me-2"></i>Flight</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#"><i class="fa-solid fa-globe-americas me-2"></i>Tour</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#"><i class="fa-solid fa-car me-2"></i>Cabs</a></li>
+							<li class="nav-item"><a class="nav-link text-muted" href="#"></i>Sedan</a></li>
+							<li class="nav-item"><a class="nav-link text-muted" href="#"></i>Cuv</a></li>
+							<li class="nav-item"><a class="nav-link text-muted" href="#">Suv</a></li>
+							<li class="nav-item"><a class="nav-link text-muted" href="#">Coupe</a></li>
 						</ul>
 					</div>
 				</div>
@@ -532,32 +493,7 @@ Footer START -->
 		</div><!-- Row END -->
 
 		<!-- Tops Links -->
-		<div class="row mt-5">
-			<h5 class="mb-2 text-white">Top Links</h5>
-			<ul class="list-inline text-primary-hover lh-lg">
-				<li class="list-inline-item"><a href="#" class="text-muted">Flights</a></li>
-				<li class="list-inline-item"><a href="#" class="text-muted">Hotels</a></li>
-				<li class="list-inline-item"><a href="#" class="text-muted">Tours</a></li>
-				<li class="list-inline-item"><a href="#" class="text-muted">Cabs</a></li>
-				<li class="list-inline-item"><a href="#" class="text-muted">About</a></li>
-				<li class="list-inline-item"><a href="#" class="text-muted">Contact us</a></li>
-				<li class="list-inline-item"><a href="#" class="text-muted">Blogs</a></li>
-				<li class="list-inline-item"><a href="#" class="text-muted">Services</a></li>
-				<li class="list-inline-item"><a href="#" class="text-muted">Detail page</a></li>
-				<li class="list-inline-item"><a href="#" class="text-muted">Services</a></li>
-				<li class="list-inline-item"><a href="#" class="text-muted">Policy</a></li>
-				<li class="list-inline-item"><a href="#" class="text-muted">Testimonials</a></li>
-				<li class="list-inline-item"><a href="#" class="text-muted">Newsletters</a></li>
-				<li class="list-inline-item"><a href="#" class="text-muted">Podcasts</a></li>
-				<li class="list-inline-item"><a href="#" class="text-muted">Protests</a></li>
-				<li class="list-inline-item"><a href="#" class="text-muted">NewsCyber</a></li>
-				<li class="list-inline-item"><a href="#" class="text-muted">Education</a></li>
-				<li class="list-inline-item"><a href="#" class="text-muted">Sports</a></li>
-				<li class="list-inline-item"><a href="#" class="text-muted">Tech and Auto</a></li>
-				<li class="list-inline-item"><a href="#" class="text-muted">Opinion</a></li>
-				<li class="list-inline-item"><a href="#" class="text-muted">Share Market</a></li>
-			</ul>
-		</div>
+		
 
 		<!-- Payment and card -->
 		<div class="row g-4 justify-content-between mt-0 mt-md-2">
@@ -597,8 +533,8 @@ Footer START -->
 					<!-- copyright links-->
 					<div class="nav mt-2 mt-lg-0">
 						<ul class="list-inline text-primary-hover mx-auto mb-0">
-							<li class="list-inline-item me-0"><a class="nav-link py-1 text-muted" href="#">Privacy policy</a></li>
-							<li class="list-inline-item me-0"><a class="nav-link py-1 text-muted" href="#">Terms and conditions</a></li>
+							<li class="list-inline-item me-0"><%= link_to "Privacy Policy", privacy_policy_pages_path, class: "nav-link py-1 text-muted" %></li>
+							<li class="list-inline-item me-0"><%= link_to "Term and Conditions", term_pages_path, class: "nav-link py-1 text-muted" %></li>
 							<li class="list-inline-item me-0"><a class="nav-link py-1 text-muted pe-0" href="#">Refund policy</a></li>
 						</ul>
 					</div>
