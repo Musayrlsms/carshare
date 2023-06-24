@@ -23,12 +23,12 @@ class ProfilesController < ApplicationController
   def approved
     @user = User.find(params[:profile_id])
     @user.approved!
-    redirect_to document_path
+    redirect_to profile_document_path
   end
   def rejected
     @user = User.find(params[:profile_id])
     @user.rejected!
-    redirect_to document_path
+    redirect_to profile_document_path
   end
 
 

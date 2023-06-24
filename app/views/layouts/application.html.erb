@@ -367,7 +367,7 @@
 					<% if user_signed_in? && current_user.avatar.present? %>
 						<%= image_tag(current_user.avatar, class: "avatar-img rounded-2") %>
 					<% elsif user_signed_in? && !current_user.avatar.attached?%>
-						<img class="avatar-img rounded-2" src="assets/images/avatar/01.jpg" alt="avatar">
+						<img class="avatar-img rounded-2" src="/assets/images/avatar/default.jpg" alt="avatar">
 					<%else %>
 						<%= link_to 'Log in', new_user_session_path, class:"btn btn-sm btn-primary-soft mb-0"%>
 
@@ -383,7 +383,7 @@
 								<% if user_signed_in? && current_user.avatar.present? %>
 									<%= image_tag(current_user.avatar, class: "avatar-img rounded-2") %>
 								<% elsif user_signed_in? && !current_user.avatar.attached?%>
-									<img class="avatar-img rounded-2" src="assets/images/avatar/01.jpg" alt="avatar">
+									<img class="avatar-img rounded-2" src="/assets/images/avatar/default.jpg" alt="avatar">
 								<%else %>
 									<%= link_to 'Log in', new_user_session_path, class:"btn btn-sm btn-primary-soft mb-0"%>
 		

@@ -29,7 +29,7 @@ Content START -->
 											<%= image_tag(current_user.avatar, class: "avatar-img rounded-3") %>
 									<% else %>		
 									<div class="avatar avatar-lg">
-										<img class="avatar-img rounded-circle" src="assets/images/avatar/01.jpg" alt="avatar">
+										<img class="avatar-img rounded-circle" src="/assets/images/avatar/default.jpg" alt="avatar">
 									</div>
 									<%end%>
 
@@ -132,7 +132,7 @@ Content START -->
 										<% if current_user.avatar.attached? %>
 											<%= image_tag(current_user.avatar, class: "avatar-img rounded-3") %>
 										<% else%>
-											<img class="avatar-img rounded-2" src="assets/images/avatar/01.jpg" alt="avatar">
+											<img class="avatar-img rounded-2" src="/assets/images/avatar/default.jpg" alt="avatar">
 										<% end %>
 										</span>
 									</label>
@@ -151,7 +151,7 @@ Content START -->
 										<% if current_user.identity_card.attached? %>
 											<%= image_tag(current_user.identity_card, class: "avatar-img rounded-3") %>
 										<% else %>	
-										<img class="avatar-img rounded-2" src="assets/images/avatar/card.png" alt="avatar">
+										<img class="avatar-img rounded-2" src="/assets/images/avatar/card.png" alt="avatar">
 										<% end %>
 										</span>
 									</label>
@@ -170,7 +170,7 @@ Content START -->
 									<% if current_user.passport.attached? %>
 										<%= image_tag(current_user.passport, class: "avatar-img rounded-3") %>
 									<% else %>	
-										<img class="avatar-img rounded-2" src="assets/images/avatar/card.png" alt="avatar">	
+										<img class="avatar-img rounded-2" src="/assets/images/avatar/card.png" alt="avatar">	
 									<% end %>
 									</span>
 								</label>
@@ -188,7 +188,7 @@ Content START -->
 									<% if current_user.driver_license.attached? %>
 										<%= image_tag(current_user.driver_license, class: "avatar-img rounded-3") %>
 									<% else %>	
-										<img class="avatar-img rounded-2" src="assets/images/avatar/card.png" alt="avatar">
+										<img class="avatar-img rounded-2" src="/assets/images/avatar/card.png" alt="avatar">
 									<% end %>
 									</span>
 								</label>
