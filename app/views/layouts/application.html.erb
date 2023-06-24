@@ -181,9 +181,8 @@
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= t(:pages) %></a>
 						<ul class="dropdown-menu" aria-labelledby="pagesMenu">
-
-							<li> <a class="dropdown-item" href="/about">About</a></li>
-							<li> <a class="dropdown-item" href="/contact">Contact</a></li>
+							<%= link_to "About", about_us_pages_path, class: "dropdown-item" %>
+							<%= link_to "Contact", contact_pages_path, class: "dropdown-item" %>
 							
 							
 
@@ -210,11 +209,11 @@
 							<li class="dropdown-submenu dropend">
 								<a class="dropdown-item dropdown-toggle" href="#">Help</a>
 								<ul class="dropdown-menu" data-bs-popper="none">
-									<li><%= link_to "Help Center", help_center_path, class: "dropdown-item" %></li>
-									<li><%= link_to "Privacy Policy", privacy_policy_path, class: "dropdown-item" %></li>
+									<li><%= link_to "Help Center", help_center_pages_path, class: "dropdown-item" %></li>
+									<li><%= link_to "Privacy Policy", privacy_policy_pages_path, class: "dropdown-item" %></li>
 								</ul>
 							</li>
-							<li><%= link_to "FAQs", faqs_path, class: "dropdown-item" %></li>
+							<li><%= link_to "FAQs", faqs_pages_path, class: "dropdown-item" %></li>
 						</ul>
 					</li>
 
@@ -363,7 +362,7 @@
 
 						<!-- Links -->
 						<li> <hr class="dropdown-divider"></li>
-						<li><%= link_to help_center_path, class: "dropdown-item" do %>
+						<li><%= link_to help_center_pages_path, class: "dropdown-item" do %>
 							<i class="bi bi-info-circle fa-fw me-2"></i>
 							Help Center
 						<% end %></li>
@@ -443,8 +442,8 @@ Footer START -->
 						<h5 class="text-white mb-2 mb-md-4">Page</h5>
 						<ul class="nav flex-column text-primary-hover">
 							<li class="nav-item">
-								<%= link_to "About us", about_us_path, class: "nav-link text-muted" %>
-								<%= link_to "Contact us", contact_path, class: "nav-link text-muted" %>
+								<%= link_to "About us", about_us_pages_path, class: "nav-link text-muted" %>
+								<%= link_to "Contact us", contact_pages_path, class: "nav-link text-muted" %>
 								
 							</li>
 						</ul>
@@ -456,8 +455,8 @@ Footer START -->
 						<ul class="nav flex-column text-primary-hover">
 						<li class="nav-item"><%= link_to "Sign up", new_user_registration_path, class: "nav-link text-muted" %></li>
 						<li class="nav-item"><%= link_to "Sign in", new_user_session_path, class: "nav-link text-muted" %></li>
-						<li class="nav-item"><%= link_to "Privacy Policy", privacy_policy_path, class: "nav-link text-muted" %></li>
-						<li class="nav-item"><%= link_to "Term and Conditions", term_path, class: "nav-link text-muted" %></li>
+						<li class="nav-item"><%= link_to "Privacy Policy", privacy_policy_pages_path, class: "nav-link text-muted" %></li>
+						<li class="nav-item"><%= link_to "Term and Conditions", term_pages_path, class: "nav-link text-muted" %></li>
 							<li class="nav-item"><a class="nav-link text-muted" href="#">Cookie</a></li>
 							<li class="nav-item"><a class="nav-link text-muted" href="#">Support</a></li>
 						</ul>
@@ -533,8 +532,8 @@ Footer START -->
 					<!-- copyright links-->
 					<div class="nav mt-2 mt-lg-0">
 						<ul class="list-inline text-primary-hover mx-auto mb-0">
-							<li class="list-inline-item me-0"><%= link_to "Privacy Policy", privacy_policy_path, class: "nav-link py-1 text-muted" %></li>
-							<li class="list-inline-item me-0"><%= link_to "Term and Conditions", term_path, class: "nav-link py-1 text-muted" %></li>
+							<li class="list-inline-item me-0"><%= link_to "Privacy Policy", privacy_policy_pages_path, class: "nav-link py-1 text-muted" %></li>
+							<li class="list-inline-item me-0"><%= link_to "Term and Conditions", term_pages_path, class: "nav-link py-1 text-muted" %></li>
 							<li class="list-inline-item me-0"><a class="nav-link py-1 text-muted pe-0" href="#">Refund policy</a></li>
 						</ul>
 					</div>
