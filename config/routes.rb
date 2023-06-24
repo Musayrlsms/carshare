@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   get 'change_locale/:locale', to: 'application#change_locale', as: :change_locale
-  get 'bookings', to: 'profiles#bookings', as: "bookings"# TODO: Move to profiles block
-
   resources :profiles do 
     get 'approved', to: 'profiles#approved', as: :approved
     get 'rejected', to: 'profiles#rejected', as: :rejected
     get 'document', to: 'profiles#document', as: :document, on: :collection
+    get 'bookings', to: 'profiles#bookings', as: :bookings, on: :collection
+    
   end
   resources :admins
   resources :rules
