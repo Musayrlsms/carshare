@@ -13,6 +13,7 @@ class CarsController < ApplicationController
 
   # GET /cars/1 or /cars/1.json
   def show
+    @car = Car.find(params[:id])
   end
 
   # GET /cars/new
@@ -62,7 +63,7 @@ class CarsController < ApplicationController
     end
   end
 
-  private
+private
     # Use callbacks to share common setup or constraints between actions.
     def set_car
       @car = Car.find(params[:id])

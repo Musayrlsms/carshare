@@ -68,6 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_23_022239) do
     t.string "state"
     t.string "city"
     t.integer "model_year"
+    t.integer "status", default: 0, null: false
     t.index ["brand_id"], name: "index_cars_on_brand_id"
     t.index ["model_id"], name: "index_cars_on_model_id"
     t.index ["user_id"], name: "index_cars_on_user_id"
@@ -161,6 +162,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_23_022239) do
     t.date "date_of_birth"
     t.string "name"
     t.string "surname"
+    t.integer "document_status", default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
