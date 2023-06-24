@@ -3,7 +3,7 @@ class ModelsController < ApplicationController
 
   # GET /models or /models.json
   def index
-    @models = Model.all
+    @models = Model.where(brand_id: params[:brand_id])
   end
 
   # GET /models/1 or /models/1.json
