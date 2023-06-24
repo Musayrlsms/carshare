@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
   get 'change_locale/:locale', to: 'application#change_locale', as: :change_locale
-  patch '/profiles', to: 'profiles#update', as: 'update_profile' # TODO: We can delete it. because resources already creating it.
-  get 'bookings', to: 'profiles#bookings', as: "bookings" # TODO: Move to profiles block
-
-  resources :profiles
+  resources :profiles do 
+    get 'approved', to: 'profiles#approved', as: :approved
+    get 'rejected', to: 'profiles#rejected', as: :rejected
+    get 'document', to: 'profiles#document', as: :document, on: :collection
+    get 'bookings', to: 'profiles#bookings', as: :bookings, on: :collection
+    
+  end
+  resources :admins
   resources :rules
   resources :properties
   resources :cars
@@ -18,6 +22,9 @@ Rails.application.routes.draw do
     get 'term', to: 'pages#term', as: :term, on: :collection
   end
   devise_for :users
+  get 'admins/:id/permit', to: 'admins#permit', as: :admin_permit
+  get 'admins/:id/nopermit', to: 'admins#nopermit', as: :admin_nopermit
+ 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
