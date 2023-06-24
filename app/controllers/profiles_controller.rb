@@ -2,24 +2,16 @@ class ProfilesController < ApplicationController
   before_action :authenticate_user!
   def index
   end
-  def show
-    if current_user.update(user_params)
 
-      redirect_to profiles_show_path
-    else 
-      render :show
-    end
-  end
   
-
   def update
     if current_user.update(user_params)
-
       redirect_to profiles_path
     else 
       render :update
     end
   end
+
 
   def bookings
   end

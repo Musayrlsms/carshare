@@ -197,8 +197,15 @@ Content START -->
 								<%= f.file_field :driver_license, class: "form-control d-none", id:"uploadfile-4"  %>
 								
 							</div>
-						</div>
+						</div><br>
 
+						<% if current_user.approved? %>
+						 Your account is active
+						<% else %>
+							Your account is not active yet
+						<% end %>
+
+									
 							
 					</div>
 								<!-- Button -->
@@ -207,7 +214,7 @@ Content START -->
 							</div>
 							  <% end %>
 							<!-- Form END -->
-						</div>
+							</div>
 						<!-- Card body END -->
 					</div>
 				
@@ -222,7 +229,7 @@ Content START -->
 							<h4 class="card-header-title">Update Password</h4>
 							<p class="mb-0">Your current email address is <span class="text-primary"><%= current_user.email %></span></p>
 						</div>
-
+						
 						<!-- Card body START -->
 						<%= form_for(current_user, url: profile_path(current_user), method: :patch ) do |f| %>
 							<form class="card-body">
