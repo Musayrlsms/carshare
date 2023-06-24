@@ -51,12 +51,12 @@
 									<ul class="list-group list-group-borderless">
 										<li class="list-group-item">
                       <div>
-                        Journey Start Date: <span class="h6 fw-normal mb-0 ms-1">25 Nov 2022</span>
+                        Journey Start Date: <span class="h6 fw-normal mb-0 ms-1"><%= @start_date.strftime('%F') %></span>
                       </div>
                     </li>
                     <li class="list-group-item">
                       <div>
-                        Journey Finish Date: <span class="h6 fw-normal mb-0 ms-1">25 Nov 2022</span> </div>
+                        Journey Finish Date: <span class="h6 fw-normal mb-0 ms-1"><%= @finish_date.strftime('%F') %></span> </div>
                     </li>
 										<li class="list-group-item">Distance:<span class="h6 fw-normal mb-0 ms-1"><%= @car.distance %> km</span></li>
 									</ul>
@@ -77,9 +77,9 @@
 								<!-- List -->
 								<div class="col-sm-8">
 									<ul class="list-group list-group-borderless mb-0">
-										<li class="list-group-item">Passenger Name:<span class="h6 mb-0 fw-normal ms-1"><%= current_user.name %></span></li>
+										<li class="list-group-item">Passenger Name:<span class="h6 mb-0 fw-normal ms-1"><%= current_user.full_name %></span></li>
 										<li class="list-group-item">Passenger Email:<span class="h6 mb-0 fw-normal ms-1"><%= current_user.email %></span></li>
-										<li class="list-group-item">Passenger Number:<span class="h6 mb-0 fw-normal ms-1"><%= current_user.phone %></span></li>
+										<li class="list-group-item">Passenger Number:<span class="h6 mb-0 fw-normal ms-1"><%= current_user.mobile_number %></span></li>
 									</ul>
 								</div>
 
@@ -229,7 +229,6 @@
   // When the selected account changes, create a new PaymentIntent on the server
   // side and update the front-end accordingly.
   window.addEventListener("DOMContentLoaded", (event) => {
-    console.log("222")
     updatePaymentIntent("<%= @car.user.stripe_account.account_id %>");
   });
 

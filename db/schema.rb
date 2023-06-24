@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_15_041125) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_23_022239) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -104,6 +104,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_041125) do
     t.datetime "finish_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "payment_intent_response", default: "{}"
+    t.integer "payment_status", default: 0
+    t.float "amount"
+    t.string "payment_intent_id"
     t.index ["car_id"], name: "index_rents_on_car_id"
     t.index ["owner_id"], name: "index_rents_on_owner_id"
     t.index ["renter_id"], name: "index_rents_on_renter_id"

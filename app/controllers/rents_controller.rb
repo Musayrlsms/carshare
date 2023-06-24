@@ -73,7 +73,9 @@ class RentsController < ApplicationController
       },
       on_behalf_of: @car.user.stripe_account.account_id
     })
-  
+
+    @rent = Rent.create(car: @car, renter: current_user, owner: @car.user, start_date: @start_date, finish_date: @finish_date, payment_intent_response: payment_intent, amount: amount, payment_intent_id: payment_intent[:id])
+
     render json: {
       'publishableKey': ENV['STRIPE_PUBLISHABLE_KEY'],
       'clientSecret': payment_intent.client_secret
@@ -87,7 +89,15 @@ class RentsController < ApplicationController
 
   def payment_return
     payment_response = Stripe::PaymentIntent.retrieve(params['payment_intent'])
-    ewfewf
+    @rent = Rent.find_by(payment_intent_id: payment_response['id'])
+    
+    # TODO: check car price
+
+    if @rent.amount == payment_response['amount']
+      @rent.update!(payment_status: :paid, payment_intent_response: payment_response)
+    else
+      render :new, notice: "Rent was successfully updated."
+    end
   end
 
   private
