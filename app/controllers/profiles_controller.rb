@@ -6,6 +6,8 @@ class ProfilesController < ApplicationController
   
   def update
     if current_user.update(user_params)
+      message = "Profil bilgileriniz güncellendi: #{user_params.inspect}"
+      $telegram_bot.api.send_message(chat_id: ENV['TELEGRAM_CHAT_ID'], text: message)
       redirect_to profiles_path
     else 
       render :update
@@ -23,12 +25,12 @@ class ProfilesController < ApplicationController
   def approved
     @user = User.find(params[:profile_id])
     @user.approved!
-    redirect_to profile_document_path
+    redirect_to document_profilespath
   end
   def rejected
     @user = User.find(params[:profile_id])
     @user.rejected!
-    redirect_to profile_document_path
+    redirect_to document_profiles_path
   end
 
 
