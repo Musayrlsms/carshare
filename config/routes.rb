@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :rents do
       post 'create-payment-intent', to: 'rents#create_payment_intent', on: :collection
       get 'recent-accounts', to: 'rents#recent_accounts', on: :collection
+      delete 'cancel', to: 'rents#cancel'
     end
   end
   

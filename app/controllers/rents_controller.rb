@@ -1,6 +1,6 @@
 class RentsController < ApplicationController
   before_action :set_car, except: [:payment_return]
-  before_action :set_rent, only: %i[ show edit update destroy ]
+  before_action :set_rent, only: %i[ show edit update destroy cancel ]
   before_action :total_amount, only: [ :new ]
 
   # GET /rents or /rents.json
@@ -100,6 +100,17 @@ class RentsController < ApplicationController
     end
   end
 
+  def cancel
+    redirect_to(bookings_profiles_path, notice: "You can't cancel a booking that is past the start time") and return if @rent.start_date < DateTime.now
+
+    canceled_payment_intent = Stripe::Refund.create(payment_intent: @rent.payment_intent_id)
+    if canceled_payment_intent['status'] == 'succeeded'
+      @rent.update!(canceled_response: canceled_payment_intent, payment_status: :canceled)
+    else
+      redirect_to bookings_profiles_path, notice: "An error accured. Please contact us"
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_car
@@ -107,7 +118,7 @@ class RentsController < ApplicationController
     end
 
     def set_rent
-      @rent = Rent.find(params[:id])
+      @rent = Rent.find(params[:id] || params[:rent_id])
     end
 
     # Only allow a list of trusted parameters through.

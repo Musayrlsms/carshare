@@ -105,7 +105,7 @@
 	<nav class="navbar navbar-expand-xl">
 		<div class="container">
 			<!-- Logo START -->
-			<a class="navbar-brand" href="index.html">
+			<a class="navbar-brand" href="/">
 				<img class="light-mode-item navbar-brand-item" src="/assets/images/logo.svg" alt="logo">
 				<img class="dark-mode-item navbar-brand-item" src="/assets/images/logo-light.svg" alt="logo">
 			</a>
@@ -222,7 +222,7 @@
 								<a class="dropdown-item dropdown-toggle" href="#">User Profile</a>
 								<ul class="dropdown-menu" data-bs-popper="none">
 									<li> <%= link_to "My Profile", profiles_path, class: "dropdown-item" %> </li>
-									<li> <%= link_to "My Bookings", bookings_path, class: "dropdown-item" %> </li>
+									<li> <%= link_to "My Bookings", bookings_profiles_path, class: "dropdown-item" %> </li>
 									<li> <a class="dropdown-item" href="account-payment-details.html">Payment Details</a> </li>
 								</ul>
 							</li>
