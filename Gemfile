@@ -25,6 +25,7 @@ end
 group :development do
   gem "web-console"
   gem 'byebug'
+  gem 'annotate'
 end
 
 group :test do
