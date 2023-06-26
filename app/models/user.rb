@@ -10,6 +10,10 @@ class User < ApplicationRecord
   has_one_attached :driver_license
   enum document_status: { pending: 0, approved: 1, rejected: 2 }
 
+  def document_upload
+   self.identity_card.present? || self.passport.present? || self.driver_license.present?
+  end
+
   def full_name
     "#{self.name} #{self.surname}"
    end

@@ -6,8 +6,10 @@ class ProfilesController < ApplicationController
   
   def update
     if current_user.update(user_params)
-      message = "Profil bilgileriniz güncellendi: #{user_params.inspect}"
-      $telegram_bot.api.send_message(chat_id: ENV['TELEGRAM_CHAT_ID'], text: message)
+      if current_user.document_upload
+        message = "Profil updated: #{user_params.inspect} Document status = #{current_user.document_status}"
+        $telegram_bot.api.send_message(chat_id: ENV['TELEGRAM_CHAT_ID'], text: message)
+      end
       redirect_to profiles_path
     else 
       render :update
