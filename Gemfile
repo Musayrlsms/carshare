@@ -34,3 +34,4 @@ end
 
 # Other Gems
 gem 'devise'
+gem "ransack", "~> 4.0"
