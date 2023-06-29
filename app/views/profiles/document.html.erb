@@ -41,14 +41,14 @@
 
       <td>
         <% if user.pending? || user.rejected? %>
-          <%= link_to "Onayla", profile_approved_path(user.id), class: "btn btn-primary" %>
+          <%= link_to "Onayla", approved_profile_path(user.id), class: "btn btn-primary" %>
         <% else %>
           Onaylandı
         <% end %>
       </td>
       <td>
         <% if user.approved? %>
-          <%= link_to "İptal Et", profile_rejected_path(user.id), class: "btn btn-danger" %>
+          <%= link_to "İptal Et", rejected_profile_path(user.id), class: "btn btn-danger" %>
         <% else %>
           İptal edildi.
         <% end %>
