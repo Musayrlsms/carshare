@@ -11,9 +11,7 @@ class User < ApplicationRecord
   enum document_status: { pending: 0, approved: 1, rejected: 2 }
 
   def document_upload?
-    if document_status != "approved"
-      self.identity_card.present? && self.passport.present? && self.driver_license.present?
-    end
+      document_status != "approved" && self.identity_card.present? && self.passport.present? && self.driver_license.present?
   end
 
   def full_name
