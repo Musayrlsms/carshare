@@ -18,6 +18,7 @@ class ProfilesController < ApplicationController
 
   def document
     @users = User.all
+    authorize @users, :document?
   end
 
   def approved
