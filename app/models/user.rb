@@ -13,6 +13,10 @@ class User < ApplicationRecord
   has_one_attached :driver_license
 
 
+  def document_upload?
+      document_status != "approved" && self.identity_card.present? && self.passport.present? && self.driver_license.present?
+  end
+
   def full_name
     "#{self.name} #{self.surname}"
    end

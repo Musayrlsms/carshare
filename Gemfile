@@ -38,3 +38,6 @@ gem 'rails-i18n'
 gem 'devise-i18n'
 gem 'activestorage'
 gem 'pundit'
+gem 'telegram-bot-ruby'
+gem 'dotenv-rails'
+
