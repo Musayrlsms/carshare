@@ -1,6 +1,6 @@
 class Car < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
-    ["address","price", "brand_id", "case_type", "city", "created_at", "details", "distance", "email", "id", "max_luggage", "model_id", "model_year", "phone_number", "price", "seat_count", "state", "status", "updated_at", "user_id", "user_name", "user_surname"]
+    ["address","price", "brand_id", "case_type", "city", "created_at", "details", "distance", "id", "max_luggage", "model_id", "model_year"]
   end
   
   belongs_to :model
@@ -10,6 +10,6 @@ class Car < ApplicationRecord
   enum status: { available: 0, rejected: 1, approved: 2 }
 
   def self.ransackable_associations(auth_object = nil)
-    ["brand", "images_attachments", "images_blobs", "model", "user"]
+    ["brand", "model", "user"]
   end
 end
