@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   get 'change_locale/:locale', to: 'application#change_locale', as: :change_locale
   resources :profiles do 
-    get 'approved', to: 'profiles#approved', as: :approved
-    get 'rejected', to: 'profiles#rejected', as: :rejected
+    get 'approved', to: 'profiles#approved', as: :approved, on: :member
+    get 'rejected', to: 'profiles#rejected', as: :rejected, on: :member
     get 'document', to: 'profiles#document', as: :document, on: :collection
     get 'bookings', to: 'profiles#bookings', as: :bookings, on: :collection
     
