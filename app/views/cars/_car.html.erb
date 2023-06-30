@@ -18,7 +18,7 @@ Main Content START -->
 								<!-- Image -->
 								<div class="col-md-4">
 									<div class=" rounded-3 px-2 py-3">
-                    <%= image_tag car.images.first %>
+                    					<%= image_tag car.images.first %>
 									</div>
 								</div>
 
@@ -184,74 +184,20 @@ Main Content START -->
 								<div class="tiny-slider arrow-round arrow-xs arrow-dark">
 									<div class="tiny-slider-inner rounded-2" data-autoplay="false" data-arrow="true" data-dots="false" data-items="3" data-items-sm="2">
 										<!-- Image item -->
-										<div>
-											<a class="w-100 h-100" data-glightbox data-gallery="gallery" href="assets/images/category/cab/4by3/02.jpg">
-												<div class="card card-element-hover card-overlay-hover overflow-hidden">
-													<!-- Image -->
-													<img src="assets/images/category/cab/4by3/02.jpg" class="rounded-3" alt="">
-													<!-- Full screen button -->
-													<div class="hover-element w-100 h-100">
-														<i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
+										<% car.images.each do |image|%>
+											<div>
+												<a class="w-100 h-100" data-glightbox data-gallery="gallery" href="assets/images/category/cab/4by3/02.jpg">
+													<div class="card card-element-hover card-overlay-hover overflow-hidden">
+														<!-- Image -->
+														<%= image_tag image, class:"rounded-3" %>
+														<!-- Full screen button -->
+														<div class="hover-element w-100 h-100">
+															<i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
+														</div>
 													</div>
-												</div>
-											</a>
-										</div>
-
-										<!-- Image item -->
-										<div>
-											<a class="w-100 h-100" data-glightbox data-gallery="gallery" href="assets/images/category/cab/4by3/01.jpg">
-												<div class="card card-element-hover card-overlay-hover overflow-hidden">
-													<!-- Image -->
-													<img src="assets/images/category/cab/4by3/01.jpg" class="rounded-3" alt="">
-													<!-- Full screen button -->
-													<div class="hover-element w-100 h-100">
-														<i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
-													</div>
-												</div>
-											</a>
-										</div>
-
-										<!-- Image item -->
-										<div>
-											<a class="w-100 h-100" data-glightbox data-gallery="gallery" href="assets/images/category/cab/4by3/03.jpg">
-												<div class="card card-element-hover card-overlay-hover overflow-hidden">
-													<!-- Image -->
-													<img src="assets/images/category/cab/4by3/03.jpg" class="rounded-3" alt="">
-													<!-- Full screen button -->
-													<div class="hover-element w-100 h-100">
-														<i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
-													</div>
-												</div>
-											</a>
-										</div>
-
-										<!-- Image item -->
-										<div>
-											<a class="w-100 h-100" data-glightbox data-gallery="gallery" href="assets/images/category/cab/4by3/04.jpg">
-												<div class="card card-element-hover card-overlay-hover overflow-hidden">
-													<!-- Image -->
-													<img src="assets/images/category/cab/4by3/04.jpg" class="rounded-3" alt="">
-													<!-- Full screen button -->
-													<div class="hover-element w-100 h-100">
-														<i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
-													</div>
-												</div>
-											</a>
-										</div>
-
-										<!-- Image item -->
-										<div>
-											<a class="w-100 h-100" data-glightbox data-gallery="gallery" href="assets/images/category/cab/4by3/05.jpg">
-												<div class="card card-element-hover card-overlay-hover overflow-hidden">
-													<!-- Image -->
-													<img src="assets/images/category/cab/4by3/05.jpg" class="rounded-3" alt="">
-													<!-- Full screen button -->
-													<div class="hover-element w-100 h-100">
-														<i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
-													</div>
-												</div>
-											</a>
-										</div>
+												</a>
+											</div>
+										<% end %>			
 									</div>
 								</div>
 								<!-- Slider END -->

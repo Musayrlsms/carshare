@@ -9,5 +9,7 @@ class Car < ApplicationRecord
   has_many_attached :images
   enum status: { available: 0, rejected: 1, approved: 2 }
 
-
+  def self.ransackable_associations(auth_object = nil)
+    ["brand", "images_attachments", "images_blobs", "model", "user"]
+  end
 end
