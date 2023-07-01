@@ -32,7 +32,7 @@ class ProfilesController < ApplicationController
 
   def document
     @users = User.all
-    authorize @users, :document?
+    authorize current_user
   end
 
   def approved

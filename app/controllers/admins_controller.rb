@@ -2,6 +2,7 @@ class AdminsController < ApplicationController
   def index
     @cars = Car.all
     @user = User.all
+    authorize :admin
   end
   
   def permit

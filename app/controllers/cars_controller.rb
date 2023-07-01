@@ -23,6 +23,11 @@ class CarsController < ApplicationController
 
   # GET /cars/1/edit
   def edit
+    @car = Car.find(params[:id])
+    authorize @car
+  rescue Pundit::NotAuthorizedError
+    flash[:alert] = "You are not authorized to edit this car."
+    redirect_to cars_path
   end
 
   # POST /cars or /cars.json
@@ -42,6 +47,8 @@ class CarsController < ApplicationController
 
   # PATCH/PUT /cars/1 or /cars/1.json
   def update
+    @car = Car.find(params[:id])
+    authorize @car
     respond_to do |format|
       if @car.update(car_params)
         format.html { redirect_to car_url(@car), notice: "Car was successfully updated." }
@@ -55,6 +62,8 @@ class CarsController < ApplicationController
 
   # DELETE /cars/1 or /cars/1.json
   def destroy
+    @car = Car.find(params[:id])
+    authorize @car
     @car.destroy
 
     respond_to do |format|
