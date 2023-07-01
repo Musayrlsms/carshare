@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema[7.0].define(version: 2023_06_30_021205) do
+=======
+ActiveRecord::Schema[7.0].define(version: 2023_07_01_031260) do
+>>>>>>> b68d0aa66697978c4e913a520cfd0f3f4802cd09
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,7 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_30_021205) do
     t.integer "distance"
     t.integer "max_luggage"
     t.integer "seat_count"
-    t.integer "case_type"
+    t.string "case_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "price", default: 0.0, null: false
