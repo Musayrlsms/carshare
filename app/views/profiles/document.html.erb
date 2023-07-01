@@ -1,0 +1,60 @@
+<h3>Users documents</h3>
+<table border="1" class="table table-striped">
+  <tr>
+    <td>User name</td>
+    <td>Email</td>
+    <td>Profile photo</td>
+    <td>Identity card</td>
+    <td>Passport</td>
+    <td>Driver license</td>
+    <td>Onayla</td>
+    <td>İptal Et</td>
+    
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %> <%= user.surname %> </td>
+      <td><%= user.email %></td>
+      <% if user.avatar.present? %>
+        <td><%= image_tag(user.avatar, class: "avatar avatar-xl") %></td>
+      <%else%>
+        <td><img class="avatar avatar-xl" src="/assets/images/avatar/01.jpg" alt="avatar"></td>
+      <% end %>
+
+      <% if user.identity_card.present? %>
+        <td><%= image_tag(user.identity_card, class: "avatar avatar-xl ") %></td>
+      <% else %>
+        <td><img class="avatar avatar-xl" src="/assets/images/avatar/01.jpg" alt="avatar"></td>
+      <% end %>
+
+      <% if user.passport.present? %>
+        <td><%= image_tag(user.passport, class: "avatar avatar-xl") %></td>
+      <% else %>
+        <td><img class="avatar avatar-xl" src="/assets/images/avatar/01.jpg" alt="avatar"></td>
+      <% end %>
+      
+      <% if user.driver_license.present? %>
+        <td><%= image_tag(user.driver_license, class: "avatar avatar-xl") %></td>
+      <% else %>
+        <td><img class="avatar avatar-xl" src="/assets/images/avatar/01.jpg" alt="avatar"></td>
+      <% end %>
+
+      <td>
+        <% if user.pending? || user.rejected? %>
+          <%= link_to "Onayla", approved_profile_path(user.id), class: "btn btn-primary" %>
+        <% else %>
+          Onaylandı
+        <% end %>
+      </td>
+      <td>
+        <% if user.approved? %>
+          <%= link_to "İptal Et", rejected_profile_path(user.id), class: "btn btn-danger" %>
+        <% else %>
+          İptal edildi.
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+

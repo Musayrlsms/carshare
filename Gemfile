@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.2.2"
+ruby "3.2.0"
 gem 'turbo-rails'
 gem "rails", "~> 7.0.5"
 gem "sprockets-rails"
@@ -35,3 +35,8 @@ end
 # Other Gems
 gem 'devise'
 gem "ransack", "~> 4.0"
+gem 'rails-i18n'
+gem 'devise-i18n'
+gem 'activestorage'
+gem 'telegram-bot-ruby'
+gem 'dotenv-rails'
