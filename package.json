@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "lightbox.js-react": "^0.6.4",
+    "lightbox2": "^2.11.4"
+  }
+}
