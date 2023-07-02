@@ -3,24 +3,29 @@ class ModelsController < ApplicationController
 
   # GET /models or /models.json
   def index
+    authorize :admin
     @models = Model.where(brand_id: params[:brand_id])
   end
 
   # GET /models/1 or /models/1.json
   def show
+    authorize :admin
   end
 
   # GET /models/new
   def new
+    authorize :brand, :new?
     @model = Model.new
   end
 
   # GET /models/1/edit
   def edit
+    authorize :brand, :edit?
   end
 
   # POST /models or /models.json
   def create
+    authorize :brand, :create?
     @model = Model.new(model_params)
 
     respond_to do |format|
@@ -36,6 +41,7 @@ class ModelsController < ApplicationController
 
   # PATCH/PUT /models/1 or /models/1.json
   def update
+    authorize :brand, :update?
     respond_to do |format|
       if @model.update(model_params)
         format.html { redirect_to model_url(@model), notice: "Model was successfully updated." }
@@ -49,6 +55,7 @@ class ModelsController < ApplicationController
 
   # DELETE /models/1 or /models/1.json
   def destroy
+    authorize :brand, :destroy?
     @model.destroy
 
     respond_to do |format|

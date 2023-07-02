@@ -3,25 +3,30 @@ class BrandsController < ApplicationController
 
   # GET /brands or /brands.json
   def index
+    authorize :admin
     @brands = Brand.all
 
   end
 
   # GET /brands/1 or /brands/1.json
   def show
+    authorize :admin
   end
 
   # GET /brands/new
   def new
+    authorize :brand, :new?
     @brand = Brand.new
   end
 
   # GET /brands/1/edit
   def edit
+    authorize :brand, :edit?
   end
 
   # POST /brands or /brands.json
   def create
+    authorize :brand, :create?
     @brand = Brand.new(brand_params)
 
     respond_to do |format|
@@ -37,6 +42,7 @@ class BrandsController < ApplicationController
 
   # PATCH/PUT /brands/1 or /brands/1.json
   def update
+    authorize :brand, :update?
     respond_to do |format|
       if @brand.update(brand_params)
         format.html { redirect_to brand_url(@brand), notice: "Brand was successfully updated." }
@@ -50,6 +56,7 @@ class BrandsController < ApplicationController
 
   # DELETE /brands/1 or /brands/1.json
   def destroy
+    authorize :brand, :destroy?
     @brand.destroy
 
     respond_to do |format|

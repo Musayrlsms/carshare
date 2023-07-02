@@ -3,6 +3,10 @@ class UserPolicy < ApplicationPolicy
     user.admin?
   end
 
+  def update?
+    user == record
+  end
+
   def approved?
     user.admin?
   end

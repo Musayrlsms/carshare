@@ -5,6 +5,8 @@ class ProfilesController < ApplicationController
 
   
   def update
+    @user = current_user
+    authorize @user, :update?
     if current_user.update(user_params)
       if current_user.document_upload?
         user_info = "Profil updated:\n" +
