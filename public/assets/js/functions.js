@@ -624,6 +624,7 @@ var e = {
           var noCalendar = item.getAttribute('data-noCalendar') == 'true' ? true : false;
           var inline = item.getAttribute('data-inline') == 'true' ? true : false;
           var dateFormat = item.getAttribute('data-date-format') ? item.getAttribute('data-date-format') : item.getAttribute('data-enableTime') == 'true' ? "h:i K" : "d M";
+          var disableDates = item.getAttribute('data-disable-dates') ? JSON.parse(item.getAttribute('data-disable-dates')) : []
 
           flatpickr(item, {
             mode: mode,
@@ -632,6 +633,7 @@ var e = {
             inline: inline,
             animate: "false",
             position: "top",
+            disable: disableDates,
             dateFormat: dateFormat, //Check supported characters here: https://flatpickr.js.org/formatting/
             disableMobile: "true"
           });

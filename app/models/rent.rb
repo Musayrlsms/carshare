@@ -21,4 +21,13 @@ class Rent < ApplicationRecord
   belongs_to :owner, class_name: 'User', foreign_key: 'owner_id'
 
   enum payment_status: [:pending, :paid, :void, :canceled]
+
+  validate :check_availablity
+
+  private
+    def check_availablity
+      if Rent.where(car_id: self.car_id).where.not(id: self.id).exists?(['(start_date, finish_date) OVERLAPS (?, ?)', self.start_date, self.finish_date])
+        errors.add(:base, 'This car is not available in selected time.')
+      end
+    end
 end

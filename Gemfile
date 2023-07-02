@@ -20,16 +20,17 @@ gem "bootsnap", require: false
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'byebug'
 end
 
 group :development do
   gem "web-console"
-  gem 'byebug'
   gem 'annotate'
 end
 
 group :test do
   gem "capybara"
+  gem 'rspec-rails'
   gem "selenium-webdriver"
   gem "webdrivers"
 end
@@ -42,3 +43,4 @@ gem 'dotenv-rails'
 gem 'rails-i18n'
 gem 'devise-i18n'
 gem 'activestorage'
+gem "dockerfile-rails", ">= 1.5", :group => :development

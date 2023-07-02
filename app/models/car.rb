@@ -29,6 +29,18 @@ class Car < ApplicationRecord
   belongs_to :brand
   belongs_to :user
   has_many :rents
+  
   has_many_attached :images
+
   enum status: { available: 0, rejected: 1, approved: 2 }
+
+  def busy_days
+    rents.map do |rent|
+      {
+          from: rent.start_date.strftime('%F'),
+          to: rent.finish_date.strftime('%F')
+      }
+    end.to_json
+  end
+
 end
