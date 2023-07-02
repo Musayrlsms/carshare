@@ -56,7 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_031219) do
     t.integer "distance"
     t.integer "max_luggage"
     t.integer "seat_count"
-    t.integer "case_type"
+    t.string "case_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float "price", default: 0.0, null: false

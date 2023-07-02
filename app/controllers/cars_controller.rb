@@ -1,9 +1,12 @@
 class CarsController < ApplicationController
   before_action :set_car, only: %i[ show edit update destroy ]
+  
 
   # GET /cars or /cars.json
   def index
-    @cars = Car.all
+    @q = Car.ransack(params[:q])
+    @cars = @q.result.includes(:model)
+    
     @brands = Brand.all
     @models = Model.all
     @car = Car.new
@@ -64,6 +67,9 @@ class CarsController < ApplicationController
   end
 
 private
+def self.ransackable_attributes(auth_object = nil)
+  ["address", "brand_id", "case_type", "city", "created_at", "details", "distance", "email", "id", "max_luggage", "model_id", "model_year", "phone_number", "price", "seat_count", "state", "status", "updated_at", "user_id", "user_name", "user_surname"]
+end
     # Use callbacks to share common setup or constraints between actions.
     def set_car
       @car = Car.find(params[:id])

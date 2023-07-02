@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   end
   
   resources :profiles do 
-    get 'approved', to: 'profiles#approved', as: :approved
-    get 'rejected', to: 'profiles#rejected', as: :rejected
+    get 'approved', to: 'profiles#approved', as: :approved, on: :member
+    get 'rejected', to: 'profiles#rejected', as: :rejected, on: :member
     get 'document', to: 'profiles#document', as: :document, on: :collection
     get 'bookings', to: 'profiles#bookings', as: :bookings, on: :collection    
   end
