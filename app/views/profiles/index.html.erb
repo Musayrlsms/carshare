@@ -51,7 +51,9 @@ Content START -->
 									<li class="nav-item">
 										<%=link_to "<i class='bi bi-ticket-perforated fa-fw me-2'></i>My Bookings".html_safe, bookings_profiles_path, class: "nav-link"%>
 									</li>
-				
+									<li class="nav-item">
+										<%=link_to "<i class='bi bi-ticket-perforated fa-fw me-2'></i>My Cars".html_safe, cars_profiles_path, class: "nav-link"%>
+									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="account-payment-details.html"><i class="bi bi-wallet fa-fw me-2"></i>Payment Details</a>
 									</li>
@@ -106,9 +108,7 @@ Content START -->
 									<label class="form-label">Mobile number<span class="text-danger">*</span></label>
 									<%= f.text_field :mobile_number, placeholder:"Enter your mobile number",class: "form-control" %>
 								</div>
-
-								<!-- Nationality -->
-
+								
 								<!-- Date of birth -->
 								<div class="col-md-12">
 									<label class="form-label">Date of Birth<span class="text-danger">*</span></label>

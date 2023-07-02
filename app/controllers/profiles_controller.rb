@@ -52,6 +52,9 @@ class ProfilesController < ApplicationController
     redirect_to document_profiles_path
   end
 
+  def cars
+    @cars = Car.all
+  end
 
   def user_params
     params.require(:user).permit(:name, :surname, :mobile_number, :adress, :date_of_birth, :email, :avatar, :identity_card, :passport, :driver_license, :password, :password_confirmation)

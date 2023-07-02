@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get 'rejected', to: 'profiles#rejected', as: :rejected, on: :member
     get 'document', to: 'profiles#document', as: :document, on: :collection
     get 'bookings', to: 'profiles#bookings', as: :bookings, on: :collection
+    get 'cars', to: 'profiles#cars', as: :cars, on: :collection
     
   end
   resources :admins
