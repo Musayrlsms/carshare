@@ -13,3 +13,6 @@
  *= require_tree .
  *= require_self
  */
+ .btn-lang{
+  margin-bottom: 0px !important;
+ }

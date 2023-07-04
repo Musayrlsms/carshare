@@ -8,79 +8,28 @@
         <!-- Card image -->
         <div class="col-md-4 col-xl-3">
           <div class="bg-light rounded-3 px-4 py-5">
-            <img src="assets/images/category/cab/seadan.svg" alt="">
+            <img src="/assets/images/category/cab/seadan.svg" alt="">
           </div>
         </div>
   
         <!-- Card title and rating -->
         <div class="col-sm-6 col-md-4 col-xl-6">
-          <h4 class="card-title mb-2"><a href="cab-detail.html" class="stretched-link"><%= car.brand_id%></a></h4>
+          <h4 class="card-title mb-2"><%= car.brand.name%>  <%= car.model.name%></h4>
           <!-- Nav divider -->
           <ul class="nav nav-divider h6 fw-normal mb-2">
             <li class="nav-item"><%= car.case_type%></li>
             <li class="nav-item">AC</li>
-            <li class="nav-item">4 Seats</li>
+            <li class="nav-item"><%= car.seat_count%> seats</li>
+            <li class="nav-item"><%= car.price%></li>
           </ul> 
-          
-          <!-- Rating Star -->
-          <ul class="list-inline mb-0">
-            <li class="list-inline-item h6 fw-normal me-1 mb-0">4.5</li>
-            <li class="list-inline-item me-0"><i class="fa-solid fa-star text-warning"></i></li>
-            <li class="list-inline-item me-0"><i class="fa-solid fa-star text-warning"></i></li>
-            <li class="list-inline-item me-0"><i class="fa-solid fa-star text-warning"></i></li>
-            <li class="list-inline-item me-0"><i class="fa-solid fa-star text-warning"></i></li>
-            <li class="list-inline-item"><i class="fa-solid fa-star-half-alt text-warning"></i></li>
-          </ul>
         </div>
-  
         <!-- Button -->
         <div class="col-sm-6 col-md-4 col-xl-3 text-sm-end">
-          <!-- Discount -->
-          <p class="text-danger mb-0">4% Off</p>
-          <!-- Price -->
-          <ul class="list-inline mb-1">
-            <li class="list-inline-item text-decoration-line-through me-1">$250</li>
-            <li class="list-inline-item h5 mb-0">$210</li>
-          </ul>
-          <a href="cab-list.html#" class="btn btn-dark mb-0">Book Now</a>
+          <%= button_to "Delete", car_path(current_user.car_ids), class: "btn btn-danger mb-0", method: :delete %><br>
+          <%= link_to "Edit", edit_car_path(current_user.car_ids), class: "btn btn-secondary mb-0" %>
         </div>
       </div> <!-- Row END -->
     </div>
     <!-- Card body END -->
-  
-    <!-- Card footer START -->
-    <div class="card-footer border-top p-0 pt-3">
-      <div class="row">
-        <!-- List -->
-        <div class="col-md-6">
-          <ul class="list-group list-group-borderless mb-0">
-            <li class="list-group-item d-flex pb-0 mb-0">
-              <span class="h6 fw-normal mb-0"><i class="bi bi-check-circle me-2"></i>600Kms included. After that $15/Kms</span>
-            </li>
-            <li class="list-group-item d-flex pb-0 mb-0">
-              <span class="h6 fw-normal mb-0"><i class="bi bi-check-circle me-2"></i>2 luggage bags </span>
-            </li>
-            <li class="list-group-item d-flex pb-0 mb-0">
-              <span class="h6 fw-normal mb-0"><i class="bi bi-check-circle me-2"></i>Diesel Car</span>
-            </li>
-          </ul>
-        </div>
-  
-        <!-- Info -->
-        <div class="col-md-6">
-          <ul class="list-group list-group-borderless mb-0">
-            <li class="list-group-item d-flex h6 fw-light text-success pb-0 mb-0">
-              Free Cancellation, till 1 hour of Pick up
-            </li>
-            <li class="list-group-item d-flex h6 fw-light text-success pb-0 mb-0">
-              Free waiting up to 45 minutes
-            </li>
-          </ul>
-        </div>
-  
-      </div>
-    </div>
-    <!-- card footer END -->
-    <% end %>
-  </div>
-  <!-- Cab item END -->
+  <% end %>
+</div>

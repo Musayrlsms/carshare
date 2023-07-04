@@ -53,7 +53,7 @@ class ProfilesController < ApplicationController
   end
 
   def cars
-    @cars = Car.all
+    @cars = current_user.cars
   end
 
   def user_params

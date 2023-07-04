@@ -3,13 +3,13 @@ class ModelsController < ApplicationController
 
   # GET /models or /models.json
   def index
-    authorize :admin
+  
     @models = Model.where(brand_id: params[:brand_id])
   end
 
   # GET /models/1 or /models/1.json
   def show
-    authorize :admin
+
   end
 
   # GET /models/new

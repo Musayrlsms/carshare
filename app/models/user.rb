@@ -7,6 +7,8 @@ class User < ApplicationRecord
   enum document_status: { pending: 0, approved: 1, rejected: 2 }
   enum role: { user: 0, admin: 1 }
 
+  has_many :cars
+
   has_one_attached :avatar
   has_one_attached :identity_card
   has_one_attached :passport
