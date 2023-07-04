@@ -1,35 +1,42 @@
 
 <!-- Cab item START -->
 <div class="card border p-4">
-  <% @cars.each do |car| %>
-    <!-- Card body START -->
-    <div class="card-body p-0">
-      <div class="row g-2 g-sm-4 mb-4">
-        <!-- Card image -->
-        <div class="col-md-4 col-xl-3">
-          <div class="bg-light rounded-3 px-4 py-5">
-            <img src="/assets/images/category/cab/seadan.svg" alt="">
+  <% if @cars.present? %>
+    <% @cars.each do |car| %>
+      <!-- Card body START -->
+      <div class="card-body p-0">
+        <div class="row g-2 g-sm-4 mb-4">
+          <!-- Card image -->
+          <div class="col-md-4 col-xl-3">
+            <div class="bg-light rounded-3 px-4 py-5">
+              <img src="/assets/images/category/cab/seadan.svg" alt="">
+            </div>
           </div>
-        </div>
-  
-        <!-- Card title and rating -->
-        <div class="col-sm-6 col-md-4 col-xl-6">
-          <h4 class="card-title mb-2"><%= car.brand.name%>  <%= car.model.name%></h4>
-          <!-- Nav divider -->
-          <ul class="nav nav-divider h6 fw-normal mb-2">
-            <li class="nav-item"><%= car.case_type%></li>
-            <li class="nav-item">AC</li>
-            <li class="nav-item"><%= car.seat_count%> seats</li>
-            <li class="nav-item"><%= car.price%></li>
-          </ul> 
-        </div>
-        <!-- Button -->
-        <div class="col-sm-6 col-md-4 col-xl-3 text-sm-end">
-          <%= button_to "Delete", car_path(current_user.car_ids), class: "btn btn-danger mb-0", method: :delete %><br>
-          <%= link_to "Edit", edit_car_path(current_user.car_ids), class: "btn btn-secondary mb-0" %>
-        </div>
-      </div> <!-- Row END -->
+    
+          <!-- Card title and rating -->
+          <div class="col-sm-6 col-md-4 col-xl-6">
+            <h4 class="card-title mb-2"><%= car.brand.name%>  <%= car.model.name%></h4>
+            <!-- Nav divider -->
+            <ul class="nav nav-divider h6 fw-normal mb-2">
+              <li class="nav-item"><%= car.case_type%></li>
+              <li class="nav-item">AC</li>
+              <li class="nav-item"><%= car.seat_count%> seats</li>
+              <li class="nav-item"><%= car.price%></li>
+            </ul> 
+          </div>
+          <!-- Button -->
+          <div class="col-sm-6 col-md-4 col-xl-3 text-sm-end">
+            <%= button_to "Delete", car_path(current_user.car_ids), class: "btn btn-danger mb-0", method: :delete %><br>
+            <%= link_to "Edit", edit_car_path(current_user.car_ids), class: "btn btn-secondary mb-0" %>
+          </div>
+        </div> <!-- Row END -->
+      </div>
+      <!-- Card body END -->
+    <% end %>
+    <% else %>
+    <div class="text-center "style = " padding: 10%; ">
+      <%= link_to "Add new car", new_car_path, class: "btn btn-primary" %>
     </div>
-    <!-- Card body END -->
+
   <% end %>
 </div>

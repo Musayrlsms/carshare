@@ -331,7 +331,9 @@
 							<%= image_tag(current_user.avatar, class: "avatar-img rounded-2") %>
 						</a>
 					<% elsif user_signed_in? && !current_user.avatar.attached?%>
+					<a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
 						<img class="avatar-img rounded-2" src="/assets/images/avatar/default.jpg" alt="avatar">
+					</a>
 					<%else %>
 						<%= link_to 'Log in', new_user_session_path, class:"btn btn-sm btn-primary-soft mb-0"%>
 					<% end %>

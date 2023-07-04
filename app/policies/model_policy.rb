@@ -4,7 +4,6 @@ class ModelPolicy < ApplicationPolicy
   end
 
   def show?
-    user.admin?
   end
 
   def new?
