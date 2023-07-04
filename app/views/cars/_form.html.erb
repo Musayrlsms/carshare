@@ -70,7 +70,6 @@
               </div>
             </div>
             <!-- Owner Detail END -->
-
             <!-- Cab Detail START -->
             <div class="card shadow mt-4">
               <!-- Card header -->
@@ -156,13 +155,36 @@
                 </div>
               </div>
             </div>
-            <!-- Driver Detail END -->
+            </div>
+            <!-- Cab Detail END -->
+            <!-- Rules START -->
+            <div class="card shadow mt-4">
+              <!-- Card header -->
+              <div class="card-header border-bottom">
+                <h5 class="mb-0"> Rules</h5>
+              </div>
+
+              <!-- Card body -->
+              <div class="card-body">
+                <div class="row g-3">
+                  <% Rule.all.each do |rule| %>
+                    <div class ="col-md-6">
+                      <%= check_box_tag "car[rule_ids][]", rule.id, @car.rules.include?(rule) %>
+                      <%= label_tag "car_rule_#{rule.id}", rule.name, class:"" %>
+                    </div>
+                  <% end %>                
+                </div>
+              </div>
+             </div>
+            <!-- Rules END -->
+
             <!-- Button -->
             <div class="text-end p-3">
 
               <%= form.submit "Add car", class:"btn btn-primary mb-0"  %>
 
             </div>
+            <!-- Button END-->
           </form>
         </div>
       </div>

@@ -5,7 +5,7 @@ class CarsController < ApplicationController
   # GET /cars or /cars.json
   def index
     @q = Car.ransack(params[:q])
-    @cars = @q.result.includes(:model)
+    @cars = @q.result.includes(:model).paginate(:page => params[:page])
     
     @brands = Brand.all
     @models = Model.all
@@ -77,6 +77,6 @@ end
 
     # Only allow a list of trusted parameters through.
     def car_params
-      params.require(:car).permit(:details, :model_id, :brand_id, :user_id, :distance, :max_luggage, :seat_count, :case_type, :price, :email, :phone_number, :user_name, :user_surname, :address, :state, :city, :model_year, images: [])
+      params.require(:car).permit(:details, :model_id, :brand_id, :user_id, :distance, :max_luggage, :seat_count, :case_type, :price, :email, :phone_number, :user_name, :user_surname, :address, :state, :city, :model_year, images: [], rule_ids: [])
     end
 end

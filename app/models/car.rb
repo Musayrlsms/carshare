@@ -1,11 +1,14 @@
 class Car < ApplicationRecord
+  self.per_page = 6
   def self.ransackable_attributes(auth_object = nil)
     ["address","price", "brand_id", "case_type", "city", "created_at", "details", "distance", "id", "max_luggage", "model_id", "model_year"]
   end
-  
+
   belongs_to :model
   belongs_to :brand
   belongs_to :user
+  has_many :rule_cars
+  has_many :rules, through: :rule_cars
   has_many_attached :images
   enum status: { available: 0, rejected: 1, approved: 2 }
 

@@ -262,6 +262,11 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    will_paginate (4.0.0)
+    will_paginate-bootstrap (1.0.2)
+      will_paginate (>= 3.0.3)
+    will_paginate-bootstrap4 (0.0.1)
+      will_paginate
     xpath (3.2.0)
       nokogiri (~> 1.8)
     zeitwerk (2.6.8)
@@ -283,6 +288,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.5)
+  rails-i18n
   ransack (~> 4.0)
   redis (~> 4.0)
   selenium-webdriver
@@ -292,9 +298,12 @@ DEPENDENCIES
   tzinfo-data
   web-console
   webdrivers
+  will_paginate (~> 4.0)
+  will_paginate-bootstrap
+  will_paginate-bootstrap4
 
 RUBY VERSION
-   ruby 3.2.0p0
+   ruby 3.2.2p53
 
 BUNDLED WITH
    2.4.6

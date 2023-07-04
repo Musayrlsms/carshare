@@ -232,6 +232,98 @@ Fleet START -->
 </section>
 <!-- =======================
 Fleet END -->
+<section class="pt-0">
+	<div class="container">
+	<div class="row mb-4">
+	<div class="col-12 text-center">
+		<h2 class="mb-0">All cars</h2>
+	</div>
+</div>
+		<div class="row g-4">
+		<% @cars = Car.all%>
+		<!-- Card item START -->
+		<% @cars.approved.each do |car|%>
+		<div class="col-md-6 col-xl-4">
+			<div class="card shadow p-2 pb-0 h-100">
+				<!-- Overlay item -->
+				<div class="position-absolute top-0 start-0 z-index-1 m-4">
+				<!-- <div class="badge bg-danger text-white">30% Off</div> -->
+				</div>
+
+				<!-- Slider START -->
+				<div class="tiny-slider arrow-round arrow-xs arrow-dark rounded-2 overflow-hidden">
+					<div class="tiny-slider-inner" data-autoplay="false" data-arrow="true" data-dots="false" data-items="1">
+						<!-- Image item -->
+						<% car.images.each do |image|%>
+						
+					    <%= image_tag image, class: "Card image", alt:"Card image"  %>
+
+						<%end%>
+					</div>
+				</div>
+				<!-- Slider END -->
+
+				<!-- Card body START -->
+				<div class="card-body px-3 pb-0">
+					<!-- Rating and cart -->
+					<div class="d-flex justify-content-between mb-3">
+						<a href="hotel-grid.html#" class="badge bg-dark text-white"><i class="bi fa-fw bi-star-fill me-2 text-warning"></i>4.5</a>
+						<!-- <a href="hotel-grid.html#" class="h6 mb-0 z-index-2"><i class="bi fa-fw bi-bookmark"></i></a> -->
+					</div>
+
+					<!-- Title -->
+					<%= link_to car_path(car.id), class: "card-title" do %>
+						<h5><%= "#{car.brand.name} #{car.model.name} #{car.model_year}" %></h5>
+					<% end %>
+
+					<!-- List -->
+					<ul class="nav nav-divider mb-2 mb-sm-3">
+						<li class="nav-item"><%=car.seat_count%> Seats </li>
+						<li class="nav-item"><%=car.distance %> Km</li>
+					</ul>
+				</div>
+				<!-- Card body END -->
+
+				<!-- Card footer START-->
+				<div class="card-footer pt-0">
+					<!-- Price and Button -->
+					<div class="d-sm-flex justify-content-sm-between align-items-center">
+						<!-- Price -->
+						<div class="d-flex align-items-center">
+							<h5 class="fw-normal text-success mb-0 me-1"> $ <%= car.price %></h5>
+							<span class="mb-0 me-2">/day</span>
+							<!-- <span class="text-decoration-line-through">$1000</span> -->
+						</div>
+						<!-- Button -->
+						<div class="mt-2 mt-sm-0">
+					 
+							<%= link_to car_path(car.id), class: "btn btn-sm btn-primary-soft mb-0 w-100" do %>
+								View Detail <i class="bi bi-arrow-right ms-2"></i>
+							<% end %>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Card item END -->
+		<% end%>
+
+
+		</div> <!-- Row END -->
+
+		<!-- Pagination -->
+		<div class="row">
+			<div class="col-12">
+				<nav class="mt-4 d-flex justify-content-center" aria-label="navigation">
+				
+				
+
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
 
 <!-- =======================
 Why Choose Us START -->

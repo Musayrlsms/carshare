@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_01_031260) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_04_054729) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -88,6 +88,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_01_031260) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "rule_cars", force: :cascade do |t|
+    t.bigint "rule_id", null: false
+    t.bigint "car_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_id"], name: "index_rule_cars_on_car_id"
+    t.index ["rule_id"], name: "index_rule_cars_on_rule_id"
+  end
+
   create_table "rules", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -128,4 +137,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_01_031260) do
   add_foreign_key "cars", "models"
   add_foreign_key "cars", "users"
   add_foreign_key "models", "brands"
+  add_foreign_key "rule_cars", "cars"
+  add_foreign_key "rule_cars", "rules"
 end
