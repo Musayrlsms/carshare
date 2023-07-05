@@ -69,6 +69,7 @@ class RentsController < ApplicationController
       currency: 'eur',
       application_fee_amount: calculate_application_fee_amount(amount),
       automatic_payment_methods: {enabled: true},
+      customer: current_user.stripe_customer.customer_id,
       transfer_data: {
         destination: @car.user.stripe_account.account_id,
       },

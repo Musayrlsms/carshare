@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_02_082236) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_05_040744) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -142,6 +142,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_02_082236) do
     t.index ["user_id"], name: "index_stripe_accounts_on_user_id"
   end
 
+  create_table "stripe_customers", force: :cascade do |t|
+    t.string "customer_id"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_stripe_customers_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -182,4 +190,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_02_082236) do
   add_foreign_key "rents", "users", column: "owner_id"
   add_foreign_key "rents", "users", column: "renter_id"
   add_foreign_key "stripe_accounts", "users"
+  add_foreign_key "stripe_customers", "users"
 end

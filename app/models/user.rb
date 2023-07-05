@@ -34,6 +34,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :stripe_account
+  has_one :stripe_customer
   
   has_one_attached :avatar
   has_one_attached :identity_card
@@ -41,13 +42,70 @@ class User < ApplicationRecord
   has_one_attached :driver_license
   enum document_status: { pending: 0, approved: 1, rejected: 2 }
 
+  after_save :create_stripe_account
+  after_save :create_stripe_customer
+
   def document_upload?
       document_status != "approved" && self.identity_card.present? && self.passport.present? && self.driver_license.present?
   end
 
   def full_name
     "#{self.name} #{self.surname}"
-   end
+  end
 
+  def create_stripe_account
+    if approved? && name.present? && surname.present? && self.stripe_account.nil? && adress.present? && date_of_birth.present? && mobile_number.present?
+      create_stripe_account_request = Stripe::Account.create(
+        type: 'custom',
+        country: 'HR',
+        capabilities: {
+          card_payments: {requested: true},
+          transfers: {requested: true},
+        }, 
+        business_type: 'individual',
+        individual: {
+          first_name: self.name,
+          last_name: self.surname,
+          dob: {
+            day: date_of_birth.day.to_s,
+            month: date_of_birth.month.to_s,
+            year: date_of_birth.year.to_s,
+          },
+          address: {
+            line1: adress,
+            postal_code: adress,
+            city: adress
+          },
+          email: email,
+          phone: mobile_number
+        },
+        business_profile: {
+          product_description: 'Fundraising campaign',
+          mcc: '5818'
+        },
+        tos_acceptance: {
+          date: Time.now.to_i,
+          ip: last_sign_in_ip || "4.4.4.4"
+        }
+      )
+      Rails.logger.info "Kullanici stripeda olusturuldu"
+      Rails.logger.info create_stripe_account_request
 
+      sa = StripeAccount.new(account_id: create_stripe_account_request.id, user: self)
+      sa.save!
+    end
+  end
+
+  def create_stripe_customer
+    if approved? && name.present? && surname.present? && self.stripe_customer.nil? && adress.present? && date_of_birth.present? && mobile_number.present?
+      create_stripe_customer_request = Stripe::Customer.create(
+        email: email,
+      )
+      Rails.logger.info "Musteri stripeda olusturuldu"
+      Rails.logger.info create_stripe_customer_request
+
+      sc = StripeCustomer.new(customer_id: create_stripe_customer_request.id, user: self)
+      sc.save!
+    end
+  end
 end
