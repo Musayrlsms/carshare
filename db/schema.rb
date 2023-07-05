@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_29_031219) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_02_082236) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -110,6 +110,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_031219) do
     t.float "amount"
     t.string "payment_intent_id"
     t.jsonb "canceled_response"
+    t.float "insurance"
+    t.float "fee"
     t.index ["car_id"], name: "index_rents_on_car_id"
     t.index ["owner_id"], name: "index_rents_on_owner_id"
     t.index ["renter_id"], name: "index_rents_on_renter_id"

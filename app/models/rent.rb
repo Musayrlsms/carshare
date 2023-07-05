@@ -26,7 +26,7 @@ class Rent < ApplicationRecord
 
   private
     def check_availablity
-      if Rent.where(car_id: self.car_id).where.not(id: self.id).exists?(['(start_date, finish_date) OVERLAPS (?, ?)', self.start_date, self.finish_date])
+      if car.rents.paid.where.not(id: self.id).exists?(['(start_date, finish_date) OVERLAPS (?, ?)', self.start_date, self.finish_date])
         errors.add(:base, 'This car is not available in selected time.')
       end
     end

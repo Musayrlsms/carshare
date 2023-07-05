@@ -14,6 +14,7 @@ class RentsController < ApplicationController
 
   # GET /rents/new
   def new
+    redirect_to(profiles_path, notice: "You can't rent a car before your account approved.") and return unless current_user.approved?
     @rent = @car.rents.new
   end
 
@@ -74,7 +75,7 @@ class RentsController < ApplicationController
       on_behalf_of: @car.user.stripe_account.account_id
     })
 
-    @rent = Rent.create(car: @car, renter: current_user, owner: @car.user, start_date: @start_date, finish_date: @finish_date, payment_intent_response: payment_intent, amount: amount, payment_intent_id: payment_intent[:id])
+    @rent = Rent.create!(car: @car, renter: current_user, owner: @car.user, start_date: @start_date, finish_date: @finish_date, payment_intent_response: payment_intent, amount: amount, payment_intent_id: payment_intent[:id], insurance: @insurance, fee: @fee)
 
     render json: {
       'publishableKey': ENV['STRIPE_PUBLISHABLE_KEY'],
@@ -129,7 +130,19 @@ class RentsController < ApplicationController
     def total_amount
       @start_date = DateTime.parse(params[:start_date])
       @finish_date = DateTime.parse(params[:finish_date])
-      @total_amount = (@finish_date - @start_date).to_i * @car.price
+      
+      day_count = (@finish_date - @start_date).to_i
+      if day_count < 1
+        day_count = 1
+      end
+
+      @total_car_price = day_count * @car.price
+
+      @fee = @total_car_price * 0.1
+      
+      @insurance = @total_car_price * 0.1 * (params[:insurance] == 'true' ? 1 : 0)
+
+      @total_amount = @total_car_price + @fee + @insurance
     end
 
     def handle_successful_payment_intent(payment_intent)

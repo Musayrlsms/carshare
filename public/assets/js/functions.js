@@ -104,7 +104,6 @@ var e = {
         e.stepper(),
         e.pricing(),
         e.stickyElement(),
-        e.flatPicker(),
         e.splideSlider(),
         e.rangeSlider(),
         e.dropZone(),
@@ -613,34 +612,7 @@ var e = {
     // END: Sticky element
 
     // START: 16 Flatpicker
-    flatPicker: function () {
-
-      var picker = e.select('.flatpickr');
-      if (e.isVariableDefined(picker)) {
-        var element = e.selectAll('.flatpickr');
-        element.forEach(function (item) {
-          var mode = item.getAttribute('data-mode') == 'multiple' ? 'multiple' : item.getAttribute('data-mode') == 'range' ? 'range' : 'single';
-          var enableTime = item.getAttribute('data-enableTime') == 'true' ? true : false;
-          var noCalendar = item.getAttribute('data-noCalendar') == 'true' ? true : false;
-          var inline = item.getAttribute('data-inline') == 'true' ? true : false;
-          var dateFormat = item.getAttribute('data-date-format') ? item.getAttribute('data-date-format') : item.getAttribute('data-enableTime') == 'true' ? "h:i K" : "d M";
-          var disableDates = item.getAttribute('data-disable-dates') ? JSON.parse(item.getAttribute('data-disable-dates')) : []
-
-          flatpickr(item, {
-            mode: mode,
-            enableTime: enableTime,
-            noCalendar: noCalendar,
-            inline: inline,
-            animate: "false",
-            position: "top",
-            disable: disableDates,
-            dateFormat: dateFormat, //Check supported characters here: https://flatpickr.js.org/formatting/
-            disableMobile: "true"
-          });
-
-        });
-      }
-    },
+    
     // END: Flatpicker
 
     // START: 17 Splide slider

@@ -27,9 +27,9 @@ class ProfilesController < ApplicationController
 
   def bookings
     @bookings = Rent.where(renter: current_user)
-    @upcoming_bookings = @bookings.paid
+    @upcoming_bookings = @bookings.paid.where.not('finish_date < ?', DateTime.now)
     @canceled_bookings = @bookings.canceled 
-    @completed_bookings = @bookings.where(payment_status: :paid).where('finish_date < ?', Date.today)    
+    @completed_bookings = @bookings.paid.where('finish_date < ?', DateTime.now)
   end
 
   def document

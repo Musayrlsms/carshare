@@ -39,10 +39,10 @@ class Car < ApplicationRecord
   enum status: { available: 0, rejected: 1, approved: 2 }
 
   def busy_days
-    rents.map do |rent|
+    rents.paid.map do |rent|
       {
-          from: rent.start_date.strftime('%F'),
-          to: rent.finish_date.strftime('%F')
+          from: rent.start_date.strftime('%d/%m/%Y'),
+          to: rent.finish_date.strftime('%d/%m/%Y')
       }
     end.to_json
   end

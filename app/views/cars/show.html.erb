@@ -8,22 +8,3 @@
 
   <%= button_to "Destroy this car", @car, method: :delete %>
 </div>
-
-<!-- Date -->
-<div class="col-lg-4">
-  <div class="d-flex">
-    <!-- Icon -->
-    <i class="bi bi-calendar fs-3 me-2 mt-2"></i>
-    <!-- Date input -->
-    <div class="form-control-border form-control-transparent form-fs-md">
-      <label class="form-label">Check in - out</label>
-      <input type="text" class="form-control flatpickr flatpickr-input" data-mode="range" placeholder="Select date" data-disable-dates="<%= @car.busy_days %>" readonly="readonly">
-    </div>
-  </div>
-</div>
-
-<style>
-  .flatpickr-disabled{
-    color: #f00 !important;
-  }
-</style>

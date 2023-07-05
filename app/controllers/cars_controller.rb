@@ -1,6 +1,5 @@
 class CarsController < ApplicationController
   before_action :set_car, only: %i[ show edit update destroy ]
-  
 
   # GET /cars or /cars.json
   def index
@@ -21,6 +20,7 @@ class CarsController < ApplicationController
 
   # GET /cars/new
   def new
+    redirect_to(profiles_path, notice: "You can't rent a car before your account approved.") and return unless current_user.approved?
     @car = Car.new
   end
 
