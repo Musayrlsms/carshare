@@ -1,9 +1,10 @@
 class ModelPolicy < ApplicationPolicy
   def index?
-    user.admin?
+    true
   end
 
   def show?
+    true
   end
 
   def new?

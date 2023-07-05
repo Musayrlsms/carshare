@@ -8,14 +8,12 @@ class AdminsController < ApplicationController
   def permit
     @car = Car.find(params[:id])
     authorize @car, :permit?
-    @car = Car.find(params[:id])
     @car.approved!
     redirect_to admins_path
   end
   def nopermit
-    @car = Car.find(params[:id])
-    authorize @car, :nopermit?
       @car = Car.find(params[:id])
+      authorize @car, :nopermit?
       @car.rejected!
       redirect_to admins_path
   end

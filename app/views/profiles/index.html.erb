@@ -48,15 +48,22 @@ Content START -->
 											<i class="bi bi-person fa-fw me-2"></i>My Profile
 									  	<% end %>
 									</li>
+									
 									<li class="nav-item">
-										<%=link_to "<i class='bi bi-ticket-perforated fa-fw me-2'></i>My Bookings".html_safe, bookings_profiles_path, class: "nav-link"%>
+										<%= link_to bookings_profiles_path, class: "nav-link" do %>
+											<i class='bi bi-ticket-perforated fa-fw me-2'></i>My Bookings
+										<% end %> 
 									</li>
+
 									<li class="nav-item">
-										<%=link_to "<i class='bi bi-ticket-perforated fa-fw me-2'></i>My Cars".html_safe, cars_profiles_path, class: "nav-link"%>
+										<%= link_to cars_profiles_path, class: "nav-link" do %>
+											<i class='bi bi-ticket-perforated fa-fw me-2'></i>My Cars
+										<% end %> 
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="account-payment-details.html"><i class="bi bi-wallet fa-fw me-2"></i>Payment Details</a>
 									</li>
+
 								</ul>
 								<!-- Sidebar menu item END -->
 							</div>

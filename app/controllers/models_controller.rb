@@ -1,31 +1,33 @@
 class ModelsController < ApplicationController
   before_action :set_model, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: %i[index show]  
 
   # GET /models or /models.json
   def index
-  
     @models = Model.where(brand_id: params[:brand_id])
+    authorize @models
   end
 
   # GET /models/1 or /models/1.json
   def show
-
+    @model = Model.find(params[:id])
+    authorize @model
   end
 
   # GET /models/new
   def new
-    authorize :brand, :new?
+    authorize :model, :new?
     @model = Model.new
   end
 
   # GET /models/1/edit
   def edit
-    authorize :brand, :edit?
+    authorize :model, :edit?
   end
 
   # POST /models or /models.json
   def create
-    authorize :brand, :create?
+    authorize :model, :create?
     @model = Model.new(model_params)
 
     respond_to do |format|
@@ -41,7 +43,7 @@ class ModelsController < ApplicationController
 
   # PATCH/PUT /models/1 or /models/1.json
   def update
-    authorize :brand, :update?
+    authorize :model, :update?
     respond_to do |format|
       if @model.update(model_params)
         format.html { redirect_to model_url(@model), notice: "Model was successfully updated." }
@@ -55,7 +57,7 @@ class ModelsController < ApplicationController
 
   # DELETE /models/1 or /models/1.json
   def destroy
-    authorize :brand, :destroy?
+    authorize :model, :destroy?
     @model.destroy
 
     respond_to do |format|

@@ -40,14 +40,12 @@ class ProfilesController < ApplicationController
   def approved
     @user = User.find(params[:id])
     authorize @user, :approved?
-    @user = User.find(params[:id])
     @user.approved!
     redirect_to document_profiles_path
   end
   def rejected
     @user = User.find(params[:id])
     authorize @user, :rejected?
-    @user = User.find(params[:id])
     @user.rejected!
     redirect_to document_profiles_path
   end

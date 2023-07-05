@@ -1,14 +1,17 @@
 class BrandsController < ApplicationController
   before_action :set_brand, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: %i[index show]   
 
   # GET /brands or /brands.json
   def index
     @brands = Brand.all
-
+    authorize @brand
   end
 
   # GET /brands/1 or /brands/1.json
   def show
+    @brand = Car.find(params[:id])
+    authorize @brand
   end
 
   # GET /brands/new
