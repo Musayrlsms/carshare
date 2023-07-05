@@ -3,14 +3,12 @@ class BrandsController < ApplicationController
 
   # GET /brands or /brands.json
   def index
-    authorize :admin
     @brands = Brand.all
 
   end
 
   # GET /brands/1 or /brands/1.json
   def show
-    authorize :admin
   end
 
   # GET /brands/new
