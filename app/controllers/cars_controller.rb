@@ -1,31 +1,36 @@
 class CarsController < ApplicationController
   before_action :set_car, only: %i[ show edit update destroy ]
-  
+  before_action :authenticate_user!, except: %i[index show]   
 
   # GET /cars or /cars.json
   def index
     @q = Car.ransack(params[:q])
     @cars = @q.result.includes(:model)
-    
     @brands = Brand.all
     @models = Model.all
     @car = Car.new
-
-    
+    authorize @car
   end
 
   # GET /cars/1 or /cars/1.json
   def show
     @car = Car.find(params[:id])
+    authorize @car
   end
 
   # GET /cars/new
   def new
     @car = Car.new
+    authorize @car
   end
 
   # GET /cars/1/edit
   def edit
+    @car = Car.find(params[:id])
+    authorize @car
+  rescue Pundit::NotAuthorizedError
+    flash[:alert] = "You are not authorized to edit this car."
+    redirect_to cars_path
   end
 
   # POST /cars or /cars.json
@@ -45,6 +50,8 @@ class CarsController < ApplicationController
 
   # PATCH/PUT /cars/1 or /cars/1.json
   def update
+    @car = Car.find(params[:id])
+    authorize @car
     respond_to do |format|
       if @car.update(car_params)
         format.html { redirect_to car_url(@car), notice: "Car was successfully updated." }
@@ -58,6 +65,8 @@ class CarsController < ApplicationController
 
   # DELETE /cars/1 or /cars/1.json
   def destroy
+    @car = Car.find(params[:id])
+    authorize @car
     @car.destroy
 
     respond_to do |format|
