@@ -5,7 +5,7 @@ class BrandsController < ApplicationController
   # GET /brands or /brands.json
   def index
     @brands = Brand.all
-    authorize @brand
+    authorize @brands
   end
 
   # GET /brands/1 or /brands/1.json
