@@ -40,18 +40,19 @@ class ProfilesController < ApplicationController
   def approved
     @user = User.find(params[:id])
     authorize @user, :approved?
-    @user = User.find(params[:id])
     @user.approved!
     redirect_to document_profiles_path
   end
   def rejected
     @user = User.find(params[:id])
     authorize @user, :rejected?
-    @user = User.find(params[:id])
     @user.rejected!
     redirect_to document_profiles_path
   end
 
+  def cars
+    @cars = current_user.cars
+  end
 
   def user_params
     params.require(:user).permit(:name, :surname, :mobile_number, :adress, :date_of_birth, :email, :avatar, :identity_card, :passport, :driver_license, :password, :password_confirmation)

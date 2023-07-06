@@ -1,10 +1,10 @@
 class BrandPolicy < ApplicationPolicy
   def index?
-    user.admin?
+    false
   end
 
   def show?
-    user.admin?
+    false
   end
 
   def new?

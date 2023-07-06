@@ -1,27 +1,27 @@
 class CarsController < ApplicationController
   before_action :set_car, only: %i[ show edit update destroy ]
-  
+  before_action :authenticate_user!, except: %i[index show]   
 
   # GET /cars or /cars.json
   def index
     @q = Car.ransack(params[:q])
     @cars = @q.result.includes(:model)
-    
     @brands = Brand.all
     @models = Model.all
     @car = Car.new
-
-    
+    authorize @car
   end
 
   # GET /cars/1 or /cars/1.json
   def show
     @car = Car.find(params[:id])
+    authorize @car
   end
 
   # GET /cars/new
   def new
     @car = Car.new
+    authorize @car
   end
 
   # GET /cars/1/edit
