@@ -21,7 +21,9 @@ Rails.application.routes.draw do
     get 'approved', to: 'profiles#approved', as: :approved, on: :member
     get 'rejected', to: 'profiles#rejected', as: :rejected, on: :member
     get 'document', to: 'profiles#document', as: :document, on: :collection
-    get 'bookings', to: 'profiles#bookings', as: :bookings, on: :collection    
+    get 'bookings', to: 'profiles#bookings', as: :bookings, on: :collection
+    get 'bank_accounts', to: 'profiles#bank_accounts', as: :bank_accounts, on: :collection
+    get 'balance', to: 'profiles#balance', as: :balance, on: :collection
   end
   
   resources :pages do

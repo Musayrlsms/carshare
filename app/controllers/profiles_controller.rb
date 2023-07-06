@@ -32,6 +32,10 @@ class ProfilesController < ApplicationController
     @completed_bookings = @bookings.paid.where('finish_date < ?', DateTime.now)
   end
 
+  def bank_accounts
+    
+  end
+
   def document
     @users = User.all
   end
@@ -40,6 +44,10 @@ class ProfilesController < ApplicationController
     @user = User.find(params[:id])
     @user.approved!
     redirect_to document_profiles_path
+  end
+
+  def balance
+    sb = Stripe::Balance.retrieve({stripe_account: current_user.stripe_account.account_id})
   end
 
   def rejected

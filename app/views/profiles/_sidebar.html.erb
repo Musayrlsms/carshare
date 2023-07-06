@@ -43,9 +43,10 @@
 					<li class="nav-item">
 						<%=link_to "<i class='bi bi-ticket-perforated fa-fw me-2'></i>My Bookings".html_safe, bookings_profiles_path, class: "nav-link"%>
 					</li>
-
 					<li class="nav-item">
-						<a class="nav-link" href="account-payment-details.html"><i class="bi bi-wallet fa-fw me-2"></i>Payment Details</a>
+						<%= link_to bank_accounts_profiles_path, class: "nav-link" do %>
+							<i class="bi bi-wallet fa-fw me-2"></i>Bank Accounts
+						<% end %>
 					</li>
 				</ul>
 				<!-- Sidebar menu item END -->

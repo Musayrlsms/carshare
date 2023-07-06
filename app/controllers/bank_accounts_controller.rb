@@ -9,15 +9,30 @@ class BankAccountsController < ApplicationController
 
   def create
     unless params[:stripeToken] && current_user.stripe_account&.account_id
-      redirect_to new_bank_account_path and return
+      redirect_to bank_accounts_profiles_path and return
     end
 
     account = Stripe::Account.retrieve(current_user.stripe_account.account_id)
 
     account.external_account = params[:stripeToken]
-    account.save
+    response = account.save
     
+    bank_account = BankAccount.create!(response: response, user: current_user, iban: params[:iban])
+    current_user.bank_account = bank_account
+    current_user.save!
+
     flash[:success] = "Your bank account has been added!"
-    redirect_to dashboard_path
+    redirect_to bank_accounts_profiles_path
+  end
+
+  def destroy
+    stripe_account = current_user.stripe_account
+    if true
+      flash[:success] = "Your bank account has been deleted!"
+      redirect_to bank_accounts_profiles_path
+    else
+      flash[:error] = "An error accured when deleting your bank account"
+      redirect_to bank_accounts_profiles_path
+    end
   end
 end

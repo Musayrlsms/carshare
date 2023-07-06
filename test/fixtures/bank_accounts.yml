@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bank_account_id: MyString
+  user: one
+  iban: MyString
+  response: 
+
+two:
+  bank_account_id: MyString
+  user: two
+  iban: MyString
+  response: 

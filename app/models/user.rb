@@ -35,7 +35,10 @@ class User < ApplicationRecord
 
   has_one :stripe_account
   has_one :stripe_customer
+  has_one :bank_account
   
+  has_many :cars
+
   has_one_attached :avatar
   has_one_attached :identity_card
   has_one_attached :passport
