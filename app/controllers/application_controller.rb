@@ -14,10 +14,10 @@ class ApplicationController < ActionController::Base
 
   private
 
-    #def user_not_authorized
-    #  flash[:alert] = "You are not authorized to perform this action."
-    # redirect_to(request.referrer || root_path)
-    #end
+    def user_not_authorized
+      flash[:alert] = "You are not authorized to perform this action."
+      redirect_to(request.referrer || root_path)
+    end
 
   def set_locale
     I18n.locale = cookies[:locale] || I18n.default_locale
