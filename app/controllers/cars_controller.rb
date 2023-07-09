@@ -77,6 +77,6 @@ end
 
     # Only allow a list of trusted parameters through.
     def car_params
-      params.require(:car).permit(:details, :model_id, :brand_id, :user_id, :distance, :max_luggage, :seat_count, :case_type, :price, :email, :phone_number, :user_name, :user_surname, :address, :state, :city, :model_year, images: [], rule_ids: [])
+      params.require(:car).permit(:details, :longitude, :latitude, :model_id, :brand_id, :user_id, :distance, :max_luggage, :seat_count, :case_type, :price, :email, :phone_number, :user_name, :user_surname, :address, :state, :city, :model_year, images: [], insurance_images: [], registration_images: [], rule_ids: [])
     end
 end

@@ -146,8 +146,10 @@ Fleet START -->
 					</div>
 					<!-- Card body -->
 					<div class="card-body px-0 pb-0">
-						<h5 class="card-title"><a href="#" class="stretched-link">Sedan</a></h5>
-						<span>(6 Cars)</span>
+						<%= link_to cars_path(q: { case_type_cont: "Sedan" }), class: "card-title"  do %>
+							<h5 class="stretched-link">Sedan</h5>
+						<% end %>
+					  <span>(6 Cars)</span>
 					</div>
 				</div>
 			</div>
@@ -161,7 +163,9 @@ Fleet START -->
 					</div>
 					<!-- Card body -->
 					<div class="card-body px-0 pb-0">
-						<h5 class="card-title"><a href="#" class="stretched-link">Micro</a></h5>
+						<%= link_to cars_path(q: { case_type_cont: "Micro" }), class: "card-title"  do %>
+							<h5 class="stretched-link">Micro</h5>
+						<% end %>
 						<span>(8 Cars)</span>
 					</div>
 				</div>
@@ -176,7 +180,9 @@ Fleet START -->
 					</div>
 					<!-- Card body -->
 					<div class="card-body px-0 pb-0">
-						<h5 class="card-title"><a href="#" class="stretched-link">CUV</a></h5>
+						<%= link_to cars_path(q: { case_type_cont: "CUV" }), class: "card-title"  do %>
+							<h5 class="stretched-link">CUV</h5>
+						<% end %>
 						<span>(4 Cars)</span>
 					</div>
 				</div>
@@ -191,7 +197,9 @@ Fleet START -->
 					</div>
 					<!-- Card body -->
 					<div class="card-body px-0 pb-0">
-						<h5 class="card-title"><a href="#" class="stretched-link">SUV</a></h5>
+						<%= link_to cars_path(q: { case_type_cont: "SUV" }), class: "card-title"  do %>
+							<h5 class="stretched-link">SUV</h5>
+						<% end %>
 						<span>(5 Cars)</span>
 					</div>
 				</div>
@@ -206,7 +214,9 @@ Fleet START -->
 					</div>
 					<!-- Card body -->
 					<div class="card-body px-0 pb-0">
-						<h5 class="card-title"><a href="#" class="stretched-link">Pick up</a></h5>
+						<%= link_to cars_path(q: { case_type_cont: "Pick up" }), class: "card-title"  do %>
+							<h5 class="stretched-link">Pick up</h5>
+						<% end %>
 						<span>(3 Pickup Truck)</span>
 					</div>
 				</div>
@@ -221,7 +231,9 @@ Fleet START -->
 					</div>
 					<!-- Card body -->
 					<div class="card-body px-0 pb-0">
-						<h5 class="card-title"><a href="#" class="stretched-link">Coupe</a></h5>
+						<%= link_to cars_path(q: { case_type_cont: "Coupe" }), class: "card-title"  do %>
+							<h5 class="stretched-link">Coupe</h5>
+						<% end %>
 						<span>(9 Cars)</span>
 					</div>
 				</div>
@@ -240,9 +252,8 @@ Fleet END -->
 	</div>
 </div>
 		<div class="row g-4">
-		<% @cars = Car.all%>
 		<!-- Card item START -->
-		<% @cars.approved.each do |car|%>
+		<% @cars.approved.limit(6).each do |car|%>
 		<div class="col-md-6 col-xl-4">
 			<div class="card shadow p-2 pb-0 h-100">
 				<!-- Overlay item -->
@@ -308,21 +319,18 @@ Fleet END -->
 		</div>
 		<!-- Card item END -->
 		<% end%>
-
-
-		</div> <!-- Row END -->
-
-		<!-- Pagination -->
-		<div class="row">
-			<div class="col-12">
-				<nav class="mt-4 d-flex justify-content-center" aria-label="navigation">
-				
-				
-
-				</nav>
-			</div>
-		</div>
 	</div>
+	<div class="row">
+	<div class="col-12">
+		<nav class="mt-4 d-flex justify-content-center">
+		<%= link_to cars_path, class: "button" do  %>
+			<%= button_tag "Search all cars", class: "btn btn-primary-soft mb-0 w-100" %>
+		<% end %>
+
+		</nav>
+	</div>
+</div>
+
 </section>
 
 <!-- =======================

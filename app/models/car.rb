@@ -10,6 +10,9 @@ class Car < ApplicationRecord
   has_many :rule_cars
   has_many :rules, through: :rule_cars
   has_many_attached :images
+  has_many_attached :insurance_images
+  has_many_attached :registration_images
+  
   enum status: { available: 0, rejected: 1, approved: 2 }
 
   def self.ransackable_associations(auth_object = nil)

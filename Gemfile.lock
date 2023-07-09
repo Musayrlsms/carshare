@@ -126,8 +126,19 @@ GEM
     faraday-multipart (1.0.4)
       multipart-post (~> 2)
     faraday-net_http (3.0.2)
+    geocoder (1.8.1)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    google_maps_service (0.4.2)
+      hurley (~> 0.1)
+      multi_json (~> 1.11)
+      retriable (~> 2.0)
+    google_places (2.0.0)
+      httparty (>= 0.13.1)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
+    hurley (0.2)
     i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
@@ -154,6 +165,8 @@ GEM
     mini_mime (1.1.2)
     minitest (5.18.0)
     msgpack (1.7.1)
+    multi_json (1.15.0)
+    multi_xml (0.6.0)
     multipart-post (2.3.0)
     net-imap (0.3.4)
       date
@@ -220,6 +233,7 @@ GEM
     responders (3.1.0)
       actionpack (>= 5.2)
       railties (>= 5.2)
+    retriable (2.1.0)
     rexml (3.2.5)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
@@ -283,6 +297,9 @@ DEPENDENCIES
   devise
   devise-i18n
   dotenv-rails
+  geocoder
+  google_maps_service
+  google_places
   importmap-rails
   jbuilder
   pg (~> 1.1)

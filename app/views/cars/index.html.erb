@@ -402,8 +402,7 @@ Title and Tabs START -->
 								<!-- Button -->
 								<div class="text-end align-items-center">
 									<button class="btn btn-link p-0 mb-0">Clear all</button>
-									<button class="btn btn-dark mb-0 ms-3">Apply filter</button>
-									<%= f.submit %>
+									<%= f.submit class:"btn btn-dark mb-0 ms-3" %>
 								</div>
 						<% end %>	
 						<!-- Form END -->
@@ -520,7 +519,7 @@ var q_price_lteq = document.querySelector("#q_price_lteq");
 
 
 noUiSlider.create(slider, {
-    start: [100, 500],
+    start: [0, 500],
     connect: true,
     range: {
         "min": 0,
