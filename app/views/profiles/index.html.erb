@@ -242,12 +242,12 @@ Content START -->
 							<form class="card-body">
 							
 								<!-- Current password -->
-								<div class="mb-3">
+								<div class="mb-3 p-2">
 									<label class="form-label">Current password</label>
 									<%= f.password_field :current_password, placeholder:"Enter your current password", class: "form-control"  %>
 								</div>
 								<!-- New password -->
-								<div class="mb-3">
+								<div class="mb-3 p-2">
 									<label class="form-label"> Enter new password</label>
 									<div class="input-group">
 									<%= f.password_field :password, placeholder:"Enter your new password", class: "form-control"  %>
@@ -257,11 +257,11 @@ Content START -->
 									</div>
 								</div>
 								<!-- Confirm -->
-								<div class="mb-3">
+								<div class="mb-3 p-2">
 									<label class="form-label">Confirm new password</label>
 									<%= f.password_field :password_confirmation, placeholder:"Confirm new password", class: "form-control" %>
 								</div>
-								<div class="text-end">	
+								<div class="text-end p-2">	
 									<%= f.submit 'Change Password', class: 'btn btn-primary mb-0' %>
 								</div>
 							</form>
