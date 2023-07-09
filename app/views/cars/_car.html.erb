@@ -48,7 +48,7 @@ Main Content START -->
 									<!-- List -->
 									<ul class="list-group list-group-borderless mt-2 mb-0">
 										<li class="list-group-item d-flex pb-0 mb-0">
-											<span class="h6 fw-normal mb-0"><i class="bi bi-check-circle me-2"></i>600Kms included. After that $15/Kms</span>
+											<span class="h6 fw-normal mb-0"><i class="bi bi-check-circle me-2"></i>600Kms included. After that €15/Kms</span>
 										</li>
 										<li class="list-group-item d-flex pb-0 mb-0">
 											<span class="h6 fw-normal mb-0"><i class="bi bi-check-circle me-2"></i>2 luggage bags </span>
@@ -92,7 +92,7 @@ Main Content START -->
 							<ul>
 								<li class="mb-2">Cab and driver details will be shared on your registered phone. (22 Jan 2021 at 6:55 pm) </li>
 								<li class="mb-2">Due to traffic or any other unavoidable reason, the pickup may be delayed for 30 minutes.</li>
-								<li>For nighttime driving (between 11:00 pm to 7:00 am) on any of the nights, there will be a night driver charge of $100.</li>
+								<li>For nighttime driving (between 11:00 pm to 7:00 am) on any of the nights, there will be a night driver charge of €100.</li>
 							</ul>
 
 							<!-- Cab images -->
@@ -136,7 +136,7 @@ Main Content START -->
 					<div class="card bg-transparent">
 						<!-- Card header -->
 						<div class="card-header border-bottom bg-transparent px-0 pt-0">
-							<h4 class="mb-0">Inclusion & Exclusion</h4>
+							<h4 class="mb-0">Rules</h4>
 						</div>
 
 						<!-- Card body START -->
@@ -144,35 +144,15 @@ Main Content START -->
 							<!-- Detail START -->
 							<div class="row g-3">
 								<!-- List -->
-								<div class="col-sm-6">
-									<h5>Included in your price</h5>
-									<ul class="list-group list-group-borderless mb-0">
-										<li class="list-group-item mb-0 pb-0"><i class="fa-solid fa-check text-success me-1"></i>
-											State tax
-										</li>
-										<li class="list-group-item mb-0 pb-0"><i class="fa-solid fa-check text-success me-1"></i>
-											Toll charge
-										</li>
-										<li class="list-group-item mb-0 pb-0"><i class="fa-solid fa-check text-success me-1"></i>
-											Driver Allowance
-										</li>
-										<li class="list-group-item mb-0 pb-0"><i class="fa-solid fa-check text-success me-1"></i>
-											Only one pickup and drop
-										</li>
-									</ul>
-								</div>
+								<div class="col-sm-12">
+								  <% @car.rules.each do |rule| %>
+										<ul class="list-group list-group-borderless mb-0">
+											<li class="list-group-item mb-0 pb-0"><i class="fa-solid fa-check text-success me-1"></i>
+											<%= rule.name %>
+											</li>
+										</ul>
+									<% end %>
 
-								<!-- List -->
-								<div class="col-sm-6">
-									<h5>Extra charge</h5>
-									<ul class="list-group list-group-borderless mb-0">
-										<li class="list-group-item mb-0 pb-0"><i class="bi bi-x-lg text-danger me-1"></i>
-											Fare beyond 600kms
-										</li>
-										<li class="list-group-item mb-0 pb-0"><i class="bi bi-x-lg text-danger me-1"></i>
-											Airport entry charge
-										</li>
-									</ul>
 								</div>
 							</div>
 							<!-- Detail END -->
@@ -226,25 +206,25 @@ Main Content START -->
 						<ul class="list-group list-group-borderless mb-0">
 							<li class="list-group-item d-flex justify-content-between">
 								<span class="h6 fw-light mb-0">Daily Price</span>
-								<span class="h6 fw-light mb-0" id="daily-price">$ <%= car.price %></span>
+								<span class="h6 fw-light mb-0" id="daily-price">€ <%= car.price %></span>
 							</li>
 							<li class="list-group-item d-flex justify-content-between">
 								<span class="h6 fw-light mb-0">Total Price</span>
-								<span class="h6 fw-light mb-0" id="price">$ <%= car.price %></span>
+								<span class="h6 fw-light mb-0" id="price">€ <%= car.price %></span>
 							</li>
 							<li class="list-group-item d-flex justify-content-between">
 								<span class="h6 fw-light mb-0">Convenience Fee</span>
-								<span class="h6 fw-light mb-0" id="fee-price">$ 0</span>
+								<span class="h6 fw-light mb-0" id="fee-price">€ 0</span>
 							</li>
 							<li class="list-group-item d-flex justify-content-between">
 								<span class="h6 fw-light mb-0">Insurance</span>
-								<span class="h6 fw-light mb-0" id="insurance">$ 0</span>
+								<span class="h6 fw-light mb-0" id="insurance">€ 0</span>
 							</li>
 							<li class="list-group-item py-0"><hr class="my-0"></li> 
 							<!-- Divider -->
 							<li class="list-group-item d-flex justify-content-between pb-0">
 								<span class="h5 fw-normal mb-0">Total</span>
-								<span class="h5 fw-normal mb-0" id="total-price">$<%= car.price %></span>
+								<span class="h5 fw-normal mb-0" id="total-price">€ <%= car.price %></span>
 							</li>
 						</ul>
 
@@ -273,6 +253,7 @@ Main Content START -->
 		</div>
 	</div>
 </section>
+
 
 <style>
   .flatpickr-disabled{
@@ -349,10 +330,10 @@ var pickerX;
 		console.log(insurance.toString() + ' insurance')
 
 
-		document.getElementById('price').innerHTML = '$ ' + price.toString()
-		document.getElementById('fee-price').innerHTML = '$ ' + fee_price.toString()
-		document.getElementById('total-price').innerHTML = '$ ' + total_price.toString()
-		document.getElementById('insurance').innerHTML = '$ ' + insurance.toString()
+		document.getElementById('price').innerHTML = '€ ' + price.toString()
+		document.getElementById('fee-price').innerHTML = '€ ' + fee_price.toString()
+		document.getElementById('total-price').innerHTML = '€ ' + total_price.toString()
+		document.getElementById('insurance').innerHTML = '€ ' + insurance.toString()
 
 
 		console.log(daily_price.toString() + ' Daily Price')

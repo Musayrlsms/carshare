@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_09_034949) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_08_113533) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -79,6 +79,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_09_034949) do
     t.string "city"
     t.integer "model_year"
     t.integer "status", default: 0, null: false
+    t.string "longitude"
+    t.string "latitude"
     t.index ["brand_id"], name: "index_cars_on_brand_id"
     t.index ["model_id"], name: "index_cars_on_model_id"
     t.index ["user_id"], name: "index_cars_on_user_id"
@@ -117,24 +119,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_09_034949) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "rents", force: :cascade do |t|
+  create_table "rule_cars", force: :cascade do |t|
+    t.bigint "rule_id", null: false
     t.bigint "car_id", null: false
-    t.bigint "renter_id", null: false
-    t.bigint "owner_id", null: false
-    t.datetime "start_date"
-    t.datetime "finish_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.jsonb "payment_intent_response", default: "{}"
-    t.integer "payment_status", default: 0
-    t.float "amount"
-    t.string "payment_intent_id"
-    t.jsonb "canceled_response"
-    t.float "insurance"
-    t.float "fee"
-    t.index ["car_id"], name: "index_rents_on_car_id"
-    t.index ["owner_id"], name: "index_rents_on_owner_id"
-    t.index ["renter_id"], name: "index_rents_on_renter_id"
+    t.index ["car_id"], name: "index_rule_cars_on_car_id"
+    t.index ["rule_id"], name: "index_rule_cars_on_rule_id"
   end
 
   create_table "rules", force: :cascade do |t|
@@ -209,9 +200,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_09_034949) do
   add_foreign_key "cars", "users"
   add_foreign_key "credit_cards", "users"
   add_foreign_key "models", "brands"
-  add_foreign_key "rents", "cars"
-  add_foreign_key "rents", "users", column: "owner_id"
-  add_foreign_key "rents", "users", column: "renter_id"
-  add_foreign_key "stripe_accounts", "users"
-  add_foreign_key "stripe_customers", "users"
+  add_foreign_key "rule_cars", "cars"
+  add_foreign_key "rule_cars", "rules"
 end

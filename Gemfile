@@ -2,8 +2,12 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.2"
-
-gem 'turbo-rails'
+gem 'geocoder'
+gem 'google_places'
+gem 'google_maps_service'
+gem 'will_paginate-bootstrap4'
+gem 'will_paginate-bootstrap'
+gem 'will_paginate', '~> 4.0'
 gem "rails", "~> 7.0.5"
 gem "sprockets-rails"
 gem "pg", "~> 1.1"

@@ -1,7 +1,11 @@
 <section class="pt-0">
 	<div class="container">
 		<!-- Background image -->
-		<div class="rounded-3 p-3 p-sm-5" style="background-image: url(assets/images/bg/05.jpg); background-position: center center; background-repeat: no-repeat; background-size: cover;">
+		
+		<div class="rounded-3 p-3 p-sm-5" style="position: relative;">
+  					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d805170.0496601658!2d145.05313529999998!3d-37.9725665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad646b5d2ba4df7%3A0x4045675218ccd90!2sMelbourne%20Victoria!5e0!3m2!1str!2sau!4v1688313400605!5m2!1str!2sau" width="100%" height="100%" style="position: absolute; top: 0; left: 0; border: 0;  border-radius: 10px 10px 10px 10px;" allowfullscreen="" loading="lazy"></iframe>
+			
+
 			<!-- Banner title -->
 			<div class="row my-2 my-xl-5"> 
 				<div class="col-md-8 mx-auto"> 
@@ -398,8 +402,7 @@ Title and Tabs START -->
 								<!-- Button -->
 								<div class="text-end align-items-center">
 									<button class="btn btn-link p-0 mb-0">Clear all</button>
-									<button class="btn btn-dark mb-0 ms-3">Apply filter</button>
-									<%= f.submit %>
+									<%= f.submit class:"btn btn-dark mb-0 ms-3" %>
 								</div>
 						<% end %>	
 						<!-- Form END -->
@@ -485,20 +488,16 @@ Hotel grid START -->
 		<!-- Card item END -->
 		<% end%>
 
+
 		</div> <!-- Row END -->
 
 		<!-- Pagination -->
 		<div class="row">
 			<div class="col-12">
 				<nav class="mt-4 d-flex justify-content-center" aria-label="navigation">
-					<ul class="pagination pagination-primary-soft d-inline-block d-md-flex rounded mb-0">
-						<li class="page-item mb-0"><a class="page-link" href="hotel-grid.html#" tabindex="-1"><i class="fa-solid fa-angle-left"></i></a></li>
-						<li class="page-item mb-0"><a class="page-link" href="hotel-grid.html#">1</a></li>
-						<li class="page-item mb-0 active"><a class="page-link" href="hotel-grid.html#">2</a></li>
-						<li class="page-item mb-0"><a class="page-link" href="hotel-grid.html#">..</a></li>
-						<li class="page-item mb-0"><a class="page-link" href="hotel-grid.html#">6</a></li>
-						<li class="page-item mb-0"><a class="page-link" href="hotel-grid.html#"><i class="fa-solid fa-angle-right"></i></a></li>
-					</ul>
+				
+					<%= will_paginate @cars, renderer: BootstrapPagination::Rails, inner_window:1%>
+
 				</nav>
 			</div>
 		</div>
@@ -520,7 +519,7 @@ var q_price_lteq = document.querySelector("#q_price_lteq");
 
 
 noUiSlider.create(slider, {
-    start: [100, 500],
+    start: [0, 500],
     connect: true,
     range: {
         "min": 0,
@@ -539,12 +538,34 @@ slider.noUiSlider.on("update", function (values, handle) {
 });</script>
 
 <p style="color: green"><%= notice %></p>
-<nav>
-<ul>
-  <% if user_signed_in? %>
-    <li><%= button_to "Sign_out", destroy_user_session_path, :method => 'delete', data:{turbo: "false"} %></li>
-  <% else %>
-    <li><%= link_to 'Giriş Yap', new_user_session_path %></li>
-  <% end %>
-</ul>
-</nav>
+
+<style>
+
+	.pagination {
+		color: red;
+
+	}
+	.pagination li{
+		background-color: #f8f9fa;
+		color: gray !important;
+		margin-left: 2px !important;
+		margin-left: calc(var(--bs-border-width) * -1);
+		border-radius: var(--bs-pagination-border-radius);
+		border: 0px;
+		padding: 4px;
+		border-radius: 0.5rem;
+		transition: background-color .3s;
+		ont-weight: bold;
+		--bs-pagination-border-width: 0px;
+		position: relative;
+		display: block;
+		padding: var(--bs-pagination-padding-y) var(--bs-pagination-padding-x);
+		font-size: 20px;
+		border: var(--bs-pagination-border-width) solid var(--bs-pagination-border-color);
+		
+	}
+	.pagination li.active {
+		background-color: #5143d9;
+		color: white;	
+	}
+</style>
