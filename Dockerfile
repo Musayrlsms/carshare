@@ -60,10 +60,6 @@ RUN useradd rails --create-home --shell /bin/bash && \
     
 USER rails:rails
 
-
-
-RUN SECRET_KEY_BASE=DUMMY ./bin/rails db:migrate
-
 # Deployment options
 ENV RAILS_LOG_TO_STDOUT="1" \
     RAILS_SERVE_STATIC_FILES="true"
