@@ -24,14 +24,17 @@ gem "bootsnap", require: false
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'byebug'
 end
 
 group :development do
   gem "web-console"
+  gem 'annotate'
 end
 
 group :test do
   gem "capybara"
+  gem 'rspec-rails'
   gem "selenium-webdriver"
   gem "webdrivers"
 end
@@ -39,9 +42,14 @@ end
 
 # Other Gems
 gem 'devise'
+gem 'stripe'
+gem 'dotenv-rails'
+gem 'activestorage'
+gem "dockerfile-rails", ">= 1.5", :group => :development
 gem "ransack", "~> 4.0"
 gem 'rails-i18n'
 gem 'devise-i18n'
 gem 'activestorage'
+gem 'pundit'
 gem 'telegram-bot-ruby'
 gem 'dotenv-rails'

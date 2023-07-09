@@ -197,7 +197,7 @@
 				<li class="nav-item dropdown ms-0 ms-md-3">
 					<!-- Notification button -->
           <div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="btn btn-sm btn-lang btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Language
             </button>
             <div class="dropdown-menu">
@@ -254,16 +254,18 @@
 				<!-- Profile dropdown START -->
 				<li class="nav-item ms-3 dropdown">
 					<!-- Avatar -->
-					<a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+					
 					<% if user_signed_in? && current_user.avatar.present? %>
-						<%= image_tag(current_user.avatar, class: "avatar-img rounded-2") %>
+						<a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+							<%= image_tag(current_user.avatar, class: "avatar-img rounded-2") %>
+						</a>
 					<% elsif user_signed_in? && !current_user.avatar.attached?%>
+					<a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
 						<img class="avatar-img rounded-2" src="/assets/images/avatar/default.jpg" alt="avatar">
+					</a>
 					<%else %>
 						<%= link_to 'Log in', new_user_session_path, class:"btn btn-sm btn-primary-soft mb-0"%>
-
 					<% end %>
-					</a>
 
 					<ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
 						<!-- Profile info -->

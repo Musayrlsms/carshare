@@ -1,0 +1,162 @@
+<section class="pt-3">
+	<div class="container">
+		<div class="row g-2 g-lg-4">
+
+			<!-- Sidebar START -->
+			<%= render 'profiles/sidebar' %>
+			<!-- Sidebar END -->
+
+			<!-- Main content START -->
+			<div class="col-lg-8 col-xl-9 ps-xl-5">
+              
+        <script src="https://js.stripe.com/v2/"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.payment/1.4.1/jquery.payment.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.slim.js" integrity="sha256-7GO+jepT9gJe9LB4XFf8snVOjX3iYNb0FHYr5LI1N5c=" crossorigin="anonymous"></script>
+        <script>
+          $( document ).ready(function() {
+            // Set your Stripe publishable API key here
+            Stripe.setPublishableKey("<%= ENV['STRIPE_PUBLISHABLE_KEY'] %>");
+
+            $(function() {
+              var $form = $('#payment-form');
+              $form.submit(function(event) {
+                // Clear any errors
+                $form.find('.has-error').removeClass('has-error');
+
+                // Disable the submit button to prevent repeated clicks:
+                $form.find('.submit').prop('disabled', true).html("<i class='fa fa-spinner fa-spin'></i> Adding bank account...");
+
+                // Request a token from Stripe:
+                Stripe.bankAccount.createToken($form, stripeResponseHandler);
+                
+                // Prevent the form from being submitted:
+                return false;
+              });
+            });
+
+            function stripeResponseHandler(status, response) {
+              var $form = $('#payment-form');
+
+              if (response.error) {
+                // Show the errors on the form
+                $form.find('.errors').text(response.error.message).addClass('alert alert-danger');
+                $form.find('.' + response.error.param).parent('.form-group').addClass('has-error');
+                $form.find('button').prop('disabled', false).text('Add Bank Account'); // Re-enable submission
+                
+              } 
+              else { // Token was created!
+                $form.find('.submit').html("<i class='fa fa-check'></i> Account added");
+                
+                // Get the token ID:
+                var token = response.id;
+
+                // Insert the token and name into the form so it gets submitted to the server:
+                $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+                
+                // Submit the form:
+                $form.get(0).submit();
+              }
+            }
+          });
+        </script>
+        <div class="col-lg-12 col-xl-12 ps-xl-12">
+
+				<!-- Offcanvas menu button -->
+				<div class="d-grid mb-0 d-lg-none w-100">
+					<button class="btn btn-primary mb-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+						<i class="fas fa-sliders-h"></i> Menu
+					</button>
+				</div>
+
+				<!-- Payment detail START -->
+					<!-- Card header -->
+
+            <% if current_user.bank_account.nil? %>
+              <!-- Add new card START -->
+              <div class="card border">
+                <div class="card-header border-bottom">
+                  <h5 class="card-header-title">Add New Bank Account</h5>
+                </div>
+                
+                <div class="card-body">
+                  <form action="/bank_accounts" method="POST" id="payment-form" class="row text-start g-4">
+                    <!-- Card number -->
+                    <div class="col-12">
+                      <label class="form-label">Full Name <span class="text-danger">*</span></label>
+                      <div class="position-relative">
+                        <input type="text" value="<%= current_user.full_name %>" class="form-control">
+                      </div>	
+                    </div>
+
+                    <select class="d-none form-control input-lg" id="country" data-stripe="country">
+                      <option value="HR">United States</option>
+                    </select>
+                    <select class="d-none form-control input-lg" id="currency" data-stripe="currency">
+                      <option value="eur">EUR</option>
+                    </select>
+                    
+                    <!-- Card name -->
+                    <div class="col-12">
+                      <label class="form-label">IBAN<span class="text-danger">*</span></label>
+                      <input class="form-control input-lg bank_account" id="account_number" type="text" data-stripe="account_number" value="HR7624020064583467589" autocomplete="off">
+                    </div>
+                    <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+                    <!-- Button -->
+                    <div class="col-12">
+                      <button class="btn btn-primary mb-0">Add Bank Account</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <!-- Add new card END -->
+            <% else %>
+              <div class="card border">
+                <div class="card-header border-bottom">
+                  <h5 class="card-header-title">Bank Accounts</h5>
+                </div>
+                <div class="card-body">
+                  <div class="row g-4">
+                  <!-- Visa card -->
+                    <div class="col-md-12">
+                      <div class="card">
+                        <div class="bg-primary p-4 rounded-3">
+                          <div class="d-flex justify-content-between align-items-start">
+                            <img class="w-40px" src="" alt="">
+                            <!-- Card action START -->
+                            <div class="dropdown">
+                              <a class="text-white" href="#" id="creditcardDropdown" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                <!-- Dropdown Icon -->
+                                <svg width="24" height="24" fill="none">
+                                  <circle fill="currentColor" cx="12.5" cy="3.5" r="2.5"></circle>
+                                  <circle fill="currentColor" opacity="0.5" cx="12.5" cy="11.5" r="2.5"></circle>
+                                  <circle fill="currentColor" opacity="0.3" cx="12.5" cy="19.5" r="2.5"></circle>
+                                </svg>
+                              </a>               
+                              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="creditcardDropdown">
+                                <li>
+                                  <%= button_to bank_account_path(current_user.stripe_account), class: "dropdown-item", method: :delete do %>
+                                    <i class="bi bi-trash me-2 fw-icon"></i>Delete Bank Account
+                                  <% end %>
+                                </li>
+                              </ul>
+                            </div>
+                            <!-- Card action END -->
+                          </div>
+                          <h4 class="text-white mt-4"><%= begin current_user.bank_account&.response['external_accounts']['data'][0]['bank_name'] rescue '' end %></h4>
+                          <div class="d-flex justify-content-between text-white">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+				<!-- Payment detail END -->
+
+			</div>
+      <!-- Main content END -->
+    </div>
+  </div>
+</section>

@@ -48,7 +48,7 @@ Main Content START -->
 									<!-- List -->
 									<ul class="list-group list-group-borderless mt-2 mb-0">
 										<li class="list-group-item d-flex pb-0 mb-0">
-											<span class="h6 fw-normal mb-0"><i class="bi bi-check-circle me-2"></i>600Kms included. After that $15/Kms</span>
+											<span class="h6 fw-normal mb-0"><i class="bi bi-check-circle me-2"></i>600Kms included. After that €15/Kms</span>
 										</li>
 										<li class="list-group-item d-flex pb-0 mb-0">
 											<span class="h6 fw-normal mb-0"><i class="bi bi-check-circle me-2"></i>2 luggage bags </span>
@@ -92,7 +92,7 @@ Main Content START -->
 							<ul>
 								<li class="mb-2">Cab and driver details will be shared on your registered phone. (22 Jan 2021 at 6:55 pm) </li>
 								<li class="mb-2">Due to traffic or any other unavoidable reason, the pickup may be delayed for 30 minutes.</li>
-								<li>For nighttime driving (between 11:00 pm to 7:00 am) on any of the nights, there will be a night driver charge of $100.</li>
+								<li>For nighttime driving (between 11:00 pm to 7:00 am) on any of the nights, there will be a night driver charge of €100.</li>
 							</ul>
 
 							<!-- Cab images -->
@@ -122,7 +122,7 @@ Main Content START -->
 												</div>
 											  <% end %>
 											</div>
-										  <% end %>		
+										  <% end %>
 									</div>
 								</div>
 								<!-- Slider END -->
@@ -205,42 +205,46 @@ Main Content START -->
 						<!-- List -->
 						<ul class="list-group list-group-borderless mb-0">
 							<li class="list-group-item d-flex justify-content-between">
-								<span class="h6 fw-light mb-0">Base Price</span>
-								<span class="h6 fw-light mb-0">$<%=car.price%></span>
+								<span class="h6 fw-light mb-0">Daily Price</span>
+								<span class="h6 fw-light mb-0" id="daily-price">€ <%= car.price %></span>
 							</li>
 							<li class="list-group-item d-flex justify-content-between">
-								<span class="h6 fw-light mb-0">State Tax</span>
-								<span class="h6 fw-light mb-0">0</span>
-							</li>
-							<li class="list-group-item d-flex justify-content-between">
-								<span class="h6 fw-light mb-0">Night Charge</span>
-								<span class="h6 fw-light mb-0">0</span>
+								<span class="h6 fw-light mb-0">Total Price</span>
+								<span class="h6 fw-light mb-0" id="price">€ <%= car.price %></span>
 							</li>
 							<li class="list-group-item d-flex justify-content-between">
 								<span class="h6 fw-light mb-0">Convenience Fee</span>
-								<span class="h6 fw-light mb-0">0</span>
+								<span class="h6 fw-light mb-0" id="fee-price">€ 0</span>
+							</li>
+							<li class="list-group-item d-flex justify-content-between">
+								<span class="h6 fw-light mb-0">Insurance</span>
+								<span class="h6 fw-light mb-0" id="insurance">€ 0</span>
 							</li>
 							<li class="list-group-item py-0"><hr class="my-0"></li> 
 							<!-- Divider -->
 							<li class="list-group-item d-flex justify-content-between pb-0">
 								<span class="h5 fw-normal mb-0">Total</span>
-								<span class="h5 fw-normal mb-0">$<%=car.price%></span>
+								<span class="h5 fw-normal mb-0" id="total-price">€ <%= car.price %></span>
 							</li>
 						</ul>
 
+						<!-- Date -->
+						<div class="col-lg-12 mt-4">
+							<div class="d-flex">
+								<div class="form-control-border form-control-transparent form-fs-md">
+									<input type="text" class="form-control flatpickr flatpickr-input" data-mode="range" placeholder="Select date" data-disable-dates="<%= @car.busy_days %>">
+								</div>
+							</div>
+						</div>
+						
+
 						<div class="d-grid mt-4 gap-2">
 							<div class="form-check form-check-inline mb-0">
-								<input class="form-check-input" type="radio" name="discountOptions" id="discount1" value="option1" checked="">
-								<label class="form-check-label h6 fw-normal mb-0" for="discount1">Pay $220 now (Half Payment)</label>
+								<input class="form-check-input" type="checkbox" name="insurance-checkbox" id="insurance-checkbox" value="option">
+								<label class="form-check-label h6 fw-normal mb-0" for="insurance-checkbox">Add insurance</label>
 							</div>
 
-							<div class="form-check form-check-inline mb-0">
-								<input class="form-check-input" type="radio" name="discountOptions" id="discount2" value="option2">
-								<label class="form-check-label h6 fw-normal mb-0" for="discount2">Pay $435 now (Full payment)</label>
-							</div>
-
-							<!-- Button -->
-							<a href="cab-booking.html" class="btn btn-dark mb-0 mt-2">Pay Now</a>
+							<%= link_to 'Pay Now', new_car_rent_path(@car, start_date: params[:start_date], finish_date: params[:finish_date]), class: 'btn btn-dark mb-0 mt-2', id: 'rent-button' %>
 						</div>
 					</div>
 				</div> 
@@ -251,3 +255,91 @@ Main Content START -->
 </section>
 
 
+<style>
+  .flatpickr-disabled{
+    color: #f00 !important;
+  }
+</style>
+
+<script>
+
+var pickerX;
+	$(document).ready(function () {
+		var picker = e.select('.flatpickr');
+		if (e.isVariableDefined(picker)) {
+			var element = e.selectAll('.flatpickr');
+			var mode = picker.getAttribute('data-mode') == 'multiple' ? 'multiple' : picker.getAttribute('data-mode') == 'range' ? 'range' : 'single';
+			var enableTime = picker.getAttribute('data-enableTime') == 'true' ? true : false;
+			var noCalendar = picker.getAttribute('data-noCalendar') == 'true' ? true : false;
+			var inline = picker.getAttribute('data-inline') == 'true' ? true : false;
+			var dateFormat = picker.getAttribute('data-date-format') ? picker.getAttribute('data-date-format') : picker.getAttribute('data-enableTime') == 'true' ? "h:i K" : "d M";
+			var disableDates = picker.getAttribute('data-disable-dates') ? JSON.parse(picker.getAttribute('data-disable-dates')) : []
+
+			pickerX = flatpickr(picker, {
+				mode: mode,
+				enableTime: true,
+				noCalendar: noCalendar,
+				inline: inline,
+				animate: "false",
+				position: "top",
+				dateFormat: 'd/m/Y',
+				disable: disableDates,
+			});
+
+		}
+		pickerX.config.onChange.push(recalculate_prices);
+
+		const checkbox = document.getElementById('insurance-checkbox')
+
+		checkbox.addEventListener('change', (event) => {
+			recalculate_prices()
+		})
+	});
+
+	function recalculate_prices() { 
+		var day_count = 1
+		
+		if(pickerX.selectedDates.length < 2){
+			day_count = 1
+		}
+		else{
+			var dif = pickerX.selectedDates[1].getTime() - pickerX.selectedDates[0].getTime()
+			day_count = Math.ceil(dif / (1000 * 3600 * 24));
+			if(day_count < 1)
+				day_count = 1
+		}
+		
+		console.log(day_count.toString() + ' Day')
+
+		var daily_price = <%= @car.price %>;
+		var price = daily_price * day_count; 
+		var fee_price = Math.ceil(price * 0.10);
+		
+		var insurance = 0
+		if(document.getElementById('insurance-checkbox').checked){
+			insurance = fee_price
+		}
+		
+		var total_price = price + fee_price + insurance;
+
+		
+		console.log(daily_price.toString() + ' daily_price')
+		console.log(price.toString() + ' price')
+		console.log(fee_price.toString() + ' fee_price')
+		console.log(total_price.toString() + ' total_price')
+		console.log(insurance.toString() + ' insurance')
+
+
+		document.getElementById('price').innerHTML = '€ ' + price.toString()
+		document.getElementById('fee-price').innerHTML = '€ ' + fee_price.toString()
+		document.getElementById('total-price').innerHTML = '€ ' + total_price.toString()
+		document.getElementById('insurance').innerHTML = '€ ' + insurance.toString()
+
+
+		console.log(daily_price.toString() + ' Daily Price')
+
+
+		var url = `/cars/<%= @car.id %>/rents/new?start_date=${pickerX.selectedDates[0].toString()}&finish_date=${pickerX.selectedDates[1].toString()}&insurance=${document.getElementById('insurance-checkbox').checked}` 
+		document.getElementById('rent-button').setAttribute('href', url)
+	}	
+</script>

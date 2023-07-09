@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: moc_moc_production
-  username: moc_moc
-  password: <%= ENV["MOC_MOC_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>

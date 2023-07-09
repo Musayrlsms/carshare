@@ -42,6 +42,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_08_113533) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "bank_accounts", force: :cascade do |t|
+    t.string "bank_account_id"
+    t.bigint "user_id", null: false
+    t.string "iban"
+    t.jsonb "response", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_bank_accounts_on_user_id"
+  end
+
   create_table "brands", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -76,12 +86,31 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_08_113533) do
     t.index ["user_id"], name: "index_cars_on_user_id"
   end
 
+  create_table "credit_cards", force: :cascade do |t|
+    t.string "stripe_credit_card_id"
+    t.string "last_four_digits"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_credit_cards_on_user_id"
+  end
+
   create_table "models", force: :cascade do |t|
     t.string "name"
     t.bigint "brand_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["brand_id"], name: "index_models_on_brand_id"
+  end
+
+  create_table "payouts", force: :cascade do |t|
+    t.string "message"
+    t.float "amount"
+    t.string "stripe_id"
+    t.integer "status", default: 0
+    t.jsonb "response", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "properties", force: :cascade do |t|
@@ -105,6 +134,34 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_08_113533) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "stripe_accounts", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "account_type"
+    t.string "dob_month"
+    t.string "dob_day"
+    t.string "dob_year"
+    t.string "phone"
+    t.string "email"
+    t.string "address_line"
+    t.string "postal_code"
+    t.string "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.string "account_id"
+    t.jsonb "response", default: {}
+    t.index ["user_id"], name: "index_stripe_accounts_on_user_id"
+  end
+
+  create_table "stripe_customers", force: :cascade do |t|
+    t.string "customer_id"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_stripe_customers_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -122,12 +179,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_08_113533) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "stripe_customer_id"
     t.string "mobile_number"
     t.string "adress"
     t.date "date_of_birth"
     t.string "name"
     t.string "surname"
     t.integer "document_status", default: 0
+    t.integer "role", default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -135,9 +194,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_08_113533) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bank_accounts", "users"
   add_foreign_key "cars", "brands"
   add_foreign_key "cars", "models"
   add_foreign_key "cars", "users"
+  add_foreign_key "credit_cards", "users"
   add_foreign_key "models", "brands"
   add_foreign_key "rule_cars", "cars"
   add_foreign_key "rule_cars", "rules"
