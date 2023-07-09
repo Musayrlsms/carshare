@@ -11,7 +11,7 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<%= turbo_include_tags %>
+
 	<!-- Dark mode -->
 	<script>
 		const storedTheme = localStorage.getItem('theme')
@@ -96,7 +96,7 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
-  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "application" %>
   <%= javascript_importmap_tags %>
 
 </head>
@@ -109,9 +109,9 @@
 	<nav class="navbar navbar-expand-xl">
 		<div class="container">
 			<!-- Logo START -->
-			<a class="navbar-brand" href="index.html">
-				<img src="<%= asset_path('oijo.png') %>" alt="logo" class="light-mode-item navbar-brand-item" >
-				<img src="<%= asset_path('oijo.png') %>" alt="logo" class="dark-mode-item navbar-brand-item" >
+			<a class="navbar-brand" href="/">
+				<img src="<%= asset_path('oijoo.png') %>" alt="logo" class="light-mode-item navbar-brand-item h-100px" >
+				<img src="<%= asset_path('oijoo.png') %>" alt="logo" class="dark-mode-item navbar-brand-item h-100px" >
 			</a>
 			<!-- Logo END -->
 
@@ -133,49 +133,10 @@
 			<!-- Main navbar START -->
 			<div class="navbar-collapse collapse" id="navbarCollapse">
 				<ul class="navbar-nav navbar-nav-scroll me-auto">
-
-					<!-- Nav item Listing -->
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="listingMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= t(:listings) %></a>
-						<ul class="dropdown-menu" aria-labelledby="listingMenu">
-
-							<!-- Dropdown submenu -->
-							<li class="dropdown-submenu dropend">
-								<a class="dropdown-item dropdown-toggle" href="#">Directory</a>
-								<ul class="dropdown-menu" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="index-directory.html">Directory Home</a></li>
-									<li> <a class="dropdown-item" href="directory-detail.html">Directory Detail</a></li>
-								</ul>
-							</li>
-
-							<!-- Dropdown submenu -->
-							<li class="dropdown-submenu dropend">
-								<a class="dropdown-item dropdown-toggle" href="#">Add Listing</a>
-								<ul class="dropdown-menu" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="join-us.html">Join us</a></li>
-									<li> <a class="dropdown-item" href="add-listing.html">Add Listing</a></li>
-									<li> <a class="dropdown-item" href="add-listing-minimal.html">Add Listing Minimal</a></li>
-									<li> <a class="dropdown-item" href="listing-added.html">Listing Added</a></li>
-								</ul>
-							</li>
-
-							<!-- Dropdown submenu -->
-							<li class="dropdown-submenu dropend">
-								<a class="dropdown-item dropdown-toggle" href="#">Hero</a>
-								<ul class="dropdown-menu" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="hero-inline-form.html">Hero Inline Form</a></li>
-									<li> <a class="dropdown-item" href="hero-multiple-search.html">Hero Multiple Search</a></li>
-									<li> <a class="dropdown-item" href="hero-image-gallery.html">Hero Image Gallery</a></li>
-									<li> <a class="dropdown-item" href="hero-split.html">Hero Split</a></li>
-								</ul>
-							</li>
-
-							<li> <a class="dropdown-item" href="booking-confirm.html">Booking Confirmed</a></li>
-							<li> <a class="dropdown-item" href="compare-listing.html">Compare Listing</a></li>
-							<li> <a class="dropdown-item" href="offer-detail.html">Offer Detail</a></li>
-						</ul>
-					</li>
-
+					
+				<li class="nav-item dropdown">
+					<%= link_to "Cars", cars_path, class: "nav-link", id: "accountMenu" %>
+				</li>
 					<!-- Nav item Pages -->
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= t(:pages) %></a>
@@ -216,40 +177,8 @@
 						</ul>
 					</li>
 
-					<!-- Nav item Account -->
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="accounntMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= t(:account) %></a>
-						
-						<ul class="dropdown-menu" aria-labelledby="accounntMenu">
-							<!-- Dropdown submenu -->
-							<li class="dropdown-submenu dropend">
-								<a class="dropdown-item dropdown-toggle" href="#">User Profile</a>
-								<ul class="dropdown-menu" data-bs-popper="none">
-									<li> <%= link_to "My Profile", profiles_path, class: "dropdown-item" %> </li>
-									<li> <%= link_to "My Bookings", bookings_profiles_path, class: "dropdown-item" %> </li>
-									<li> <a class="dropdown-item" href="account-payment-details.html">Payment Details</a> </li>
-								</ul>
-							</li>
-
-							<!-- Dropdown submenu -->
-							<li class="dropdown-submenu dropend">
-								<a class="dropdown-item dropdown-toggle" href="#">Agent Dashboard</a>
-								<ul class="dropdown-menu" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="agent-dashboard.html">Dashboard</a> </li>
-									<li> <a class="dropdown-item" href="agent-listings.html">Listings</a> </li>
-									<li> <a class="dropdown-item" href="agent-bookings.html">Bookings</a> </li>
-									<li> <a class="dropdown-item" href="agent-activities.html">Activities</a> </li>
-									<li> <a class="dropdown-item" href="agent-earnings.html">Earnings</a> </li>
-									<li> <a class="dropdown-item" href="agent-reviews.html">Reviews</a> </li>
-									<li> <a class="dropdown-item" href="agent-settings.html">Settings</a> </li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-
-					<!-- Nav item Account -->
-					<li class="nav-item dropdown">
-						<a class="nav-link" href="#" id="accounntMenu"  >Want a rent your car</a>
+						<%= link_to "Want to rent your car", new_car_path, class: "nav-link", id: "accountMenu" %>
 
 					</li>
 
@@ -429,9 +358,9 @@ Footer START -->
 			<!-- Widget 1 START -->
 			<div class="col-lg-3">
 				<!-- logo -->
-				<a href="index.html">
-					<img class="h-40px" src="/assets/images/logo-light.svg" alt="logo">
-				</a>
+				
+					<img src="<%= asset_path('oijoo.png') %>"  class=" h-40px" style="background-color: white; filter: invert(100%);" >
+				
 				<p class="my-3 text-muted">Departure defective arranging rapturous did believe him all had supported.</p>
 				<p class="mb-2"><a href="#" class="text-muted text-primary-hover"><i class="bi bi-telephone me-2"></i>+1234 568 963</a> </p>
 				<p class="mb-0"><a href="#" class="text-muted text-primary-hover"><i class="bi bi-envelope me-2"></i>example@gmail.com</a></p>
@@ -505,7 +434,6 @@ Footer START -->
 			<div class="col-sm-7 col-md-6 col-lg-4">
 				<h5 class="text-white mb-2">Payment & Security</h5>
 				<ul class="list-inline mb-0 mt-3">
-					<li class="list-inline-item"> <a href="#"><img src="/assets/images/element/paypal.svg" class="h-30px" alt=""></a></li>
 					<li class="list-inline-item"> <a href="#"><img src="/assets/images/element/visa.svg" class="h-30px" alt=""></a></li>
 					<li class="list-inline-item"> <a href="#"><img src="/assets/images/element/mastercard.svg" class="h-30px" alt=""></a></li>
 					<li class="list-inline-item"> <a href="#"><img src="/assets/images/element/expresscard.svg" class="h-30px" alt=""></a></li>
@@ -532,7 +460,7 @@ Footer START -->
 			<div class="container">
 				<div class="d-lg-flex justify-content-between align-items-center py-3 text-center text-lg-start">
 					<!-- copyright text -->
-					<div class="text-muted text-primary-hover"> Copyrights ©2023 Booking. Build by <a href="https://www.webestica.com/" class="text-muted">Webestica</a>. </div>
+					<div class="text-muted text-primary-hover"> Copyrights ©2023 Oi-jo </div>
 					<!-- copyright links-->
 					<div class="nav mt-2 mt-lg-0">
 						<ul class="list-inline text-primary-hover mx-auto mb-0">
