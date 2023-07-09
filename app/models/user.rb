@@ -36,14 +36,17 @@ class User < ApplicationRecord
   has_one :stripe_account
   has_one :stripe_customer
   has_one :bank_account
-  
+
+  enum document_status: { pending: 0, approved: 1, rejected: 2 }
+  enum role: { user: 0, admin: 1 }
+
   has_many :cars
 
   has_one_attached :avatar
   has_one_attached :identity_card
   has_one_attached :passport
   has_one_attached :driver_license
-  enum document_status: { pending: 0, approved: 1, rejected: 2 }
+
 
   after_save :create_stripe_account
   after_save :create_stripe_customer

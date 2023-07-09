@@ -35,7 +35,7 @@ class Car < ApplicationRecord
   has_many :rents
   
   has_many_attached :images
-
+  validates :user_id, presence: true
   enum status: { available: 0, rejected: 1, approved: 2 }
 
   def busy_days

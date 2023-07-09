@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     get 'bookings', to: 'profiles#bookings', as: :bookings, on: :collection
     get 'bank_accounts', to: 'profiles#bank_accounts', as: :bank_accounts, on: :collection
     get 'balance', to: 'profiles#balance', as: :balance, on: :collection
+    get 'cars', to: 'profiles#cars', as: :cars, on: :collection
   end
   
   resources :pages do
