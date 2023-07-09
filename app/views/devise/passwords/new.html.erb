@@ -1,16 +1,61 @@
-<h2>Forgot your password?</h2>
+<section class="vh-xxl-100">
+	<div class="container h-100 d-flex px-0 px-sm-4">
+		<div class="row justify-content-center align-items-center m-auto">
+			<div class="col-12">
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+					<div class="row g-0">
+						<!-- Vector Image -->
+						<div class="col-lg-6 d-md-flex align-items-center order-2 order-lg-1">
+							<div class="p-3 p-lg-5">
+								<img src="/assets/images/element/forgot-pass.svg" alt="">
+							</div>
+							<!-- Divider -->
+							<div class="vr opacity-1 d-none d-lg-block"></div>
+						</div>
+		
+						<!-- Information -->
+						<div class="col-lg-6 order-1">
+							<div class="p-4 p-sm-7">
+								<!-- Logo -->
+								<a href="/">
+									<%= image_tag asset_path('oijoo.png'), class: "mb-4 h-50px", alt: "logo" %>
+								</a>
+								<!-- Title -->
+								<h1 class="mb-2 h3">Forgot password?</h1>
+								<p class="mb-sm-0">Enter the email address associated with an account.</p>
+		
+								<!-- Form START -->
+								<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+										<%= render "devise/shared/error_messages", resource: resource %>
+									<form class="mt-sm-4 text-start">
+										<!-- Email -->
+										<div class="mb-3">
+											<label class="form-label"><%=  f.label :email %></label>
+											<%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control" %>
+										</div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+										<div class="mb-3 text-center">
+											<p>Back to<%= link_to " Sign in", new_user_session_path %></p>
+										</div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+										<!-- Button -->
+										
+										<%= f.submit "Reset Password", class:"btn btn-primary w-100 mb-0" %>
+			
+										<!-- Divider -->
 
-<%= render "devise/shared/links" %>
+			
+										<!-- Copyright -->
+										<div class="text-primary-hover mt-3 text-center"> Copyrights ©2023 Oi-jo.</div>
+									</form>
+								<% end %>
+
+								<!-- Form END -->
+							</div>		
+						</div>
+					</div>
+
+			</div>
+		</div>
+	</div>
+</section>
