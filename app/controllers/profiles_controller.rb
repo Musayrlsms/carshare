@@ -1,8 +1,7 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
-  def index
-  end
-
+  
+  def index; end
   
   def update
     @user = current_user
@@ -28,8 +27,15 @@ class ProfilesController < ApplicationController
     end
   end
 
-
   def bookings
+    @bookings = Rent.where(renter: current_user)
+    @upcoming_bookings = @bookings.paid.where.not('finish_date < ?', DateTime.now)
+    @canceled_bookings = @bookings.canceled 
+    @completed_bookings = @bookings.paid.where('finish_date < ?', DateTime.now)
+  end
+
+  def bank_accounts
+    
   end
 
   def document
@@ -43,6 +49,11 @@ class ProfilesController < ApplicationController
     @user.approved!
     redirect_to document_profiles_path
   end
+
+  def balance
+    @balance = Stripe::Balance.retrieve({stripe_account: current_user.stripe_account.account_id})
+  end
+
   def rejected
     @user = User.find(params[:id])
     authorize @user, :rejected?
@@ -55,7 +66,7 @@ class ProfilesController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :surname, :mobile_number, :adress, :date_of_birth, :email, :avatar, :identity_card, :passport, :driver_license, :password, :password_confirmation)
+    params.require(:user).permit(:name, :surname, :mobile_number, :adress, :date_of_birth,:email, :avatar,
+                                 :identity_card, :passport, :driver_license, :password, :password_confirmation)
   end
-
 end

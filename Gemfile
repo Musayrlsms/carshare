@@ -1,7 +1,8 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.2.0"
+ruby "3.2.2"
+
 gem 'turbo-rails'
 gem "rails", "~> 7.0.5"
 gem "sprockets-rails"
@@ -19,14 +20,17 @@ gem "bootsnap", require: false
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'byebug'
 end
 
 group :development do
   gem "web-console"
+  gem 'annotate'
 end
 
 group :test do
   gem "capybara"
+  gem 'rspec-rails'
   gem "selenium-webdriver"
   gem "webdrivers"
 end
@@ -34,6 +38,10 @@ end
 
 # Other Gems
 gem 'devise'
+gem 'stripe'
+gem 'dotenv-rails'
+gem 'activestorage'
+gem "dockerfile-rails", ">= 1.5", :group => :development
 gem "ransack", "~> 4.0"
 gem 'rails-i18n'
 gem 'devise-i18n'
@@ -41,4 +49,3 @@ gem 'activestorage'
 gem 'pundit'
 gem 'telegram-bot-ruby'
 gem 'dotenv-rails'
-

@@ -1,84 +1,212 @@
-<section class="pt-4 pt-md-5">
+<section class="pt-3">
 	<div class="container">
-		<div class="row g-4">
-			<div class="col-xl-9 mx-auto">
-				<div class="vstack gap-4">
+		<div class="row g-2 g-lg-4">
 
-					<!-- Booking summary START -->
-					<div class="card shadow">
-						<!-- Card header -->
-						<div class="card-header border-bottom p-4">
-							<h1 class="mb-0 fs-3"> My Bookings</h1>
+			<!-- Sidebar START -->
+			<%= render 'profiles/sidebar' %>
+			<!-- Sidebar END -->
+
+			<!-- Main content START -->
+			<div class="col-lg-8 col-xl-9 ps-xl-5">
+
+				<!-- Offcanvas menu button -->
+				<div class="d-grid mb-0 d-lg-none w-100">
+					<button class="btn btn-primary mb-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+						<i class="fas fa-sliders-h"></i> Menu
+					</button>
+				</div>
+
+				<div class="card border bg-transparent">
+					<!-- Card header -->
+					<div class="card-header bg-transparent border-bottom">
+						<h4 class="card-header-title">My Bookings</h4>
+					</div>
+
+					<!-- Card body START -->
+					<div class="card-body p-0">
+
+						<!-- Tabs -->
+						<ul class="nav nav-tabs nav-bottom-line nav-responsive nav-justified" role="tablist">
+							<li class="nav-item" role="presentation"> 
+								<a class="nav-link mb-0 active" data-bs-toggle="tab" href="#tab-1" aria-selected="true" role="tab"><i class="bi bi-briefcase-fill fa-fw me-1"></i>Upcoming Booking</a> 
+							</li>
+							<li class="nav-item" role="presentation">
+								<a class="nav-link mb-0" data-bs-toggle="tab" href="#tab-2" aria-selected="false" role="tab" tabindex="-1"><i class="bi bi-x-octagon fa-fw me-1"></i>Canceled Booking</a> 
+								</li>
+							<li class="nav-item" role="presentation"> 
+								<a class="nav-link mb-0" data-bs-toggle="tab" href="#tab-3" aria-selected="false" role="tab" tabindex="-1"><i class="bi bi-patch-check fa-fw me-1"></i>Completed Booking</a> 
+							</li>
+						</ul>
+
+						<!-- Tabs content START -->
+						<div class="tab-content p-2 p-sm-4" id="nav-tabContent">
+
+							<!-- Tab content item START -->
+							<div class="tab-pane fade active show" id="tab-1" role="tabpanel">
+								<h6>Upcoming booking (<%= @upcoming_bookings.count %>)</h6>
+                
+								<% @upcoming_bookings.each do |rent| %>
+									<div class="card border mb-4">
+										<div class="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
+											<div class="d-flex align-items-center">
+												<div class="icon-lg bg-light rounded-circle flex-shrink-0"><i class="fa-solid fa-car"></i></div>	
+												<div class="ms-2">
+													<h6 class="card-title mb-0"><%= rent.car.brand.name %> <%= rent.car.model.name %></h6>
+													<ul class="nav nav-divider small">
+														<li class="nav-item">Booking ID: <%= rent.id %></li>
+														<li class="nav-item"><%= rent.car.case_type %></li>
+													</ul>
+												</div>
+											</div>
+		
+											<!-- Button -->
+											<div class="mt-2 mt-md-0">
+												<%= button_to 'Cancel Booking', car_rent_cancel_path(rent.car, rent), class: 'btn btn-primary-soft mb-0', method: :delete %>
+											</div>
+										</div>
+		
+										<!-- Card body -->
+										<div class="card-body">
+											<div class="row g-3">
+												<div class="col-sm-6 col-md-4">
+													<span>Departure time</span>
+													<h6 class="mb-0"><%= rent.start_date.strftime('%F') %></h6>
+												</div>
+		
+												<div class="col-sm-6 col-md-4">
+													<span>Arrival time</span>
+													<h6 class="mb-0"><%= rent.finish_date.strftime('%F') %></h6>
+												</div>
+		
+												<div class="col-md-4">
+													<span>Booked by</span>
+													<h6 class="mb-0"><%= rent.owner.full_name %></h6>
+												</div>
+											</div>
+										</div>
+									</div>
+								<% end %>
+							</div>
+							<!-- Tabs content item END -->
+
+							<!-- Tab content item START -->
+							<div class="tab-pane fade" id="tab-2" role="tabpanel">
+								<h6>Cancelled booking (<%= @canceled_bookings.count %>)</h6>
+	
+								<% @canceled_bookings.each do |rent| %>
+									<div class="card border mb-4">
+										<div class="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
+											<div class="d-flex align-items-center">
+												<div class="icon-lg bg-light rounded-circle flex-shrink-0"><i class="fa-solid fa-car"></i></div>	
+												<div class="ms-2">
+													<h6 class="card-title mb-0"><%= rent.car.brand.name %> <%= rent.car.model.name %></h6>
+													<ul class="nav nav-divider small">
+														<li class="nav-item">Booking ID: <%= rent.id %></li>
+														<li class="nav-item"><%= rent.car.case_type %></li>
+													</ul>
+												</div>
+											</div>
+		
+											<!-- Button -->
+											<div class="mt-2 mt-md-0">
+												<p class="text-danger text-md-end mb-0">Booking cancelled</p>
+											</div>
+										</div>
+		
+										<!-- Card body -->
+										<div class="card-body">
+											<div class="row g-3">
+												<div class="col-sm-6 col-md-4">
+													<span>Departure time</span>
+													<h6 class="mb-0"><%= rent.start_date.strftime('%F') %></h6>
+												</div>
+		
+												<div class="col-sm-6 col-md-4">
+													<span>Arrival time</span>
+													<h6 class="mb-0"><%= rent.finish_date.strftime('%F') %></h6>
+												</div>
+		
+												<div class="col-md-4">
+													<span>Booked by</span>
+													<h6 class="mb-0"><%= rent.owner.full_name %></h6>
+												</div>
+											</div>
+										</div>
+									</div>
+								<% end %>
+							</div>
+							<!-- Tabs content item END -->
+	
+							<!-- Tab content item START -->
+							<div class="tab-pane fade" id="tab-3" role="tabpanel">
+								<% if @completed_bookings.empty? %>
+									<div class="bg-mode shadow p-4 rounded overflow-hidden">
+										<div class="row g-4 align-items-center">
+											<!-- Content -->
+											<div class="col-md-9">
+												<h6>Looks like you have never booked with Oi-jo</h6>
+												<h4 class="mb-2">When you book your trip will be shown here.</h4>
+												<%= link_to 'Start booking now', cars_path, class: 'btn btn-primary-soft mb-0' %>
+											</div>
+											<!-- Image -->
+											<div class="col-md-3 text-end">
+												<img src="assets/images/element/17.svg" class="mb-n5" alt="">
+											</div>
+										</div>
+									</div>
+								<% else %>
+									<% @completed_bookings.each do |rent| %>
+										<div class="card border mb-4">
+											<div class="card-header border-bottom d-md-flex justify-content-md-between align-items-center">
+												<div class="d-flex align-items-center">
+													<div class="icon-lg bg-light rounded-circle flex-shrink-0"><i class="fa-solid fa-car"></i></div>	
+													<div class="ms-2">
+														<h6 class="card-title mb-0"><%= rent.car.brand.name %> <%= rent.car.model.name %></h6>
+														<ul class="nav nav-divider small">
+															<li class="nav-item">Booking ID: <%= rent.id %></li>
+															<li class="nav-item"><%= rent.car.case_type %></li>
+														</ul>
+													</div>
+												</div>
+			
+												<!-- Button -->
+												<div class="mt-2 mt-md-0">
+													<p class="text-success text-md-end mb-0">Booking completed</p>
+												</div>
+											</div>
+			
+											<!-- Card body -->
+											<div class="card-body">
+												<div class="row g-3">
+													<div class="col-sm-6 col-md-4">
+														<span>Departure time</span>
+														<h6 class="mb-0"><%= rent.start_date.strftime('%F') %></h6>
+													</div>
+			
+													<div class="col-sm-6 col-md-4">
+														<span>Arrival time</span>
+														<h6 class="mb-0"><%= rent.finish_date.strftime('%F') %></h6>
+													</div>
+			
+													<div class="col-md-4">
+														<span>Booked by</span>
+														<h6 class="mb-0"><%= rent.owner.full_name %></h6>
+													</div>
+												</div>
+											</div>
+										</div>
+									<% end %>
+								<% end %>
+							</div>
+							<!-- Tabs content item END -->
 						</div>
 
-						<!-- Card body START -->
-						<div class="card-body p-4">
-							<div class="row g-md-4">
-								<!-- Image -->
-								<div class="col-md-3">
-									<div class="bg-light rounded-3 px-4 py-5 mb-3 mb-md-0">
-										<img src="assets/images/category/cab/seadan.svg" alt="">
-									</div>
-								</div>
-
-								<!-- Card and address detail -->
-								<div class="col-md-9">
-									<!-- Title -->
-									<h5 class="card-title mb-2">Camry, Accord</h5>
-									<ul class="nav nav-divider h6 fw-normal mb-2">
-										<li class="nav-item">SEDAN</li>
-										<li class="nav-item">AC</li>
-										<li class="nav-item">2 Seats</li>
-									</ul>
-
-									<!-- Pick up and drop address -->
-									<div class="row">
-										<div class="col-md-6">
-											<small>Pickup address</small>
-											<p class="h6 fw-light mb-md-0">8 Central Ave, Chelsea, Maine, United States</p>
-										</div>
-
-										<div class="col-md-6">
-											<small>Drop address</small>
-											<p class="h6 fw-light mb-0">1846 S Oates St, Dothan, Alaska, United States</p>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-6">
-									<ul class="list-group list-group-borderless">
-										<li class="list-group-item">Journey Date:<span class="h6 fw-normal mb-0 ms-1">25 Nov 2022</span></li>
-										<li class="list-group-item">Distance:<span class="h6 fw-normal mb-0 ms-1">230 km</span></li>
-									</ul>
-								</div>
-		
-								<div class="col-md-6">
-									<ul class="list-group list-group-borderless">
-										<li class="list-group-item">Passengers:<span class="h6 fw-normal mb-0 ms-1">1</span></li>
-										<li class="list-group-item">Luggages:<span class="h6 fw-normal mb-0 ms-1">2</span></li>
-									</ul>
-								</div>
-							</div>
-
-							<!-- Title -->
-							<h6 class="mb-0 mt-3">Passenger Detail</h6>
-
-							<div class="row">
-								<!-- List -->
-								<div class="col-sm-8">
-									<ul class="list-group list-group-borderless mb-0">
-										<li class="list-group-item">Passenger Name:<span class="h6 mb-0 fw-normal ms-1">Billy Vasquez</span></li>
-										<li class="list-group-item">Passenger Email:<span class="h6 mb-0 fw-normal ms-1">example@gmail.com</span></li>
-										<li class="list-group-item">Passenger Number:<span class="h6 mb-0 fw-normal ms-1">+222 555 666 85</span></li>
-									</ul>
-								</div>
-
-								<!-- Price -->
-								<div class="col-sm-4 text-sm-end mt-3 mt-sm-auto">
-									<h6 class="mb-1 fw-normal">Total Amount</h6>
-									<h2 class="mb-0 text-success">$458</h2>
-								</div>
-							</div>
-						</div>	
-						<!-- Card body END -->
 					</div>
+					<!-- Card body END -->
+				</div>
+
+			</div>
+			<!-- Main content END -->
+		</div>
+	</div>
+</section>

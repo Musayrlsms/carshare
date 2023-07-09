@@ -20,6 +20,7 @@ class CarsController < ApplicationController
 
   # GET /cars/new
   def new
+    redirect_to(profiles_path, notice: "You can't rent a car before your account approved.") and return unless current_user.approved?
     @car = Car.new
     authorize @car
   end

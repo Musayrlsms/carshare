@@ -1,0 +1,31 @@
+<section class="pt-3">
+	<div class="container">
+		<div class="row g-2 g-lg-4">
+
+			<!-- Sidebar START -->
+			<%= render 'profiles/sidebar' %>
+			<!-- Sidebar END -->
+
+			
+			<!-- Main content START -->
+			<div class="col-lg-8 col-xl-9 ps-xl-5">
+			<div class="card border">
+                <div class="card-header border-bottom">
+                  <h5 class="card-header-title">Balance & Payouts</h5>
+                </div>
+
+                <div class="card-body">
+									Current Balance : <%= @balance.available.first.amount / 100 %> <%= @balance.available.first.currency %>
+									</br>
+									Pending Balance : <%= @balance.pending.first.amount / 100 %> <%= @balance.pending.first.currency %>
+									</br>
+									You will get payouts daily.
+                </div>
+              </div>
+
+          
+			</div>
+      <!-- Main content END -->
+    </div>
+  </div>
+</section>

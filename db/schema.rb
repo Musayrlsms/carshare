@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_01_031260) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_09_034949) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_01_031260) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "bank_accounts", force: :cascade do |t|
+    t.string "bank_account_id"
+    t.bigint "user_id", null: false
+    t.string "iban"
+    t.jsonb "response", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_bank_accounts_on_user_id"
   end
 
   create_table "brands", force: :cascade do |t|
@@ -74,6 +84,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_01_031260) do
     t.index ["user_id"], name: "index_cars_on_user_id"
   end
 
+  create_table "credit_cards", force: :cascade do |t|
+    t.string "stripe_credit_card_id"
+    t.string "last_four_digits"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_credit_cards_on_user_id"
+  end
+
   create_table "models", force: :cascade do |t|
     t.string "name"
     t.bigint "brand_id", null: false
@@ -82,16 +101,74 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_01_031260) do
     t.index ["brand_id"], name: "index_models_on_brand_id"
   end
 
+  create_table "payouts", force: :cascade do |t|
+    t.string "message"
+    t.float "amount"
+    t.string "stripe_id"
+    t.integer "status", default: 0
+    t.jsonb "response", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "properties", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "rents", force: :cascade do |t|
+    t.bigint "car_id", null: false
+    t.bigint "renter_id", null: false
+    t.bigint "owner_id", null: false
+    t.datetime "start_date"
+    t.datetime "finish_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.jsonb "payment_intent_response", default: "{}"
+    t.integer "payment_status", default: 0
+    t.float "amount"
+    t.string "payment_intent_id"
+    t.jsonb "canceled_response"
+    t.float "insurance"
+    t.float "fee"
+    t.index ["car_id"], name: "index_rents_on_car_id"
+    t.index ["owner_id"], name: "index_rents_on_owner_id"
+    t.index ["renter_id"], name: "index_rents_on_renter_id"
+  end
+
   create_table "rules", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "stripe_accounts", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "account_type"
+    t.string "dob_month"
+    t.string "dob_day"
+    t.string "dob_year"
+    t.string "phone"
+    t.string "email"
+    t.string "address_line"
+    t.string "postal_code"
+    t.string "city"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.string "account_id"
+    t.jsonb "response", default: {}
+    t.index ["user_id"], name: "index_stripe_accounts_on_user_id"
+  end
+
+  create_table "stripe_customers", force: :cascade do |t|
+    t.string "customer_id"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_stripe_customers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -111,6 +188,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_01_031260) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "stripe_customer_id"
     t.string "mobile_number"
     t.string "adress"
     t.date "date_of_birth"
@@ -125,8 +203,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_01_031260) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bank_accounts", "users"
   add_foreign_key "cars", "brands"
   add_foreign_key "cars", "models"
   add_foreign_key "cars", "users"
+  add_foreign_key "credit_cards", "users"
   add_foreign_key "models", "brands"
+  add_foreign_key "rents", "cars"
+  add_foreign_key "rents", "users", column: "owner_id"
+  add_foreign_key "rents", "users", column: "renter_id"
+  add_foreign_key "stripe_accounts", "users"
+  add_foreign_key "stripe_customers", "users"
 end
