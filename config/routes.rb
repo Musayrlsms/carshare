@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :models
   resources :brands
   resources :bank_accounts
+  resources :payouts
   
   resources :cars do
     resources :rents do

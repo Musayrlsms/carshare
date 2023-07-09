@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_06_044040) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_09_034949) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -99,6 +99,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_06_044040) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["brand_id"], name: "index_models_on_brand_id"
+  end
+
+  create_table "payouts", force: :cascade do |t|
+    t.string "message"
+    t.float "amount"
+    t.string "stripe_id"
+    t.integer "status", default: 0
+    t.jsonb "response", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "properties", force: :cascade do |t|

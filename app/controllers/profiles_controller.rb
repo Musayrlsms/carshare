@@ -47,7 +47,7 @@ class ProfilesController < ApplicationController
   end
 
   def balance
-    sb = Stripe::Balance.retrieve({stripe_account: current_user.stripe_account.account_id})
+    @balance = Stripe::Balance.retrieve({stripe_account: current_user.stripe_account.account_id})
   end
 
   def rejected
