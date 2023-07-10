@@ -5,7 +5,7 @@
 
 app = "still-bird-6972"
 primary_region = "ams"
-console_command = "/rails/bin/rails db:migrate & /rails/bin/rails console"
+console_command = "/rails/bin/rails console"
 
 [http_service]
   internal_port = 3000
@@ -18,3 +18,7 @@ console_command = "/rails/bin/rails db:migrate & /rails/bin/rails console"
 [[statics]]
   guest_path = "/rails/public"
   url_prefix = "/"
+
+[mounts]
+source="oijo_data"
+destination="/rails/storage"
