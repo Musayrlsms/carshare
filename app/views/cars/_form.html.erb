@@ -58,7 +58,11 @@
                   <!-- Address -->
                   <div class="col-12">
                     <label class="form-label">Address</label>
-                    <%= form.text_area :address, class: "form-control",placeholder: "Enter address",rows:"2" %>
+                    <div id="pick_up_forntinput" class="geocoder form-control"></div>
+                    <div id="map_home_page" class="form-control" ></div>
+                    <%= form.hidden_field :address, id: "hidden_address_input" %>
+                    <%= form.hidden_field :latitude, id: "hidden_latitude_input" %>
+                    <%= form.hidden_field :longitude, id: "hidden_longitude_input" %>
                   </div>
 
                   <!-- City -->
@@ -70,7 +74,6 @@
               </div>
             </div>
             <!-- Owner Detail END -->
-
             <!-- Cab Detail START -->
             <div class="card shadow mt-4">
               <!-- Card header -->
@@ -145,30 +148,92 @@
                   </div>
 
                   <!-- Image Gallery -->
-                  <div class="col-12">
-                  <label class="form-label">Upload image *</label>
-                  <div class="form-group">
+                  <div class="col-md-6">
+                    <label class="form-label">Upload your car photos<span class="text-danger">*</span></label>
+                    <div class="d-flex align-items-center">
+                    <label class="position-relative me-4" for="uploadfile-2" title="Replace this pic">
+                      <span class="avatar avatar-xl">
+                      <div id="image-preview"><img src="<%= asset_path('oijoo.png') %>" alt="logo" class="light-mode-item navbar-brand-item h-100px mt-4" ></div>
+                      
+                      </span>
+                    </label>
 
-                    <%= form.file_field :images, required: true, multiple: true, class:"rounded bg-light" %>
-                  
-                  <p class="small mb-0 mt-2"><b>Note:</b> Only JPG, JPEG, and PNG. Our suggested dimensions are 600px * 450px. The larger image will be cropped to 4:3 to fit our thumbnails/previews.</p>
-                </div>
-                </div>
+                    <!-- Upload button -->
+                    <%= form.file_field :images, required: true, multiple: true, class: "custom-file-input ", onchange: "previewImages(event)" %>
+                    </div>
+                  </div>
+                    
+                  <div class="col-md-6">
+                    <label class="form-label">Upload your insurance<span class="text-danger">*</span></label>
+                    <div class="d-flex align-items-center">
+                    <label class="position-relative me-4" for="uploadfile-2" title="Replace this pic">
+                      <span class="avatar avatar-xl">
+                      <div id="image-preview-1"><img class="avatar-img rounded-2" src="/assets/images/avatar/card.png" alt="avatar"></div>
+                     
+                      </span>
+                    </label>
+
+                    <!-- Upload button -->
+                    <%= form.file_field :insurance_images, required: true, multiple: true, class: "custom-file-input ", onchange: "previewImages1(event)" %>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label">Upload your registration documents<span class="text-danger">*</span></label>
+                    <div class="d-flex align-items-center">
+                    <label class="position-relative me-4" for="uploadfile-2" title="Replace this pic">
+                      <span class="avatar avatar-xl">
+                      <div id="image-preview-2"><img class="avatar-img rounded-2" src="/assets/images/avatar/card.png" alt="avatar"></div>
+                      
+                      </span>
+                    </label>
+
+                    <!-- Upload button -->
+                    <%= form.file_field :registration_images, required: true, multiple: true, class: "custom-file-input", onchange: "previewImages2(event)" %>
+                    </div>
+                  </div>
+
+                  <!-- Image Gallery -->
+
               </div>
             </div>
-            <!-- Driver Detail END -->
+            </div>
+            <!-- Cab Detail END -->
+            <!-- Rules START -->
+            <div class="card shadow mt-4">
+              <!-- Card header -->
+              <div class="card-header border-bottom">
+                <h5 class="mb-0"> Rules</h5>
+              </div>
+
+              <!-- Card body -->
+              <div class="card-body">
+                <div class="row g-3">
+                  <% Rule.all.each do |rule| %>
+                    <div class ="col-md-6">
+                      <%= check_box_tag "car[rule_ids][]", rule.id, @car.rules.include?(rule) %>
+                      <%= label_tag "car_rule_#{rule.id}", rule.name, class:"" %>
+                    </div>
+                  <% end %>                
+                </div>
+              </div>
+             </div>
+            <!-- Rules END -->
+
             <!-- Button -->
             <div class="text-end p-3">
 
               <%= form.submit "Add car", class:"btn btn-primary mb-0"  %>
 
             </div>
+            <!-- Button END-->
           </form>
         </div>
       </div>
     </div>
   </section>
 <% end %>
+
 
 
 
@@ -191,3 +256,152 @@
   });
 
 </script>
+<html>
+<head>
+<link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.css">
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css">
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.js"></script>
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js"></script>
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script> 
+
+<script>
+$( document ).ready(function() {
+    mapboxgl.accessToken = 'pk.eyJ1IjoidmltcGlsIiwiYSI6ImNrMjhvNXU0MTIyZGszbG16dWw1enVlamwifQ.5DWWvMDwGn1VfUD9uJjBEg';
+
+            var map = new mapboxgl.Map({
+                container: 'map_home_page',
+                style: 'mapbox://styles/mapbox/streets-v11',
+                center: [-79.4512, 43.6568],
+                zoom: 13
+            });
+            map.on('click', function(e) {
+  var coordinates = e.lngLat;
+  var lng = coordinates.lng;
+  var lat = coordinates.lat;
+
+  // Koordinatları hidden input alanlarına yerleştirme
+  document.getElementById('hidden_latitude_input').value = lat;
+  document.getElementById('hidden_longitude_input').value = lng;
+});
+             
+            window.pick_up_forntinput = new MapboxGeocoder({
+                accessToken: mapboxgl.accessToken,
+                mapboxgl: mapboxgl,
+                placeholder:'Pick Up Location',
+                countries: 'au',
+            });
+            
+            
+            window.pick_up_forntinput.on('result', function(result) {
+          var address = result.result.place_name;
+          document.getElementById('hidden_address_input').value = address;
+          var latitude = result.result.geometry.coordinates[1];
+          document.getElementById('hidden_latitude_input').value = latitude;
+          var longitude = result.result.geometry.coordinates[0];
+          document.getElementById('hidden_longitude_input').value = longitude;
+          
+
+});
+
+            document.getElementById('pick_up_forntinput').appendChild(pick_up_forntinput.onAdd(map));
+
+            window.dropp_off_forntinput = new MapboxGeocoder({
+                accessToken: mapboxgl.accessToken,
+                mapboxgl: mapboxgl,
+                placeholder:'Dropp Off Location',
+                countries: 'au',
+            });
+             
+            document.getElementById('dropp_off_forntinput').appendChild(dropp_off_forntinput.onAdd(map));
+            });
+
+            // main.js
+
+
+
+</script>
+
+<script>
+  function previewImages(event) {
+    var previewContainer = document.getElementById("image-preview");
+    previewContainer.innerHTML = "";
+
+    var files = event.target.files;
+    for (var i = 0; i < files.length; i++) {
+      var file = files[i];
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        var image = document.createElement("img");
+        image.src = e.target.result;
+        image.classList.add("preview-image");
+        previewContainer.appendChild(image);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  }
+</script>
+
+<script>
+  function previewImages1(event) {
+    var previewContainer = document.getElementById("image-preview-1");
+    previewContainer.innerHTML = "";
+
+    var files = event.target.files;
+    for (var i = 0; i < files.length; i++) {
+      var file = files[i];
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        var image = document.createElement("img");
+        image.src = e.target.result;
+        image.classList.add("preview-image-1");
+        previewContainer.appendChild(image);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  }
+</script>
+
+<script>
+  function previewImages2(event) {
+    var previewContainer = document.getElementById("image-preview-2");
+    previewContainer.innerHTML = "";
+
+    var files = event.target.files;
+    for (var i = 0; i < files.length; i++) {
+      var file = files[i];
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        var image = document.createElement("img");
+        image.src = e.target.result;
+        image.classList.add("preview-image-2");
+        previewContainer.appendChild(image);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  }
+</script>
+
+<body>
+  
+
+
+</body>
+</html>
+
+
+
+
+
+<style>
+  #map_home_page {
+    height: 300px; 
+  }
+</style>
