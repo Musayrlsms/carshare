@@ -134,7 +134,7 @@
                               </a>               
                               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="creditcardDropdown">
                                 <li>
-                                  <%= button_to bank_account_path(current_user.stripe_account), class: "dropdown-item", method: :delete do %>
+                                  <%= button_to bank_account_path(current_user.bank_account), class: "dropdown-item", method: :delete do %>
                                     <i class="bi bi-trash me-2 fw-icon"></i>Delete Bank Account
                                   <% end %>
                                 </li>
