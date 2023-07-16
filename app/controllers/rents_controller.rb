@@ -15,7 +15,8 @@ class RentsController < ApplicationController
   # GET /rents/new
   def new
     @rent = @car.rents.new
-    redirect_to(car_path(@car), notice: "The dates is not valid") if params[:start_date].nil? && params[:finish_date].nil?
+    authorize @rent, :new?
+    redirect_to(car_path(@car), notice: "The dates is not valid") if params[:start_date].nil? || params[:finish_date].nil?
     redirect_to(profiles_path, notice: "You can't rent a car before your account approved.") and return unless current_user.approved?
   end
 

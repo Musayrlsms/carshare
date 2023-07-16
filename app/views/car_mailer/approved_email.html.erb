@@ -1,6 +1,4 @@
 
-
-<<<<<<< HEAD
 <body style="box-sizing: border-box; margin: 0;">
   <table class="main-body" style="box-sizing: border-box; min-height: 150px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; width: 100%; height: 100%; background-color: rgb(234, 236, 237);" width="100%" height="100%" bgcolor="rgb(234, 236, 237)">
     <tbody style="box-sizing: border-box;">
@@ -48,7 +46,7 @@
                         </td>
                         <td class="cell c1776" style="box-sizing: border-box; width: 70%; vertical-align: middle;" width="70%" valign="middle">
                           <div id="iurpq" class="c1144" style="box-sizing: border-box; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; font-size: 17px; font-weight: 300;">
-                            <span style="box-sizing: border-box; color: #3498db;"><strong style="box-sizing: border-box;">Reset password instructions</strong></span>
+                            <span style="box-sizing: border-box; color: #3498db;"><strong style="box-sizing: border-box;">Congratulations, your car has been activated.</strong></span>
                           </div>
                         </td>
                       </tr>
@@ -57,23 +55,17 @@
                   <table id="itz2f" class="card" style="box-sizing: border-box; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; margin-bottom: 20px; height: 0px; min-height: 400px;" height="0">
                     <tbody style="box-sizing: border-box;">
                       <tr style="box-sizing: border-box;">
-                        <td class="card-cell" id="i1kua" style="box-sizing: border-box; background-color: rgb(255, 255, 255); overflow-x: hidden; overflow-y: hidden; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; text-align: center;" bgcolor="rgb(255, 255, 255)" align="center">
+                        <td class="card-cell" style="box-sizing: border-box; background-color: rgb(255, 255, 255); overflow-x: hidden; overflow-y: hidden; border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; text-align: center;" bgcolor="rgb(255, 255, 255)" align="center">
                           <table class="table100 c1357" style="box-sizing: border-box; width: 100%; min-height: 150px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; height: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; border-collapse: collapse;" width="100%" height="0">
                             <tbody style="box-sizing: border-box;">
                               <tr style="box-sizing: border-box;">
                                 <td id="ivnix" class="card-content" style="box-sizing: border-box; line-height: 20px; color: rgb(111, 119, 125); padding-top: 10px; padding-right: 20px; padding-bottom: 0px; padding-left: 20px; vertical-align: top; font-size: 13px; padding: 10px 20px 0 20px;" valign="top">
-                                  <h1 id="i9dnz" class="card-title" style="box-sizing: border-box; font-size: 25px; font-weight: 300; color: rgb(68, 68, 68);">Hello <%= @resource.email %>!
+                                  <h1 id="i9dnz" class="card-title" style="box-sizing: border-box; font-size: 25px; font-weight: 300; color: rgb(68, 68, 68);">Hello <%= @user.name %>
                                   </h1>
                                   <p id="ixx7e" class="card-text" style="box-sizing: border-box; text-align: left;">
-                                    <span style="box-sizing: border-box; color: #3498db;"><strong style="box-sizing: border-box;">Someone has requested a link to change your password. You can do this&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;through the button below.</strong></span>
-                                    <br style="box-sizing: border-box;">
-                                    <strong style="box-sizing: border-box;"><em style="box-sizing: border-box;">&nbsp;If you didn&#39;t request this, please ignore this email.</em></strong>
-                                    <br style="box-sizing: border-box;">
-                                    <strong style="box-sizing: border-box;"><em style="box-sizing: border-box;">Your password won&#39;t change until you access the link above and create a&nbsp; &nbsp; &nbsp;new one.</em></strong>
-                                    <br style="box-sizing: border-box;">
-                                    &nbsp;
+                                    <strong style="box-sizing: border-box;"><font color="#3498db" style="box-sizing: border-box;">We have reviewed the documents you uploaded for your vehicle and shared it
+                                      </font></strong>
                                   </p>
-                                  <%= link_to 'Change my password', edit_password_url(@resource, reset_password_token: @token), id: "iv4agq", class: "button", style: "box-sizing: border-box; font-size: 12px; padding: 10px 75px 17px 75px; color: rgb(255, 255, 255); text-align: center; border-radius: 3px; font-weight: 300; font-family: Helvetica, sans-serif; vertical-align: middle; background-color: #1d9bf0; margin: 0px 0px 73px 0px;", required: true %>
                                 </td>
                               </tr>
                             </tbody>
@@ -104,9 +96,3 @@
     font-size: 12px;
   }
 </style>
-=======
-<p><%= link_to 'Change my password', edit_password_url(@resource, reset_password_token: @token) %></p>
-
-<p>If you didn't request this, please ignore this email.</p>
-<p>Your password won't change until you access the link above and create a new one.</p>
->>>>>>> e4c6801e1808ebb332973810675f2b455bad882f
