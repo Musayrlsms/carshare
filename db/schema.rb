@@ -205,6 +205,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_09_034949) do
     t.string "name"
     t.string "surname"
     t.integer "document_status", default: 0
+    t.string "stripe_customer_id"
     t.integer "role", default: 0
     t.string "stripe_customer_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
