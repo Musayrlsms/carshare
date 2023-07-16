@@ -199,13 +199,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_09_034949) do
     t.string "unconfirmed_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "stripe_customer_id"
     t.string "mobile_number"
     t.string "adress"
     t.date "date_of_birth"
     t.string "name"
     t.string "surname"
     t.integer "document_status", default: 0
+    t.string "stripe_customer_id"
     t.integer "role", default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
