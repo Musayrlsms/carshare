@@ -60,7 +60,7 @@ class User < ApplicationRecord
   end
 
   def create_stripe_account
-    if approved? && name.present? && surname.present? && self.stripe_account.nil? && adress.present? && date_of_birth.present? && mobile_number.present?
+    if !approved? && name.present? && surname.present? && self.stripe_account.nil? && adress.present? && date_of_birth.present? && mobile_number.present?
       create_stripe_account_request = Stripe::Account.create(
         type: 'custom',
         country: 'HR',
@@ -105,7 +105,7 @@ class User < ApplicationRecord
   end
 
   def create_stripe_customer
-    if approved? && name.present? && surname.present? && self.stripe_customer.nil? && adress.present? && date_of_birth.present? && mobile_number.present?
+    if !approved? && name.present? && surname.present? && self.stripe_customer.nil? && adress.present? && date_of_birth.present? && mobile_number.present?
       create_stripe_customer_request = Stripe::Customer.create(
         email: email,
       )
