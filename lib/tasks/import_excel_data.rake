@@ -18,8 +18,9 @@ namespace :import do
           
         end
       end
-  
-      file_path = '/Users/salimtambay/Desktop/cars.xlsx' 
+      
+      file_path  = File.join('lib', 'tasks', 'data', 'cars.xlsx')
+      
       import_data_from_excel(file_path)
     end
   end

@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.2.2"
 gem 'roo'
+gem 'roo-xls'
 gem 'geocoder'
 gem 'google_places'
 gem 'google_maps_service'
