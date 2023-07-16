@@ -1,10 +1,3 @@
-<p>Welcome <%= @email %>!</p>
-
-<p>You can confirm your account email through the link below:</p>
-
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
-
-
 <body style="box-sizing: border-box; margin: 0;">
   <table class="main-body" style="box-sizing: border-box; min-height: 150px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; width: 100%; height: 100%; background-color: rgb(234, 236, 237);" width="100%" height="100%" bgcolor="rgb(234, 236, 237)">
     <tbody style="box-sizing: border-box;">
@@ -69,7 +62,7 @@
                             <tbody style="box-sizing: border-box;">
                               <tr style="box-sizing: border-box;">
                                 <td id="ivnix" class="card-content" style="box-sizing: border-box; line-height: 20px; color: rgb(111, 119, 125); padding-top: 10px; padding-right: 20px; padding-bottom: 0px; padding-left: 20px; vertical-align: top; font-size: 13px; padding: 10px 20px 0 20px;" valign="top">
-                                  <h1 id="i9dnz" class="card-title" style="box-sizing: border-box; font-size: 25px; font-weight: 300; color: rgb(68, 68, 68);">Hello <%= @user.name %>
+                                  <h1 id="i9dnz" class="card-title" style="box-sizing: border-box; font-size: 25px; font-weight: 300; color: rgb(68, 68, 68);">Hello <%= @email %>
                                   </h1>
                                   <p id="ixx7e" class="card-text" style="box-sizing: border-box; text-align: left;">
                                     <strong style="box-sizing: border-box;"><font color="#3498db" style="box-sizing: border-box;">You can activate your e-mail address using the link below to log in to your account.
