@@ -13,10 +13,7 @@ namespace :import do
           brand_name = row[3]
           model_name = row[4]
   
-          # Marka kaydetme veya var olan markayı al
           brand = Brand.find_or_create_by(name: brand_name)
-  
-          # Modeli oluştur ve markaya bağla
           model = brand.models.create(name: model_name)
           
         end
