@@ -214,7 +214,7 @@ Main Content START -->
 							</li>
 							<li class="list-group-item d-flex justify-content-between">
 								<span class="h6 fw-light mb-0">Convenience Fee</span>
-								<span class="h6 fw-light mb-0" id="fee-price">€ 0</span>
+								<span class="h6 fw-light mb-0" id="fee-price">€ <%= car.price / 10 %></span>
 							</li>
 							<li class="list-group-item d-flex justify-content-between">
 								<span class="h6 fw-light mb-0">Insurance</span>
@@ -232,7 +232,9 @@ Main Content START -->
 						<div class="col-lg-12 mt-4">
 							<div class="d-flex">
 								<div class="form-control-border form-control-transparent form-fs-md">
-									<input type="text" class="form-control flatpickr flatpickr-input" data-mode="range" placeholder="Select date" data-disable-dates="<%= @car.busy_days %>">
+								<form>
+									<input type="text" class="form-control flatpickr flatpickr-input" required data-mode="range" placeholder="Select date" data-disable-dates="<%= @car.busy_days %>">
+								<form>
 								</div>
 							</div>
 						</div>
@@ -330,16 +332,19 @@ var pickerX;
 		console.log(insurance.toString() + ' insurance')
 
 
-		document.getElementById('price').innerHTML = '€ ' + price.toString()
-		document.getElementById('fee-price').innerHTML = '€ ' + fee_price.toString()
-		document.getElementById('total-price').innerHTML = '€ ' + total_price.toString()
-		document.getElementById('insurance').innerHTML = '€ ' + insurance.toString()
+		document.getElementById('price').innerHTML = '€ ' + (price.toFixed(1)).toString()
+		document.getElementById('fee-price').innerHTML = '€ ' + (fee_price.toFixed(1)).toString()
+		document.getElementById('total-price').innerHTML = '€ ' + (total_price.toFixed(1)).toString()
+		document.getElementById('insurance').innerHTML = '€ ' + (insurance.toFixed(1)).toString()
 
 
 		console.log(daily_price.toString() + ' Daily Price')
-
-
-		var url = `/cars/<%= @car.id %>/rents/new?start_date=${pickerX.selectedDates[0].toString()}&finish_date=${pickerX.selectedDates[1].toString()}&insurance=${document.getElementById('insurance-checkbox').checked}` 
-		document.getElementById('rent-button').setAttribute('href', url)
+		try{
+			var url = `/cars/<%= @car.id %>/rents/new?start_date=${pickerX.selectedDates[0].toString()}&finish_date=${pickerX.selectedDates[1].toString()}&insurance=${document.getElementById('insurance-checkbox').checked}` 
+			document.getElementById('rent-button').setAttribute('href', url)
+		}catch{
+			var url = `/cars/<%= @car.id %>/rents/new?insurance=${document.getElementById('insurance-checkbox').checked}` 
+			document.getElementById('rent-button').setAttribute('href', url)
+		}
 	}	
 </script>

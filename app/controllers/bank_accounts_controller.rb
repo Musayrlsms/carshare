@@ -3,12 +3,12 @@ class BankAccountsController < ApplicationController
     unless current_user.stripe_account
       redirect_to new_stripe_account_path_wefwefwfw and return
     end
-
     @account = Stripe::Account.retrieve(current_user.stripe_account.account_id)
   end
 
   def create
-    unless params[:stripeToken] && current_user.stripe_account&.account_id
+    
+    unless params[:stripeToken]
       redirect_to bank_accounts_profiles_path and return
     end
 
@@ -26,8 +26,7 @@ class BankAccountsController < ApplicationController
   end
 
   def destroy
-    stripe_account = current_user.stripe_account
-    if true
+    if current_user.bank_account.destroy
       flash[:success] = "Your bank account has been deleted!"
       redirect_to bank_accounts_profiles_path
     else

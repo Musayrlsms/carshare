@@ -1,11 +1,5 @@
-<p style="color: green"><%= notice %></p>
-
 <%= render @car %>
-<% if flash[:alert] %>
-  <div class="alert alert-danger">
-    <%= flash[:alert] %>
-  </div>
-<% end %>
+
 <div>
   <% if policy(@car).edit? %>
     <%= link_to "Edit this car", edit_car_path(@car) %>
