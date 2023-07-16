@@ -47,7 +47,8 @@ class ProfilesController < ApplicationController
     @user = User.find(params[:id])
     authorize @user, :approved?
     @user.approved!
-    redirect_to document_profiles_path
+    UserMailer.approved_email(@user).deliver_now
+    redirect_to document_profiles_path, notice: 'User approved and email sent.'
   end
 
   def balance

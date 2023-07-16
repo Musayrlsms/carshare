@@ -9,8 +9,12 @@ class AdminsController < ApplicationController
     @car = Car.find(params[:id])
     authorize @car, :permit?
     @car.approved!
-    redirect_to admins_path
+    CarMailer.approved_email(@car).deliver_now
+    redirect_to admins_path, notice: 'Araba bilgileri onaylandı ve e-posta gönderildi.'
+
+
   end
+  
   def nopermit
       @car = Car.find(params[:id])
       authorize @car, :nopermit?
