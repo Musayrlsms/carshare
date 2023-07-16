@@ -17,6 +17,7 @@ class CarsController < ApplicationController
   def show
     @car = Car.find(params[:id])
     authorize @car
+    @rent = @car.rents.new(owner:@car.user)
   end
 
   # GET /cars/new
