@@ -17,11 +17,6 @@ class CarsController < ApplicationController
   def show
     @car = Car.find(params[:id])
     authorize @car
-    @show_pay = true
-    
-    if current_user && current_user.cars.include?(@car)
-      @show_pay = false
-    end
   end
 
 
