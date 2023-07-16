@@ -17,6 +17,7 @@ class CarsController < ApplicationController
   def show
     @car = Car.find(params[:id])
     authorize @car
+    @rent = @car.rents.new(owner:@car.user)
   end
 
 
@@ -73,7 +74,7 @@ class CarsController < ApplicationController
     @car.destroy
 
     respond_to do |format|
-      format.html { redirect_to cars_url, notice: "Car was successfully destroyed." }
+      format.html { redirect_to cars_profiles_path, notice: "Car was successfully destroyed." }
       format.json { head :no_content }
     end
   end

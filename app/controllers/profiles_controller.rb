@@ -21,9 +21,11 @@ class ProfilesController < ApplicationController
         message = user_info
         $telegram_bot.api.send_message(chat_id: ENV['TELEGRAM_CHAT_ID'], text: message)
       end
+      flash[:success] = 'Thank you for openning account with Oi-jo. We are reviewing your documents and we will send you activation link on your email.'
       redirect_to profiles_path
-    else 
-      render :update
+    else
+      flash[:error] = current_user.errors.full_messages.join(", ")
+      render :index
     end
   end
 
@@ -47,7 +49,8 @@ class ProfilesController < ApplicationController
     @user = User.find(params[:id])
     authorize @user, :approved?
     @user.approved!
-    redirect_to document_profiles_path
+    UserMailer.approved_email(@user).deliver_now
+    redirect_to document_profiles_path, notice: 'User approved and email sent.'
   end
 
   def balance

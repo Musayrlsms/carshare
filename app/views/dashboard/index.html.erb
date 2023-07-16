@@ -1,125 +1,112 @@
 	
+<link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.css">
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css">
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.js"></script>
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js"></script>
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script> 
+
 <!-- =======================
 Main Banner START -->
 <section class="pt-0 pt-lg-5">
-	<div class="container">
-		<div class="row">
+<div class="container">
+<!-- Content and Image START -->
+<div class="row g-4 g-lg-5">
+	<!-- Content -->
+	<div class="col-lg-6 position-relative mb-4 mb-md-0">
+		<!-- Title -->
+		<h1 class="mb-4 mt-md-5 display-5">Rent Your Car
+			
+		</h1>
+		<!-- Info -->
+		<div class="card pb-0 mt-n7 mt-sm-n8 mt-lg-0">
+						<!-- Card body START -->
+						<form class="card-body form-control-border p-3 p-sm-4">
+							
 
-			<div class="col-lg-10 ms-auto position-relative">
-				<img src="/assets/images/bg/bluee.jpg" class="rounded-3" alt="">
+							<!-- Tabs content START -->
+							<div class="tab-content my-4" id="pills-tabContent">
+								<!-- Round trip START -->
+								<div class="tab-pane fade show active" id="cab2-round-way" role="tabpanel" aria-labelledby="cab2-round-way-tab">
+									<div class="row g-2 g-md-4">
+										<!-- Pickup -->
+										<div class="col-md-12 position-relative">
+											<div class="form-fs-lg form-control-transparent">
+												<div id="pick_up_forntinput" class="geocoder"></div>
+												<div id="map_home_page" class="form-control d-none" ></div>
 
-				<!-- Search START -->
-				
-				<!-- Search END -->
-			</div>
-			<div class="col-xl-10 position-relative mt-n3 mt-xl-n9">
-				<!-- Title -->
-				<h6 class="d-none d-xl-block mb-3">Check Availability</h6>
+												<input type="hidden" id="hidden_latitude_input">
+												<input type="hidden" id="hidden_longitude_input">
+												
+											</div>	
+										</div>
 
-				<!-- Booking from START -->
-				<form class="card shadow rounded-3 position-relative p-4 pe-md-5 pb-5 pb-md-4">
-					<div class="row g-4 align-items-center">
-						<!-- Location -->
-						<div class="col-lg-4">
-							<div class="form-control-border form-control-transparent form-fs-md d-flex">
-								<!-- Icon -->
-								<i class="bi bi-geo-alt fs-3 me-2 mt-2"></i>
-								<!-- Select input -->
-								<div class="flex-grow-1">
-									<label class="form-label">Location</label>
-									<div class="choices" data-type="select-one" tabindex="0" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false"><div class="choices__inner"><select class="form-select js-choice choices__input" data-search-enabled="true" tabindex="-1" data-choice="active" hidden=""><option value="" data-custom-properties="[object Object]">Select location</option></select><div class="choices__list choices__list--single"><div class="choices__item choices__placeholder choices__item--selectable" data-item="" data-id="1" data-value="" data-custom-properties="[object Object]" aria-selected="true">Select location</div></div></div><div class="choices__list choices__list--dropdown" aria-expanded="false"><input type="search" name="search_terms" class="choices__input choices__input--cloned" autocomplete="off" autocapitalize="none" spellcheck="false" role="textbox" aria-autocomplete="list" aria-label="Select location" placeholder=""><div class="choices__list" role="listbox"><div id="choices--en26-item-choice-1" class="choices__item choices__item--choice is-selected choices__placeholder choices__item--selectable is-highlighted" role="option" data-choice="" data-id="1" data-value="" data-select-text="Press to select" data-choice-selectable="" aria-selected="true">Select location</div><div id="choices--en26-item-choice-2" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="2" data-value="San Jacinto, USA" data-select-text="Press to select" data-choice-selectable="">San Jacinto, USA</div><div id="choices--en26-item-choice-3" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="3" data-value="North Dakota, Canada" data-select-text="Press to select" data-choice-selectable="">North Dakota, Canada</div><div id="choices--en26-item-choice-4" class="choices__item choices__item--choice choices__item--selectable" role="option" data-choice="" data-id="4" data-value="West Virginia, Paris" data-select-text="Press to select" data-choice-selectable="">West Virginia, Paris</div></div></div></div>
+										<!-- Date -->
+										<div class="col-sm-12">
+											<div class="form-fs-lg form-control-transparent">
+												<label class="form-label small">Pickup Date</label>
+												<input type="text" class="form-control flatpickr flatpickr-input" placeholder="Select date" readonly="readonly" data-enableTime="true">
+											</div>
+										</div>
+
+										<!-- Date -->
+										<div class="col-sm-12">
+											<div class="form-fs-lg form-control-transparent">
+												<label class="form-label small">Return Date</label>
+												<input type="text" class="form-control flatpickr flatpickr2 flatpickr-input" placeholder="Select date" readonly="readonly" data-enableTime="true">
+											</div>
+										</div>
+
+									</div> <!-- Row END -->
 								</div>
+								<!-- Round trip END -->
 							</div>
-						</div>
+							<!-- Tabs content END -->
 
-						<!-- Check in -->
-						<div class="col-lg-4">
-							<div class="d-flex">
-								<!-- Icon -->
-								<i class="bi bi-calendar fs-3 me-2 mt-2"></i>
-								<!-- Date input -->
-								<div class="form-control-border form-control-transparent form-fs-md">
-									<label class="form-label">Check in - out</label>
-									<input type="text" class="form-control flatpickr flatpickr-input" data-mode="range" placeholder="Select date" value="19 Sep to 28 Sep" readonly="readonly">
-								</div>
+							<!-- Button -->
+							<div class="d-grid">
+								<a class="btn btn-dark mb-0" id="search-button">Search</a>
 							</div>
-						</div>
 
-						<!-- Guest -->
-						<div class="col-lg-4">
-							<div class="form-control-border form-control-transparent form-fs-md d-flex">
-								<!-- Icon -->
-								<i class="bi bi-person fs-3 me-2 mt-2"></i>
-								<!-- Dropdown input -->
-								<div class="w-100">
-									<label class="form-label">Guests &amp; rooms</label>
-									<div class="dropdown guest-selector me-2">
-										<input type="text" class="form-guest-selector form-control selection-result" value="2 Guests 1 Room" data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false">
-									
-										<!-- dropdown items -->
-										<ul class="dropdown-menu guest-selector-dropdown" style="">
-											<!-- Adult -->
-											<li class="d-flex justify-content-between">
-												<div>
-													<h6 class="mb-0">Adults</h6>
-													<small>Ages 13 or above</small>
-												</div>
-
-												<div class="hstack gap-1 align-items-center">
-													<button type="button" class="btn btn-link adult-remove p-0 mb-0"><i class="bi bi-dash-circle fs-5 fa-fw"></i></button>
-													<h6 class="guest-selector-count mb-0 adults">2</h6>
-													<button type="button" class="btn btn-link adult-add p-0 mb-0"><i class="bi bi-plus-circle fs-5 fa-fw"></i></button>
-												</div>
-											</li>
-
-											<!-- Divider -->
-											<li class="dropdown-divider"></li>
-
-											<!-- Child -->
-											<li class="d-flex justify-content-between">
-												<div>
-													<h6 class="mb-0">Child</h6>
-													<small>Ages 13 below</small>
-												</div>
-
-												<div class="hstack gap-1 align-items-center">
-													<button type="button" class="btn btn-link child-remove p-0 mb-0"><i class="bi bi-dash-circle fs-5 fa-fw"></i></button>
-													<h6 class="guest-selector-count mb-0 child">0</h6>
-													<button type="button" class="btn btn-link child-add p-0 mb-0"><i class="bi bi-plus-circle fs-5 fa-fw"></i></button>
-												</div>
-											</li>
-
-											<!-- Divider -->
-											<li class="dropdown-divider"></li>
-
-											<!-- Rooms -->
-											<li class="d-flex justify-content-between">
-												<div>
-													<h6 class="mb-0">Rooms</h6>
-													<small>Max room 8</small>
-												</div>
-
-												<div class="hstack gap-1 align-items-center">
-													<button type="button" class="btn btn-link room-remove p-0 mb-0"><i class="bi bi-dash-circle fs-5 fa-fw"></i></button>
-													<h6 class="guest-selector-count mb-0 rooms">1</h6>
-													<button type="button" class="btn btn-link room-add p-0 mb-0"><i class="bi bi-plus-circle fs-5 fa-fw"></i></button>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
+						</form>
+						<!-- Card-body END -->
 					</div>
-					<!-- Button -->
-					<div class="btn-position-md-middle">
-						<a class="icon-lg btn btn-round btn-primary mb-0" href="#"><i class="bi bi-search fa-fw"></i></a>
-					</div>
-				</form>
-				<!-- Booking from END -->
-			</div>
-		</div> <!-- Row END -->
+
 	</div>
+	
+	<!-- Image -->
+	<div class="col-lg-6 position-relative rounded text-white" style="min-height:70vh; background-color: #1d9bf0">
+		<h1 class="mb-4 mt-md-5 display-5 text-white">List Your Car</h1>
+
+		<%= form_for(User.new, as: :user, url: registration_path(:user), class: "mt-4 text-start") do |f| %>
+			<!-- Email -->
+			<div class="mb-3">
+				<label class="form-label text-white"><%=  f.label :email %><br /></label>
+				<%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control mt-3" %>
+			</div>
+			<!-- Password -->
+			<div class="mb-3 position-relative">
+				<label class="form-label text-white">Enter password</label>
+				<%= f.password_field :password, autocomplete: "new-password", class: "form-control fakepassword", id: "psw-input"%>
+				<span class="position-absolute top-50 end-0 translate-middle-y p-0 mt-3">
+					<i class="fakepasswordicon fas fa-eye-slash cursor-pointer p-2"></i>
+				</span>
+			</div>
+			<!-- Confirm Password -->
+			<div class="mb-3">
+				<label class="form-label text-white">Confirm Password</label>
+				<%= f.password_field :password_confirmation, autocomplete: "new-password",  class: "form-control"%>
+			</div>
+			<!-- Button -->
+			<div>
+				<%= f.submit "Sign up", class:"btn btn-white w-100 mb-0 mt-3" %>
+			</div>
+		<% end %>
+	</div>
+</div>
+<!-- Content and Image END -->
+</div>
 </section>
 <!-- =======================
 Main Banner END -->
@@ -547,5 +534,143 @@ Faqs START-->
 </section>
 <!-- =======================
 Faqs END-->
+<style>
+@media screen and (min-width: 640px){
+	.mapboxgl-ctrl-geocoder{
+		width: 100% !important;
+		max-width: 100% !important;
+		z-index: 10000 !important;
+		border-radius: 8px;
+	}
+}
 
-<!-- =======================
+.mapboxgl-ctrl-geocoder{
+	width: 100% !important;
+	border-radius: 8px;
+	max-width: 100% !important;
+}
+.mapboxgl-ctrl-geocoder .suggestions{
+	z-index: 10000 !important;
+}
+</style>
+
+<script>
+  $( document ).ready(function() {
+    mapboxgl.accessToken = 'pk.eyJ1IjoidmltcGlsIiwiYSI6ImNrMjhvNXU0MTIyZGszbG16dWw1enVlamwifQ.5DWWvMDwGn1VfUD9uJjBEg';
+
+            var map = new mapboxgl.Map({
+                container: 'map_home_page',
+                style: 'mapbox://styles/mapbox/streets-v11',
+                center: [-79.4512, 43.6568],
+                zoom: 13
+            });
+            map.on('click', function(e) {
+							var coordinates = e.lngLat;
+							var lng = coordinates.lng;
+							var lat = coordinates.lat;
+
+							// Koordinatları hidden input alanlarına yerleştirme
+							document.getElementById('hidden_latitude_input').value = lat;
+							document.getElementById('hidden_longitude_input').value = lng;
+						});
+             
+            window.pick_up_forntinput = new MapboxGeocoder({
+                accessToken: mapboxgl.accessToken,
+                mapboxgl: mapboxgl,
+                placeholder:'Pick Up Location'
+            });
+            
+            
+            window.pick_up_forntinput.on('result', function(result) {
+					var latitude = result.result.geometry.coordinates[1];
+          document.getElementById('hidden_latitude_input').value = latitude;
+          var longitude = result.result.geometry.coordinates[0];
+          document.getElementById('hidden_longitude_input').value = longitude;
+
+});
+
+            document.getElementById('pick_up_forntinput').appendChild(pick_up_forntinput.onAdd(map));
+
+            window.drop_off_forntinput = new MapboxGeocoder({
+                accessToken: mapboxgl.accessToken,
+                mapboxgl: mapboxgl,
+                placeholder:'Dropp Off Location'
+            });
+            });
+
+            // main.js
+
+
+
+</script>
+<script>
+
+
+var pickerX;
+	$(document).ready(function () {
+		var picker = e.select('.flatpickr');
+		if (e.isVariableDefined(picker)) {
+			var element = e.selectAll('.flatpickr');
+			var mode = picker.getAttribute('data-mode') == 'multiple' ? 'multiple' : picker.getAttribute('data-mode') == 'range' ? 'range' : 'single';
+			var enableTime = picker.getAttribute('data-enableTime') == 'true' ? true : false;
+			var noCalendar = picker.getAttribute('data-noCalendar') == 'true' ? true : false;
+			var inline = picker.getAttribute('data-inline') == 'true' ? true : false;
+			var dateFormat = picker.getAttribute('data-date-format') ? picker.getAttribute('data-date-format') : picker.getAttribute('data-enableTime') == 'true' ? "h:i K" : "d M";
+			var disableDates = picker.getAttribute('data-disable-dates') ? JSON.parse(picker.getAttribute('data-disable-dates')) : []
+
+			pickerX = flatpickr(picker, {
+				mode: mode,
+				enableTime: true,
+				noCalendar: noCalendar,
+				inline: inline,
+				animate: "false",
+				position: "top",
+				dateFormat: 'd/m/Y H:i',
+				disable: disableDates,
+			});
+
+		}
+		pickerX.config.onChange.push(recalculate_prices);
+	});
+
+	$(document).ready(function () {
+		var picker = e.select('.flatpickr2');
+		if (e.isVariableDefined(picker)) {
+			var element = e.selectAll('.flatpickr2');
+			var mode = picker.getAttribute('data-mode') == 'multiple' ? 'multiple' : picker.getAttribute('data-mode') == 'range' ? 'range' : 'single';
+			var enableTime = picker.getAttribute('data-enableTime') == 'true' ? true : false;
+			var noCalendar = picker.getAttribute('data-noCalendar') == 'true' ? true : false;
+			var inline = picker.getAttribute('data-inline') == 'true' ? true : false;
+			var dateFormat = picker.getAttribute('data-date-format') ? picker.getAttribute('data-date-format') : picker.getAttribute('data-enableTime') == 'true' ? "h:i K" : "d M";
+			var disableDates = picker.getAttribute('data-disable-dates') ? JSON.parse(picker.getAttribute('data-disable-dates')) : []
+
+			pickerY = flatpickr(picker, {
+				mode: mode,
+				enableTime: true,
+				noCalendar: noCalendar,
+				inline: inline,
+				animate: "false",
+				position: "top",
+				dateFormat: 'd/m/Y H:i',
+				disable: disableDates,
+			});
+
+		}
+		pickerY.config.onChange.push(recalculate_prices);
+	});
+
+	function recalculate_prices() {
+		/* try{
+			var url = `/cars//rents/new?start_date=${pickerX.selectedDates[0].toString()}&finish_date=${pickerX.selectedDates[1].toString()}&insurance=${document.getElementById('insurance-checkbox').checked}` 
+			document.getElementById('rent-button').setAttribute('href', url)
+		}catch{
+			var url = `/cars//rents/new?insurance=${document.getElementById('insurance-checkbox').checked}` 
+			document.getElementById('rent-button').setAttribute('href', url)
+		}*/
+	}	
+	
+
+	$('#search-button').on('click', function(){
+		// window.location = '/cars/?lat=${document.getElementById('hidden_latitude_input').value}&lng=${document.getElementById('hidden_longitude_input').value}&pick-up-date=${pickerY.selectedDates[0].toString()}&drop-off-date=${pickerX.selectedDates[0].toString()}'
+	});
+</script>

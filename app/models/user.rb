@@ -31,7 +31,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :confirmable
 
   has_one :stripe_account
   has_one :stripe_customer
@@ -48,8 +48,8 @@ class User < ApplicationRecord
   has_one_attached :driver_license
 
 
-  after_save :create_stripe_account
-  after_save :create_stripe_customer
+  validate :create_stripe_account
+  validate :create_stripe_customer
 
   def document_upload?
       document_status != "approved" && self.identity_card.present? && self.passport.present? && self.driver_license.present?
@@ -100,6 +100,8 @@ class User < ApplicationRecord
       sa = StripeAccount.new(account_id: create_stripe_account_request.id, user: self)
       sa.save!
     end
+  rescue StandardError => e
+    errors.add(:base, e.error.message)
   end
 
   def create_stripe_customer
@@ -113,5 +115,7 @@ class User < ApplicationRecord
       sc = StripeCustomer.new(customer_id: create_stripe_customer_request.id, user: self)
       sc.save!
     end
+  rescue StandardError => e
+    errors.add(:base, e.error.message)
   end
 end

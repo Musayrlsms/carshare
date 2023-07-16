@@ -133,10 +133,11 @@ Main Content START -->
 			<!-- Main content END -->
 
 			<!-- Sidebar START -->
-			<aside class="col-xl-4">
-			
-				<div data-sticky data-margin-top="80" data-sticky-for="1199">
-					
+
+			<% if policy(@rent).new? %>
+				<aside class="col-xl-4">
+					<div data-sticky data-margin-top="80" data-sticky-for="1199">
+
 						<div class="card card-body bg-light p-4">
 							<!-- Title -->
 							<h6 class="text-danger fw-normal">Hurry! Limited cars left</h6>
@@ -167,12 +168,13 @@ Main Content START -->
 								</li>
 							</ul>
 
-							<!-- Date -->
-							<div class="col-lg-12 mt-4">
-								<div class="d-flex">
-									<div class="form-control-border form-control-transparent form-fs-md">
-										<input type="text" class="form-control flatpickr flatpickr-input" data-mode="range" placeholder="Select date" data-disable-dates="<%= @car.busy_days %>">
-									</div>
+						<!-- Date -->
+						<div class="col-lg-12 mt-4">
+							<div class="d-flex">
+								<div class="form-control-border form-control-transparent form-fs-md">
+								<form>
+									<input type="text" class="form-control flatpickr flatpickr-input" required data-mode="range" placeholder="Select date" data-disable-dates="<%= @car.busy_days %>">
+								<form>
 								</div>
 							</div>
 							
@@ -186,10 +188,9 @@ Main Content START -->
 								<%= link_to 'Pay Now', new_car_rent_path(@car, start_date: params[:start_date], finish_date: params[:finish_date]), class: 'btn btn-dark mb-0 mt-2', id: 'rent-button' %>
 							</div>
 						</div>
-				
-				</div> 
-				
-			</aside>
+					</div> 
+				</aside>
+			<% end %>
 			<!-- Sidebar END -->
 		</div>
 	</div>
@@ -271,16 +272,19 @@ var pickerX;
 		console.log(insurance.toString() + ' insurance')
 
 
-		document.getElementById('price').innerHTML = '€ ' + price.toString()
-		document.getElementById('fee-price').innerHTML = '€ ' + fee_price.toString()
-		document.getElementById('total-price').innerHTML = '€ ' + total_price.toString()
-		document.getElementById('insurance').innerHTML = '€ ' + insurance.toString()
+		document.getElementById('price').innerHTML = '€ ' + (price.toFixed(1)).toString()
+		document.getElementById('fee-price').innerHTML = '€ ' + (fee_price.toFixed(1)).toString()
+		document.getElementById('total-price').innerHTML = '€ ' + (total_price.toFixed(1)).toString()
+		document.getElementById('insurance').innerHTML = '€ ' + (insurance.toFixed(1)).toString()
 
 
 		console.log(daily_price.toString() + ' Daily Price')
-
-
-		var url = `/cars/<%= @car.id %>/rents/new?start_date=${pickerX.selectedDates[0].toString()}&finish_date=${pickerX.selectedDates[1].toString()}&insurance=${document.getElementById('insurance-checkbox').checked}` 
-		document.getElementById('rent-button').setAttribute('href', url)
+		try{
+			var url = `/cars/<%= @car.id %>/rents/new?start_date=${pickerX.selectedDates[0].toString()}&finish_date=${pickerX.selectedDates[1].toString()}&insurance=${document.getElementById('insurance-checkbox').checked}` 
+			document.getElementById('rent-button').setAttribute('href', url)
+		}catch{
+			var url = `/cars/<%= @car.id %>/rents/new?insurance=${document.getElementById('insurance-checkbox').checked}` 
+			document.getElementById('rent-button').setAttribute('href', url)
+		}
 	}	
 </script>

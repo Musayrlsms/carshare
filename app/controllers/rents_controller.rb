@@ -14,8 +14,10 @@ class RentsController < ApplicationController
 
   # GET /rents/new
   def new
-    redirect_to(profiles_path, notice: "You can't rent a car before your account approved.") and return unless current_user.approved?
     @rent = @car.rents.new
+    authorize @rent, :new?
+    redirect_to(car_path(@car), notice: "The dates is not valid") if params[:start_date].nil? || params[:finish_date].nil?
+    redirect_to(profiles_path, notice: "You can't rent a car before your account approved.") and return unless current_user.approved?
   end
 
   # GET /rents/1/edit
@@ -129,8 +131,8 @@ class RentsController < ApplicationController
     end
 
     def total_amount
-      @start_date = DateTime.parse(params[:start_date])
-      @finish_date = DateTime.parse(params[:finish_date])
+      @start_date = params[:start_date].present? ? DateTime.parse(params[:start_date]) : DateTime.now
+      @finish_date = params[:finish_date].present? ? DateTime.parse(params[:finish_date]) : DateTime.now + 1.day
       
       day_count = (@finish_date - @start_date).to_i
       if day_count < 1
