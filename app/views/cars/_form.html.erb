@@ -267,59 +267,66 @@
 <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script> 
 
 <script>
-$( document ).ready(function() {
-    mapboxgl.accessToken = 'pk.eyJ1IjoidmltcGlsIiwiYSI6ImNrMjhvNXU0MTIyZGszbG16dWw1enVlamwifQ.5DWWvMDwGn1VfUD9uJjBEg';
 
-            var map = new mapboxgl.Map({
-                container: 'map_home_page',
-                style: 'mapbox://styles/mapbox/streets-v11',
-                center: [-79.4512, 43.6568],
-                zoom: 13
-            });
-            map.on('click', function(e) {
-  var coordinates = e.lngLat;
-  var lng = coordinates.lng;
-  var lat = coordinates.lat;
+$(document).ready(function() {
+  mapboxgl.accessToken = 'pk.eyJ1IjoidmltcGlsIiwiYSI6ImNrMjhvNXU0MTIyZGszbG16dWw1enVlamwifQ.5DWWvMDwGn1VfUD9uJjBEg';
 
-  // Koordinatları hidden input alanlarına yerleştirme
-  document.getElementById('hidden_latitude_input').value = lat;
-  document.getElementById('hidden_longitude_input').value = lng;
+  var map = new mapboxgl.Map({
+    container: 'map_home_page',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [-79.4512, 43.6568],
+    zoom: 13
+  });
+
+  var marker = new mapboxgl.Marker();
+
+  map.on('click', function(e) {
+    var coordinates = e.lngLat;
+    var lng = coordinates.lng;
+    var lat = coordinates.lat;
+
+    document.getElementById('hidden_latitude_input').value = lat;
+    document.getElementById('hidden_longitude_input').value = lng;
+
+    marker.remove();
+
+ 
+    marker.setLngLat([lng, lat]).addTo(map);
+  });
+
+  window.pick_up_forntinput = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl,
+    placeholder: 'Pick Up Location',
+    countries: 'au',
+  });
+
+  window.pick_up_forntinput.on('result', function(result) {
+    var address = result.result.place_name;
+    document.getElementById('hidden_address_input').value = address;
+    var latitude = result.result.geometry.coordinates[1];
+    document.getElementById('hidden_latitude_input').value = latitude;
+    var longitude = result.result.geometry.coordinates[0];
+    document.getElementById('hidden_longitude_input').value = longitude;
+
+    
+    marker.remove();
+
+    
+    marker.setLngLat([longitude, latitude]).addTo(map);
+  });
+
+  document.getElementById('pick_up_forntinput').appendChild(pick_up_forntinput.onAdd(map));
+
+  window.dropp_off_forntinput = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl,
+    placeholder: 'Dropp Off Location',
+    countries: 'au',
+  });
+
+  document.getElementById('dropp_off_forntinput').appendChild(dropp_off_forntinput.onAdd(map));
 });
-             
-            window.pick_up_forntinput = new MapboxGeocoder({
-                accessToken: mapboxgl.accessToken,
-                mapboxgl: mapboxgl,
-                placeholder:'Pick Up Location',
-                countries: 'au',
-            });
-            
-            
-            window.pick_up_forntinput.on('result', function(result) {
-          var address = result.result.place_name;
-          document.getElementById('hidden_address_input').value = address;
-          var latitude = result.result.geometry.coordinates[1];
-          document.getElementById('hidden_latitude_input').value = latitude;
-          var longitude = result.result.geometry.coordinates[0];
-          document.getElementById('hidden_longitude_input').value = longitude;
-          
-
-});
-
-            document.getElementById('pick_up_forntinput').appendChild(pick_up_forntinput.onAdd(map));
-
-            window.dropp_off_forntinput = new MapboxGeocoder({
-                accessToken: mapboxgl.accessToken,
-                mapboxgl: mapboxgl,
-                placeholder:'Dropp Off Location',
-                countries: 'au',
-            });
-             
-            document.getElementById('dropp_off_forntinput').appendChild(dropp_off_forntinput.onAdd(map));
-            });
-
-            // main.js
-
-
 
 </script>
 

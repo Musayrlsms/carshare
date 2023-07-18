@@ -2,123 +2,8 @@
 	<div class="container">
 		<!-- Background image -->
 		
-		<div class="rounded-3 p-3 p-sm-5" style="position: relative;">
-  					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d805170.0496601658!2d145.05313529999998!3d-37.9725665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad646b5d2ba4df7%3A0x4045675218ccd90!2sMelbourne%20Victoria!5e0!3m2!1str!2sau!4v1688313400605!5m2!1str!2sau" width="100%" height="100%" style="position: absolute; top: 0; left: 0; border: 0;  border-radius: 10px 10px 10px 10px;" allowfullscreen="" loading="lazy"></iframe>
-			
-
-			<!-- Banner title -->
-			<div class="row my-2 my-xl-5"> 
-				<div class="col-md-8 mx-auto"> 
-					<h1 class="text-center text-white">150 Hotels in New York</h1>
-				</div>
-			</div>
-
-			<!-- Booking from START -->
-			<form class="bg-mode shadow rounded-3 position-relative p-4 pe-md-5 pb-5 pb-md-4 mb-4">
-				<div class="row g-4 align-items-center">
-					<!-- Location -->
-					<div class="col-lg-4">
-						<div class="form-control-border form-control-transparent form-fs-md d-flex">
-							<!-- Icon -->
-							<i class="bi bi-geo-alt fs-3 me-2 mt-2"></i>
-							<!-- Select input -->
-							<div class="flex-grow-1">
-								<label class="form-label">Location</label>
-								<select class="form-select js-choice" data-search-enabled="true">
-									<option value="">Select location</option>
-									<option selected>San Jacinto, USA</option>
-									<option>North Dakota, Canada</option>
-									<option>West Virginia, Paris</option>
-								</select>
-							</div>
-						</div>
-					</div>
-
-					<!-- Check in -->
-					<div class="col-lg-4">
-						<div class="d-flex">
-							<!-- Icon -->
-							<i class="bi bi-calendar fs-3 me-2 mt-2"></i>
-							<!-- Date input -->
-							<div class="form-control-border form-control-transparent form-fs-md">
-								<label class="form-label">Check in - out</label>
-								<input type="text" class="form-control flatpickr" data-mode="range" placeholder="Select date" value="19 Sep to 28 Sep">
-							</div>
-						</div>
-					</div>
-
-					<!-- Guest -->
-					<div class="col-lg-4">
-						<div class="form-control-border form-control-transparent form-fs-md d-flex">
-							<!-- Icon -->
-							<i class="bi bi-person fs-3 me-2 mt-2"></i>
-							<!-- Dropdown input -->
-							<div class="w-100">
-								<label class="form-label">Guests & rooms</label>
-								<div class="dropdown guest-selector me-2">
-									<input type="text" class="form-guest-selector form-control selection-result" value="2 Guests 1 Room" id="dropdownShare" data-bs-auto-close="outside" data-bs-toggle="dropdown">
-								
-									<!-- dropdown items -->
-									<ul class="dropdown-menu guest-selector-dropdown" aria-labelledby="dropdownShare">
-										<!-- Adult -->
-										<li class="d-flex justify-content-between">
-											<div>
-												<h6 class="mb-0">Adults</h6>
-												<small>Ages 13 or above</small>
-											</div>
-
-											<div class="hstack gap-1 align-items-center">
-												<button type="button" class="btn btn-link adult-remove p-0 mb-0"><i class="bi bi-dash-circle fs-5 fa-fw"></i></button>
-												<h6 class="guest-selector-count mb-0 adults">2</h6>
-												<button type="button" class="btn btn-link adult-add p-0 mb-0"><i class="bi bi-plus-circle fs-5 fa-fw"></i></button>
-											</div>
-										</li>
-
-										<!-- Divider -->
-										<li class="dropdown-divider"></li>
-
-										<!-- Child -->
-										<li class="d-flex justify-content-between">
-											<div>
-												<h6 class="mb-0">Child</h6>
-												<small>Ages 13 below</small>
-											</div>
-
-											<div class="hstack gap-1 align-items-center">
-												<button type="button" class="btn btn-link child-remove p-0 mb-0" ><i class="bi bi-dash-circle fs-5 fa-fw"></i></button>
-												<h6 class="guest-selector-count mb-0 child">0</h6>
-												<button type="button" class="btn btn-link child-add p-0 mb-0" ><i class="bi bi-plus-circle fs-5 fa-fw"></i></button>
-											</div>
-										</li>
-
-										<!-- Divider -->
-										<li class="dropdown-divider"></li>
-
-										<!-- Rooms -->
-										<li class="d-flex justify-content-between">
-											<div>
-												<h6 class="mb-0">Rooms</h6>
-												<small>Max room 8</small>
-											</div>
-
-											<div class="hstack gap-1 align-items-center">
-												<button type="button" class="btn btn-link room-remove p-0 mb-0" ><i class="bi bi-dash-circle fs-5 fa-fw"></i></button>
-												<h6 class="guest-selector-count mb-0 rooms">1</h6>
-												<button type="button" class="btn btn-link room-add p-0 mb-0" ><i class="bi bi-plus-circle fs-5 fa-fw"></i></button>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- Button -->
-				<div class="btn-position-md-middle">
-					<a  class="icon-lg btn btn-round btn-primary mb-0" href="hotel-grid.html#"><i class="bi bi-search fa-fw"></i></a>
-				</div>
-			</form>
-			<!-- Booking from END -->
+		<div class="rounded-3 p-3 p-sm-5 "style="width: 100%;" >
+						<div id="map" style="width: 100%; height: 50vh; border-radius:10px;"></div>
 		</div>
 	</div>
 </section>
@@ -285,6 +170,63 @@ Hotel grid START -->
 		</div>
 	</div>
 </section>
+<head>
+<link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.css">
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css">
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.6.1/mapbox-gl.js"></script>
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.0.2/mapbox-gl-directions.js"></script>
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js"></script> 
+
+
+
+<style>
+  .marker {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoidmltcGlsIiwiYSI6ImNrMjhvNXU0MTIyZGszbG16dWw1enVlamwifQ.5DWWvMDwGn1VfUD9uJjBEg';
+
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [<%= @cars.approved.first.longitude %>, <%= @cars.approved.first.latitude %>],
+    zoom: 10
+  });
+
+  <% @cars.approved.each do |car| %>
+    var markerElement = document.createElement('div');
+    markerElement.className = 'marker';
+    markerElement.style.backgroundImage = 'url(<%= url_for(car.images.first) %>)';
+    markerElement.style.backgroundSize = 'contain';
+    markerElement.style.backgroundRepeat = 'no-repeat';
+    markerElement.style.backgroundPosition = 'center';
+    markerElement.style.width = '50px';
+    markerElement.style.height = '50px';
+
+    markerElement.addEventListener('click', function() {
+      window.location.href = '<%= car_path(car) %>';
+    });
+
+    var marker<%= car.id %> = new mapboxgl.Marker(markerElement)
+      .setLngLat([<%= car.longitude.to_f %>, <%= car.latitude.to_f %>])
+      .addTo(map);
+  <% end %>
+</script>
+
+
+
+
+
 
 
 
@@ -331,6 +273,10 @@ slider.noUiSlider.on("update", function (values, handle) {
 
 
 <style>
+#map_home_page {
+	width: 100%;
+	height: 400px;
+  }
 
 	.pagination {
 		color: red;

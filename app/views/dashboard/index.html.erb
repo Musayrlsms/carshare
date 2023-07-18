@@ -14,21 +14,19 @@ Main Banner START -->
 <!-- Content and Image START -->
 <div class="row g-4 g-lg-5">
 	<!-- Content -->
-	<div class="col-lg-6 position-relative mb-4 mb-md-0">
+	<div class="col-lg-6 position-relative shadow mb-4 mb-md-0">
 		<!-- Title -->
-		<h1 class="mb-4 mt-md-5 display-5">Rent Your Car
-			
-		</h1>
+		<h2 class="mb-4 mt-md-5 display-10">Rent Your Car </h2>
 		<!-- Info -->
-		<div class="card pb-0 mt-n7 mt-sm-n8 mt-lg-0">
+		<div class="card pb-0 mt-n7 mt-sm-n8 mt-lg-0 form-control-border " style=" border-radius: 10px;">
 						<!-- Card body START -->
-						<form class="card-body form-control-border p-3 p-sm-4">
+						<form class="card-body p-3 p-sm-4">
 							
 
 							<!-- Tabs content START -->
 							<div class="tab-content my-4" id="pills-tabContent">
 								<!-- Round trip START -->
-								<div class="tab-pane fade show active" id="cab2-round-way" role="tabpanel" aria-labelledby="cab2-round-way-tab">
+								<div class="tab-pane fade show active" style="" id="cab2-round-way" role="tabpanel" aria-labelledby="cab2-round-way-tab">
 									<div class="row g-2 g-md-4">
 										<!-- Pickup -->
 										<div class="col-md-12 position-relative">
@@ -76,8 +74,8 @@ Main Banner START -->
 	</div>
 	
 	<!-- Image -->
-	<div class="col-lg-6 position-relative rounded text-white" style="min-height:70vh; background-color: #1d9bf0">
-		<h1 class="mb-4 mt-md-5 display-5 text-white">List Your Car</h1>
+	<div class="col-lg-6 position-relative rounded text-white px-5 trapezoid" style="min-height:70vh; background-color: #1d9bf0; border-radius: 10px;   box-shadow: 10px 0 10px -4px #999, -10px 0 10px -4px #999; ">
+		<h1 class="mb-4 mt-md-5 display-10 text-white">List Your Car</h1>
 
 		<%= form_for(User.new, as: :user, url: registration_path(:user), class: "mt-4 text-start") do |f| %>
 			<!-- Email -->
@@ -552,6 +550,26 @@ Faqs END-->
 .mapboxgl-ctrl-geocoder .suggestions{
 	z-index: 10000 !important;
 }
+
+
+.trapezoid {
+	transform: rotate(-3deg);
+}
+
+/* Küçük ekranlar için stil */
+@media screen and (max-width: 600px) {
+  .trapezoid {
+    transform: rotate(-0deg);
+  }
+}
+
+/* Daha küçük ekranlar için stil */
+@media screen and (max-width: 400px) {
+  .trapezoid {
+	transform: rotate(-0deg);
+  }
+}
+
 </style>
 
 <script>
