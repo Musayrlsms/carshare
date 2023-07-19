@@ -55,3 +55,6 @@ gem 'activestorage'
 gem 'pundit'
 gem 'telegram-bot-ruby'
 gem 'dotenv-rails'
+
+gem "sentry-ruby"
+gem "sentry-rails"
