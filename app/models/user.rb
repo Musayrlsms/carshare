@@ -48,8 +48,8 @@ class User < ApplicationRecord
   has_one_attached :driver_license
 
 
-  validate :create_stripe_account
-  validate :create_stripe_customer
+  validate :create_stripe_account, if: -> { document_status_was != "approved" }
+  validate :create_stripe_customer, if: -> { document_status_was != "approved" }
 
   def document_upload?
       document_status != "approved" && self.identity_card.present? && self.passport.present? && self.driver_license.present?
