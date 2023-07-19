@@ -17,8 +17,8 @@ Main Content START -->
 							<div class="row g-4 align-items-center">
 								<!-- Image -->
 								<div class="col-md-4">
-									<div class=" rounded-3 px-2 py-3">
-                    					<%= image_tag car.images.first %>
+									<div class=" rounded-3 px-2 py-3 ">
+                    					<%= image_tag car.images.first%>
 									</div>
 								</div>
 
@@ -82,7 +82,7 @@ Main Content START -->
 											  <%= link_to(image, class: 'w-100 h-100', data: { glightbox: '', gallery: 'gallery' }) do %>
 												<div class="card card-element-hover card-overlay-hover overflow-hidden">
 												  <!-- Image -->
-												  <%= image_tag(image, class: 'rounded-3') %>
+												  <%= image_tag(image, class: 'rounded-3 standart-resim') %>
 												  <!-- Full screen button -->
 												  <div class="hover-element w-100 h-100">
 													<i class="bi bi-fullscreen fs-6 text-white position-absolute top-50 start-50 translate-middle bg-dark rounded-1 p-2 lh-1"></i>
@@ -200,6 +200,13 @@ Main Content START -->
 <style>
   .flatpickr-disabled{
     color: #f00 !important;
+  }
+  .standart-resim {
+	max-width: 100%; /* İstediğiniz standart genişlik */
+	height: 165px; /* İstediğiniz standart yükseklik */
+	  background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
   }
 </style>
 

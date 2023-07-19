@@ -102,7 +102,7 @@ Hotel grid START -->
 						<!-- Image item -->
 						<% car.images.each do |image|%>
 						
-					    <%= image_tag image, class: "Card image", alt:"Card image"  %>
+					    <%= image_tag image, class: "Card image standart-resim", alt:"Card image"  %>
 
 						<%end%>
 					</div>
@@ -199,8 +199,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoidmltcGlsIiwiYSI6ImNrMjhvNXU0MTIyZGszbG16dWw1e
   var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
-    center: [<%= @cars.approved.first.longitude %>, <%= @cars.approved.first.latitude %>],
-    zoom: 10
+    center: [<%= @cars.approved.first.longitude rescue 132.6948008 %>, <%= @cars.approved.first.latitude rescue -26.3198395%>],
+    zoom: 3
   });
 
   <% @cars.approved.each do |car| %>
@@ -305,4 +305,11 @@ slider.noUiSlider.on("update", function (values, handle) {
 		background-color: #5143d9;
 		color: white;	
 	}
+	.standart-resim {
+  max-width: 100%; /* İstediğiniz standart genişlik */
+  height: 200px; /* İstediğiniz standart yükseklik */
+	background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 </style>
