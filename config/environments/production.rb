@@ -94,4 +94,5 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { :host => ENV["DOMAIN"] }
   config.action_mailer.asset_host = ENV["DOMAIN"]
+  config.action_controller.asset_host = ENV["DOMAIN"]
 end
