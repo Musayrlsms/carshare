@@ -138,48 +138,9 @@
 				<li class="nav-item dropdown">
 					<%= link_to "Cars", cars_path, class: "nav-link", id: "accountMenu" %>
 				</li>
-					<!-- Nav item Pages -->
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= t(:pages) %></a>
-						<ul class="dropdown-menu" aria-labelledby="pagesMenu">
-							<%= link_to "About", about_us_pages_path, class: "dropdown-item" %>
-							<%= link_to "Contact", contact_pages_path, class: "dropdown-item" %>
-							
-							
-
-							<!-- Dropdown submenu -->
-							<li class="dropdown-submenu dropend">
-								<a class="dropdown-item dropdown-toggle" href="#">Authentication</a>
-								<ul class="dropdown-menu" data-bs-popper="none">
-								<li><%= link_to "Sign In", new_user_session_path, class: "dropdown-item" %></li>
-								<li><%= link_to "Sign up", new_user_registration_path, class: "dropdown-item" %></li>
-								<li><%= link_to "Forgot Password", edit_user_password_path, class: "dropdown-item" %></li>
-								</ul>
-							</li>
-
-							<!-- Dropdown submenu -->
-							<li class="dropdown-submenu dropend">
-								<a class="dropdown-item dropdown-toggle" href="#">Blog</a>
-								<ul class="dropdown-menu" data-bs-popper="none">
-									<li> <a class="dropdown-item" href="blog.html">Blog</a></li>
-									<li> <a class="dropdown-item" href="blog-detail.html">Blog Detail</a></li>
-								</ul>
-							</li>
-
-							<!-- Dropdown submenu -->
-							<li class="dropdown-submenu dropend">
-								<a class="dropdown-item dropdown-toggle" href="#">Help</a>
-								<ul class="dropdown-menu" data-bs-popper="none">
-									<li><%= link_to "Help Center", help_center_pages_path, class: "dropdown-item" %></li>
-									<li><%= link_to "Privacy Policy", privacy_policy_pages_path, class: "dropdown-item" %></li>
-								</ul>
-							</li>
-							<li><%= link_to "FAQs", faqs_pages_path, class: "dropdown-item" %></li>
-						</ul>
-					</li>
 
 					<li class="nav-item dropdown">
-						<%= link_to "Want to rent your car", new_car_path, class: "nav-link", id: "accountMenu" %>
+						<%= link_to "List your car", new_car_path, class: "nav-link", id: "accountMenu" %>
 
 					</li>
 
@@ -365,8 +326,7 @@ Footer START -->
 					<img src="<%= asset_path('oijoo.png') %>"  class=" h-40px" style="background-color: white; filter: invert(100%);" >
 				
 				<p class="my-3 text-muted">Departure defective arranging rapturous did believe him all had supported.</p>
-				<p class="mb-2"><a href="#" class="text-muted text-primary-hover"><i class="bi bi-telephone me-2"></i>+1234 568 963</a> </p>
-				<p class="mb-0"><a href="#" class="text-muted text-primary-hover"><i class="bi bi-envelope me-2"></i>example@gmail.com</a></p>
+				<p class="mb-0"><a href="#" class="text-muted text-primary-hover"><i class="bi bi-envelope me-2"></i>oi-jo@info.com</a></p>
 			</div>
 			<!-- Widget 1 END -->
 

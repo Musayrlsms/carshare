@@ -2,7 +2,10 @@
 <table border="1" class="table table-striped">
   <tr>
     <td>Car Content</td>
-    <td>Email-postası</td>
+    <td>Email</td>
+    <td>Car images</td>
+    <td>Insurance images</td>
+    <td>Registration images</td>
     <td>Onayla</td>
     <td>İptal Et</td>
   </tr>
@@ -10,6 +13,35 @@
     <tr>
       <td><%= car.model.name %> <%= car.brand.name %> <%= car.model_year %></td>
       <td><%= car.user.email %></td>
+      <% if car.images.present? %>
+        <td>
+          <% car.images.each do |image| %>
+            <%= image_tag(image, class: "avatar avatar-xl") %>
+          <% end %>
+        </td>
+      <%else%>
+        <td><img class="avatar avatar-xl" src="/assets/images/avatar/01.jpg" alt="avatar"></td>
+      <% end %>
+
+          <% if car.insurance_images.present? %>
+          <td>
+            <% car.insurance_images.each do |image| %>
+              <%= image_tag(image, class: "avatar avatar-xl") %>
+            <% end %>
+          </td>
+        <%else%>
+          <td><img class="avatar avatar-xl" src="/assets/images/avatar/01.jpg" alt="avatar"></td>
+        <% end %>
+
+        <% if car.registration_images.present? %>
+        <td>
+          <% car.registration_images.each do |image| %>
+            <%= image_tag(image, class: "avatar avatar-xl") %>
+          <% end %>
+        </td>
+      <%else%>
+        <td><img class="avatar avatar-xl" src="/assets/images/avatar/01.jpg" alt="avatar"></td>
+      <% end %>
       <td>
         <% if car.status == "available" || car.status == "rejected"%>
           <a href="<%= admin_permit_path(car.id) %>" class="btn btn-primary">Onayla</a>
@@ -27,5 +59,8 @@
     </tr>
   <% end %>
 </table>
+
+
+
 
 
