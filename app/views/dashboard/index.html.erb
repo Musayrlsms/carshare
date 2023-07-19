@@ -661,16 +661,25 @@ var pickerX;
 
 	function recalculate_prices() {
 		/* try{
-			var url = `/cars//rents/new?start_date=${pickerX.selectedDates[0].toString()}&finish_date=${pickerX.selectedDates[1].toString()}&insurance=${document.getElementById('insurance-checkbox').checked}` 
+			var url = `/cars/rents/new?start_date=${pickerX.selectedDates[0].toString()}&finish_date=${pickerX.selectedDates[1].toString()}&insurance=${document.getElementById('insurance-checkbox').checked}` 
 			document.getElementById('rent-button').setAttribute('href', url)
 		}catch{
-			var url = `/cars//rents/new?insurance=${document.getElementById('insurance-checkbox').checked}` 
+			var url = `/cars/rents/new?insurance=${document.getElementById('insurance-checkbox').checked}` 
 			document.getElementById('rent-button').setAttribute('href', url)
 		}*/
 	}	
 	
 
 	$('#search-button').on('click', function(){
-		// window.location = '/cars/?lat=${document.getElementById('hidden_latitude_input').value}&lng=${document.getElementById('hidden_longitude_input').value}&pick-up-date=${pickerY.selectedDates[0].toString()}&drop-off-date=${pickerX.selectedDates[0].toString()}'
+		url = '/cars/?'
+		if(document.getElementById('hidden_latitude_input').value != "")
+			url += `&lat=${document.getElementById('hidden_latitude_input').value}`
+		if(document.getElementById('hidden_longitude_input').value != "")
+			url += `&lng=${document.getElementById('hidden_longitude_input').value}`
+		if(pickerX.selectedDates[0] != null)
+			url += `&pick-up-date=${pickerX.selectedDates[0].toString()}`
+		if(pickerY.selectedDates[0] != null)
+			url += `&drop-off-date=${pickerY.selectedDates[0].toString()}`
+		window.location = url
 	});
 </script>
