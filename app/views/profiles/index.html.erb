@@ -46,7 +46,7 @@ Content START -->
 								<!-- Mobile -->
 								<div class="col-md-12">
 									<label class="form-label">Mobile number<span class="text-danger">*</span></label>
-									<%= f.text_field :mobile_number, placeholder:"Enter your mobile number",class: "form-control", required: true %>
+									<%= f.text_field :mobile_number, placeholder:"Enter your mobile number (+365 123 456)",class: "form-control", required: true %>
 								</div>
 								
 								<!-- Date of birth -->
@@ -70,34 +70,32 @@ Content START -->
 									
 										<span class="avatar avatar-xl">
 										<% if current_user.avatar.attached? %>
-											<%= image_tag(current_user.avatar, class: "avatar-img rounded-3") %>
+											<div id="image-preview"><%= image_tag(current_user.avatar, alt: "Sürücü Belgesi", class: "light-mode-item navbar-brand-item h-100px mt-4") %></div>
 										<% else%>
-											<img class="avatar-img rounded-2" src="/assets/images/avatar/default.jpg" alt="avatar">
+											<div id="image-preview"><img class="avatar-img rounded-2" src="/assets/images/avatar/default.jpg" alt="avatar"></div>
 										<% end %>
 										</span>
 									</label>
 
 									<!-- Upload button -->
-									<label class="btn btn-sm btn-primary-soft mb-0" for="uploadfile-1">Change</label>
-									<%= f.file_field :avatar, class: "form-control d-none", id:"uploadfile-1"  %>
+									<%= f.file_field :avatar, class: "custom-file-input ", onchange: "previewImages(event)" %>
 									</div>
 								</div>
-
+					<% if !current_user.approved? %>
 								<div class="col-12">
 									<label class="form-label">Upload your identity card photo<span class="text-danger">*</span></label>
 									<div class="d-flex align-items-center">
 									<label class="position-relative me-4" for="uploadfile-2" title="Replace this pic">
 										<span class="avatar avatar-xl">
 										<% if current_user.identity_card.attached? %>
-											<%= image_tag(current_user.identity_card, class: "avatar-img rounded-3") %>
+											<div id="image-preview-1"><%= image_tag(current_user.identity_card, alt: "Sürücü Belgesi", class: "light-mode-item navbar-brand-item h-100px mt-4") %></div>
 										<% else %>	
-										<img class="avatar-img rounded-2" src="/assets/images/avatar/card.png" alt="avatar">
+											<div id="image-preview-1"><img class="avatar-img rounded-2" src="/assets/images/avatar/card.png" alt="avatar"></div>
 										<% end %>
 										</span>
 									</label>
 									<!-- Upload button -->
-									<label class="btn btn-sm btn-primary-soft mb-0" for="uploadfile-2">Change</label>
-									<%= f.file_field :identity_card, class: "form-control d-none", id:"uploadfile-2"  %>
+									<%= f.file_field :identity_card, required: true, class: "custom-file-input ", onchange: "previewImages1(event)" %>
 								
 								</div>
 						
@@ -108,15 +106,14 @@ Content START -->
 								<label class="position-relative me-4" for="uploadfile-3" title="Replace this pic">
 									<span class="avatar avatar-xl">
 									<% if current_user.passport.attached? %>
-										<%= image_tag(current_user.passport, class: "avatar-img rounded-3") %>
+										<div id="image-preview-2"><%= image_tag(current_user.passport, alt: "Sürücü Belgesi", class: "light-mode-item navbar-brand-item h-100px mt-4") %></div>
 									<% else %>	
-										<img class="avatar-img rounded-2" src="/assets/images/avatar/card.png" alt="avatar">	
+										<div id="image-preview-2"><img class="avatar-img rounded-2" src="/assets/images/avatar/card.png" alt="avatar"></div>
 									<% end %>
 									</span>
 								</label>
 								<!-- Upload button -->
-								<label class="btn btn-sm btn-primary-soft mb-0" for="uploadfile-3">Change</label>
-								<%= f.file_field :passport, class: "form-control d-none", id:"uploadfile-3"  %>
+								<%= f.file_field :passport, required: true, class: "custom-file-input ", onchange: "previewImages2(event)" %>
 								</div>
 							</div>
 
@@ -126,18 +123,21 @@ Content START -->
 								<label class="position-relative me-4" for="uploadfile-4" title="Replace this pic">
 									<span class="avatar avatar-xl">
 									<% if current_user.driver_license.attached? %>
-										<%= image_tag(current_user.driver_license, class: "avatar-img rounded-3") %>
+										<div id="image-preview-3"><%= image_tag(current_user.driver_license, alt: "Sürücü Belgesi", class: "light-mode-item navbar-brand-item h-100px mt-4") %></div>
 									<% else %>	
-										<img class="avatar-img rounded-2" src="/assets/images/avatar/card.png" alt="avatar">
+									<div id="image-preview-3"><img class="avatar-img rounded-2" src="/assets/images/avatar/card.png" alt="avatar"></div>
 									<% end %>
+									
 									</span>
 								</label>
 								<!-- Upload button -->
-								<label class="btn btn-sm btn-primary-soft mb-0" for="uploadfile-4">Change</label>
-								<%= f.file_field :driver_license, class: "form-control d-none", id:"uploadfile-4"  %>
+								<%= f.file_field :driver_license, required: true,class: "custom-file-input ", onchange: "previewImages3(event)" %>
 								
 							</div>
+							
 						</div><br>
+						
+						
 
 						<% if current_user.approved? %>
 						 Your account is active
@@ -148,6 +148,7 @@ Content START -->
 									
 							
 					</div>
+				<% end %>
 								<!-- Button -->
 							<div class="col-12 text-end">
 								<%= f.submit 'Save Changes', class: 'btn btn-primary mb-0' %>
@@ -201,18 +202,95 @@ Content START -->
 						<% end %>
 						<!-- Card body END -->
 			    </div>
-
-
-
-
-			
-
-					<!-- Update Password END -->
-
-					
-			<!-- Main content END -->
-
 		</div>
 	</div>
 </section>
 
+<script>
+  function previewImages(event) {
+    var previewContainer = document.getElementById("image-preview");
+    previewContainer.innerHTML = "";
+
+    var files = event.target.files;
+    for (var i = 0; i < files.length; i++) {
+      var file = files[i];
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        var image = document.createElement("img");
+		addRemoveLinks: true,
+        image.src = e.target.result;
+        image.classList.add("preview-image");
+        previewContainer.appendChild(image);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  }
+</script>
+
+<script>
+  function previewImages1(event) {
+    var previewContainer = document.getElementById("image-preview-1");
+    previewContainer.innerHTML = "";
+
+    var files = event.target.files;
+    for (var i = 0; i < files.length; i++) {
+      var file = files[i];
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        var image = document.createElement("img");
+        image.src = e.target.result;
+        image.classList.add("preview-image-1");
+        previewContainer.appendChild(image);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  }
+</script>
+
+<script>
+  function previewImages2(event) {
+    var previewContainer = document.getElementById("image-preview-2");
+    previewContainer.innerHTML = "";
+
+    var files = event.target.files;
+    for (var i = 0; i < files.length; i++) {
+      var file = files[i];
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        var image = document.createElement("img");
+        image.src = e.target.result;
+        image.classList.add("preview-image-2");
+        previewContainer.appendChild(image);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  }
+</script>
+
+<script>
+  function previewImages3(event) {
+    var previewContainer = document.getElementById("image-preview-3");
+    previewContainer.innerHTML = "";
+
+    var files = event.target.files;
+    for (var i = 0; i < files.length; i++) {
+      var file = files[i];
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        var image = document.createElement("img");
+        image.src = e.target.result;
+        image.classList.add("preview-image3");
+        previewContainer.appendChild(image);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  }
+</script>

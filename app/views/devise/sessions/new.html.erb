@@ -11,11 +11,11 @@
   <div class="p-4 p-sm-7">
     <!-- Logo -->
     <%= link_to root_path, class: "nav-link active" do %>
-      <%= image_tag asset_url('oijo.png'), class: "mb-4 h-50px", alt: "logo", height: 100 %>
+      <%= image_tag asset_path('oijoo.png'), class: "mb-4 h-50px", alt: "logo" %>
     <% end %>
 
     <!-- Title -->
-    <h1 class="mb-2 h3">Welcome back</h1>
+    <h1 class="mb-2 h4">Welcome back</h1>
     <p class="mb-0">New here? <%= link_to "Create an account", new_registration_path(resource_name) %><br /></p>
 
     <!-- Form START -->
