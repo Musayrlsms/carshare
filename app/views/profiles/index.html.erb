@@ -46,7 +46,7 @@ Content START -->
 								<!-- Mobile -->
 								<div class="col-md-12">
 									<label class="form-label">Mobile number<span class="text-danger">*</span></label>
-									<%= f.text_field :mobile_number, placeholder:"Enter your mobile number",class: "form-control", required: true %>
+									<%= f.text_field :mobile_number, placeholder:"Enter your mobile number (+365 123 456)",class: "form-control", required: true %>
 								</div>
 								
 								<!-- Date of birth -->
@@ -72,16 +72,16 @@ Content START -->
 										<% if current_user.avatar.attached? %>
 											<div id="image-preview"><%= image_tag(current_user.avatar, alt: "Sürücü Belgesi", class: "light-mode-item navbar-brand-item h-100px mt-4") %></div>
 										<% else%>
-											<img class="avatar-img rounded-2" src="/assets/images/avatar/default.jpg" alt="avatar">
+											<div id="image-preview"><img class="avatar-img rounded-2" src="/assets/images/avatar/default.jpg" alt="avatar"></div>
 										<% end %>
 										</span>
 									</label>
 
 									<!-- Upload button -->
-									<%= f.file_field :avatar, required: true, class: "custom-file-input ", onchange: "previewImages(event)" %>
+									<%= f.file_field :avatar, class: "custom-file-input ", onchange: "previewImages(event)" %>
 									</div>
 								</div>
-
+					<% if !current_user.approved? %>
 								<div class="col-12">
 									<label class="form-label">Upload your identity card photo<span class="text-danger">*</span></label>
 									<div class="d-flex align-items-center">
@@ -90,7 +90,7 @@ Content START -->
 										<% if current_user.identity_card.attached? %>
 											<div id="image-preview-1"><%= image_tag(current_user.identity_card, alt: "Sürücü Belgesi", class: "light-mode-item navbar-brand-item h-100px mt-4") %></div>
 										<% else %>	
-										<img class="avatar-img rounded-2" src="/assets/images/avatar/card.png" alt="avatar">
+											<div id="image-preview-1"><img class="avatar-img rounded-2" src="/assets/images/avatar/card.png" alt="avatar"></div>
 										<% end %>
 										</span>
 									</label>
@@ -108,7 +108,7 @@ Content START -->
 									<% if current_user.passport.attached? %>
 										<div id="image-preview-2"><%= image_tag(current_user.passport, alt: "Sürücü Belgesi", class: "light-mode-item navbar-brand-item h-100px mt-4") %></div>
 									<% else %>	
-										<img class="avatar-img rounded-2" src="/assets/images/avatar/card.png" alt="avatar">	
+										<div id="image-preview-2"><img class="avatar-img rounded-2" src="/assets/images/avatar/card.png" alt="avatar"></div>
 									<% end %>
 									</span>
 								</label>
@@ -125,7 +125,7 @@ Content START -->
 									<% if current_user.driver_license.attached? %>
 										<div id="image-preview-3"><%= image_tag(current_user.driver_license, alt: "Sürücü Belgesi", class: "light-mode-item navbar-brand-item h-100px mt-4") %></div>
 									<% else %>	
-										<img class="avatar-img rounded-2" src="/assets/images/avatar/card.png" alt="avatar">
+									<div id="image-preview-3"><img class="avatar-img rounded-2" src="/assets/images/avatar/card.png" alt="avatar"></div>
 									<% end %>
 									
 									</span>
@@ -134,7 +134,10 @@ Content START -->
 								<%= f.file_field :driver_license, required: true,class: "custom-file-input ", onchange: "previewImages3(event)" %>
 								
 							</div>
+							
 						</div><br>
+						
+						
 
 						<% if current_user.approved? %>
 						 Your account is active
@@ -145,6 +148,7 @@ Content START -->
 									
 							
 					</div>
+				<% end %>
 								<!-- Button -->
 							<div class="col-12 text-end">
 								<%= f.submit 'Save Changes', class: 'btn btn-primary mb-0' %>
